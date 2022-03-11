@@ -1,0 +1,1980 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>optimization.pruning.prune.iterative_pruner API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>optimization.pruning.prune.iterative_pruner</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import logging
+import copy
+import torch
+from schema import And, Optional
+from optimization.common.base import PrunerSchema
+from .dependency_aware_prune import DependencyAwarePruner, MASKER_DICT
+
+__all__ = [&#39;AGPPruner&#39;, &#39;ADMMPruner&#39;, &#39;SlimPruner&#39;, &#39;TaylorFOWeightFilterPruner&#39;, &#39;ActivationAPoZRankFilterPruner&#39;,
+           &#39;ActivationMeanRankFilterPruner&#39;]
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+
+class IterativePruner(DependencyAwarePruner):
+    &#34;&#34;&#34;
+    Prune model during the training process.
+    &#34;&#34;&#34;
+    def __init__(self, model, config_list, optimizer=None, pruning_algorithm=&#39;slim&#39;, trainer=None, criterion=None,
+                 num_iterations=20, epochs_per_iteration=5, dependency_aware=False, dummy_input=None, **algo_kwargs):
+        &#34;&#34;&#34;
+        Parameters
+        ----------
+        model: torch.nn.Module
+            Model to be pruned
+        config_list: list
+            List on pruning configs
+        optimizer: torch.optim.Optimizer
+            Optimizer used to train model
+        pruning_algorithm: str
+            algorithms being used to prune model
+        trainer: function
+            Function used to train the model.
+            Users should write this function as a normal function to train the Pytorch model
+            and include `model, optimizer, criterion, epoch` as function arguments.
+        criterion: function
+            Function used to calculate the loss between the target and the output.
+            For example, you can use ``torch.nn.CrossEntropyLoss()`` as input.
+        num_iterations: int
+            Total number of iterations in pruning process. We will calculate mask at the end of an iteration.
+        epochs_per_iteration: Union[int, list]
+            The number of training epochs for each iteration. `int` represents the same value for each iteration.
+            `list` represents the specific value for each iteration.
+        dependency_aware: bool
+            If prune the model in a dependency-aware way.
+        dummy_input: torch.Tensor
+            The dummy input to analyze the topology constraints. Note that,
+            the dummy_input should on the same device with the model.
+        algo_kwargs: dict
+            Additional parameters passed to pruning algorithm masker class
+        &#34;&#34;&#34;
+        super().__init__(model, config_list, optimizer, pruning_algorithm, dependency_aware, dummy_input, **algo_kwargs)
+
+        if isinstance(epochs_per_iteration, list):
+            assert len(epochs_per_iteration) == num_iterations, &#39;num_iterations should equal to the length of epochs_per_iteration&#39;
+            self.epochs_per_iteration = epochs_per_iteration
+        else:
+            assert num_iterations &gt; 0, &#39;num_iterations should &gt;= 1&#39;
+            self.epochs_per_iteration = [epochs_per_iteration] * num_iterations
+
+        self._validate_iteration_params()
+
+        self._trainer = trainer
+        self._criterion = criterion
+
+    def _fresh_calculated(self):
+        for wrapper in self.get_modules_wrapper():
+            wrapper.if_calculated = False
+
+    def _validate_iteration_params(self):
+        assert all(num &gt;= 0 for num in self.epochs_per_iteration), &#39;all epoch number need &gt;= 0&#39;
+
+    def compress(self):
+        training = self.bound_model.training
+        self.bound_model.train()
+        for _, epochs_num in enumerate(self.epochs_per_iteration):
+            self._fresh_calculated()
+            for epoch in range(epochs_num):
+                self._trainer(self.bound_model, optimizer=self.optimizer, criterion=self._criterion, epoch=epoch)
+            # NOTE: workaround for statistics_batch_num bigger than max batch number in one epoch, need refactor
+            if hasattr(self.masker, &#39;statistics_batch_num&#39;) and hasattr(self, &#39;iterations&#39;):
+                if self.iterations &lt; self.masker.statistics_batch_num:  # pylint: disable=access-member-before-definition
+                    self.iterations = self.masker.statistics_batch_num
+            self.update_mask()
+        self.bound_model.train(training)
+
+        return self.bound_model
+
+
+class AGPPruner(IterativePruner):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    model : torch.nn.Module
+        Model to be pruned.
+    config_list : listlist
+        Supported keys:
+            - sparsity : This is to specify the sparsity operations to be compressed to.
+            - op_types : See supported type in your specific pruning algorithm.
+    optimizer: torch.optim.Optimizer
+        Optimizer used to train model.
+    trainer: function
+        Function to train the model
+    criterion: function
+        Function used to calculate the loss between the target and the output.
+        For example, you can use ``torch.nn.CrossEntropyLoss()`` as input.
+    num_iterations: int
+        Total number of iterations in pruning process. We will calculate mask at the end of an iteration.
+    epochs_per_iteration: int
+        The number of training epochs for each iteration.
+    pruning_algorithm: str
+        Algorithms being used to prune model,
+        choose from `[&#39;level&#39;, &#39;slim&#39;, &#39;l1&#39;, &#39;l2&#39;, &#39;fpgm&#39;, &#39;taylorfo&#39;, &#39;apoz&#39;, &#39;mean_activation&#39;]`, by default `level`
+    &#34;&#34;&#34;
+    def __init__(self, model, config_list, optimizer, trainer, criterion,
+                 num_iterations=10, epochs_per_iteration=1, pruning_algorithm=&#39;level&#39;):
+        super().__init__(model, config_list, optimizer=optimizer, trainer=trainer, criterion=criterion,
+                         num_iterations=num_iterations, epochs_per_iteration=epochs_per_iteration)
+        assert isinstance(optimizer, torch.optim.Optimizer), &#34;AGP pruner is an iterative pruner, please pass optimizer of the model to it&#34;
+        self.masker = MASKER_DICT[pruning_algorithm](model, self)
+        self.now_epoch = 0
+        self.freq = epochs_per_iteration
+        self.end_epoch = epochs_per_iteration * num_iterations
+        self.set_wrappers_attribute(&#34;if_calculated&#34;, False)
+
+    def validate_config(self, model, config_list):
+        &#34;&#34;&#34;
+        Parameters
+        ----------
+        model : torch.nn.Module
+            Model to be pruned
+        config_list : list
+            List on pruning configs
+        &#34;&#34;&#34;
+        schema = PrunerSchema([{
+            Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt;= n &lt;= 1),
+            Optional(&#39;op_types&#39;): [str],
+            Optional(&#39;op_names&#39;): [str],
+            Optional(&#39;exclude&#39;): bool
+        }], model, logger)
+
+        schema.validate(config_list)
+
+    def _supported_dependency_aware(self):
+        return False
+
+    def calc_mask(self, wrapper, wrapper_idx=None):
+        &#34;&#34;&#34;
+        Calculate the mask of given layer.
+        Scale factors with the smallest absolute value in the BN layer are masked.
+        Parameters
+        ----------
+        wrapper : Module
+            the layer to instrument the compression operation
+        wrapper_idx: int
+            index of this wrapper in pruner&#39;s all wrappers
+        Returns
+        -------
+        dict | None
+            Dictionary for storing masks, keys of the dict:
+            &#39;weight_mask&#39;:  weight mask tensor
+            &#39;bias_mask&#39;: bias mask tensor (optional)
+        &#34;&#34;&#34;
+        config = wrapper.config
+
+        if wrapper.if_calculated:
+            return None
+
+        if not self.now_epoch % self.freq == 0:
+            return None
+
+        target_sparsity = self.compute_target_sparsity(config)
+        new_mask = self.masker.calc_mask(sparsity=target_sparsity, wrapper=wrapper, wrapper_idx=wrapper_idx)
+
+        if new_mask is not None:
+            wrapper.if_calculated = True
+
+        return new_mask
+
+    def compute_target_sparsity(self, config):
+        &#34;&#34;&#34;
+        Calculate the sparsity for pruning
+        Parameters
+        ----------
+        config : dict
+            Layer&#39;s pruning config
+        Returns
+        -------
+        float
+            Target sparsity to be pruned
+        &#34;&#34;&#34;
+        initial_sparsity = 0
+        self.target_sparsity = final_sparsity = config.get(&#39;sparsity&#39;, 0)
+
+        if initial_sparsity &gt;= final_sparsity:
+            logger.warning(&#39;your initial_sparsity &gt;= final_sparsity&#39;)
+            return final_sparsity
+
+        if self.end_epoch == 1 or self.end_epoch &lt;= self.now_epoch:
+            return final_sparsity
+
+        span = ((self.end_epoch - 1) // self.freq) * self.freq
+        assert span &gt; 0
+        self.target_sparsity = (final_sparsity + (initial_sparsity - final_sparsity) * (1.0 - (self.now_epoch / span)) ** 3)
+        return self.target_sparsity
+
+    def update_epoch(self, epoch):
+        &#34;&#34;&#34;
+        Update epoch
+        Parameters
+        ----------
+        epoch : int
+            current training epoch
+        &#34;&#34;&#34;
+        if epoch &gt; 0:
+            self.now_epoch = epoch
+            for wrapper in self.get_modules_wrapper():
+                wrapper.if_calculated = False
+
+    def compress(self):
+        training = self.bound_model.training
+        self.bound_model.train()
+
+        for epoch in range(self.end_epoch):
+            self.update_epoch(epoch)
+            self._trainer(self.bound_model, optimizer=self.optimizer, criterion=self._criterion, epoch=epoch)
+            self.update_mask()
+            logger.info(f&#39;sparsity is {self.target_sparsity:.2f} at epoch {epoch}&#39;)
+            self.get_pruned_weights()
+
+        self.bound_model.train(training)
+
+        return self.bound_model
+
+
+class ADMMPruner(IterativePruner):
+    &#34;&#34;&#34;
+    A Pytorch implementation of ADMM Pruner algorithm.
+
+    Parameters
+    ----------
+    model : torch.nn.Module
+        Model to be pruned.
+    config_list : list
+        List on pruning configs.
+    trainer : function
+        Function used for the first subproblem.
+        Users should write this function as a normal function to train the Pytorch model
+        and include `model, optimizer, criterion, epoch` as function arguments.
+    criterion: function
+        Function used to calculate the loss between the target and the output. By default, we use CrossEntropyLoss in ADMMPruner.
+        For example, you can use ``torch.nn.CrossEntropyLoss()`` as input.
+    num_iterations: int
+        Total number of iterations in pruning process. We will calculate mask after we finish all iterations in ADMMPruner.
+    epochs_per_iteration: int
+        Training epochs of the first subproblem.
+    row : float
+        Penalty parameters for ADMM training.
+    base_algo : str
+        Base pruning algorithm. `level`, `l1`, `l2` or `fpgm`, by default `l1`. Given the sparsity distribution among
+        the ops, the assigned `base_algo` is used to decide which filters/channels/weights to prune.
+    &#34;&#34;&#34;
+    def __init__(self, model, config_list, trainer, criterion=torch.nn.CrossEntropyLoss(),
+                 num_iterations=30, epochs_per_iteration=5, row=1e-4, base_algo=&#39;l1&#39;):
+        self._base_algo = base_algo
+        super().__init__(model, config_list)
+        self._trainer = trainer
+        self.optimizer = torch.optim.Adam(
+            self.bound_model.parameters(), lr=1e-3, weight_decay=5e-5)
+        self._criterion = criterion
+        self._num_iterations = num_iterations
+        self._training_epochs = epochs_per_iteration
+        self._row = row
+        self.set_wrappers_attribute(&#34;if_calculated&#34;, False)
+        self.masker = MASKER_DICT[self._base_algo](self.bound_model, self)
+        self.patch_optimizer_before(self._callback)
+
+    def validate_config(self, model, config_list):
+        &#34;&#34;&#34;
+        Parameters
+        ----------
+        model : torch.nn.Module
+            Model to be pruned
+        config_list : list
+            List on pruning configs
+        &#34;&#34;&#34;
+        if self._base_algo == &#39;level&#39;:
+            schema = PrunerSchema([{
+                Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+                Optional(&#39;op_types&#39;): [str],
+                Optional(&#39;op_names&#39;): [str],
+                Optional(&#39;exclude&#39;): bool
+            }], model, logger)
+        elif self._base_algo in [&#39;l1&#39;, &#39;l2&#39;, &#39;fpgm&#39;]:
+            schema = PrunerSchema([{
+                Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+                &#39;op_types&#39;: [&#39;Conv2d&#39;],
+                Optional(&#39;op_names&#39;): [str],
+                Optional(&#39;exclude&#39;): bool
+            }], model, logger)
+        schema.validate(config_list)
+
+    def _supported_dependency_aware(self):
+        return False
+
+    def _projection(self, weight, sparsity, wrapper):
+        &#39;&#39;&#39;
+        Return the Euclidean projection of the weight matrix according to the pruning mode.
+
+        Parameters
+        ----------
+        weight : tensor
+            original matrix
+        sparsity : float
+            the ratio of parameters which need to be set to zero
+        wrapper: PrunerModuleWrapper
+            layer wrapper of this layer
+
+        Returns
+        -------
+        tensor
+            the projected matrix
+        &#39;&#39;&#39;
+        wrapper_copy = copy.deepcopy(wrapper)
+        wrapper_copy.module.weight.data = weight
+        return weight.data.mul(self.masker.calc_mask(sparsity, wrapper_copy)[&#39;weight_mask&#39;])
+
+    def _callback(self):
+        for i, wrapper in enumerate(self.get_modules_wrapper()):
+            wrapper.module.weight.data -= self._row * \
+                (wrapper.module.weight.data - self.Z[i] + self.U[i])
+
+    def compress(self):
+        &#34;&#34;&#34;
+        Compress the model with ADMM.
+
+        Returns
+        -------
+        torch.nn.Module
+            model with specified modules compressed.
+        &#34;&#34;&#34;
+        logger.info(&#39;Starting ADMM Compression...&#39;)
+        self.Z = []
+        self.U = []
+        for wrapper in self.get_modules_wrapper():
+            z = wrapper.module.weight.data
+            self.Z.append(z)
+            self.U.append(torch.zeros_like(z))
+        for k in range(self._num_iterations):
+            logger.info(&#39;ADMM iteration : %d&#39;, k)
+            for epoch in range(self._training_epochs):
+                self._trainer(self.bound_model, optimizer=self.optimizer, criterion=self._criterion, epoch=epoch)
+            for i, wrapper in enumerate(self.get_modules_wrapper()):
+                z = wrapper.module.weight.data + self.U[i]
+                self.Z[i] = self._projection(z, wrapper.config[&#39;sparsity&#39;], wrapper)
+                torch.cuda.empty_cache()
+                self.U[i] = self.U[i] + wrapper.module.weight.data - self.Z[i]
+
+        self.update_mask()
+
+        logger.info(&#39;Compression finished.&#39;)
+
+        return self.bound_model
+
+
+class SlimPruner(IterativePruner):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    model : torch.nn.Module
+        Model to be pruned
+    config_list : list
+        Supported keys:
+            - sparsity : This is to specify the sparsity operations to be compressed to.
+            - op_types : Only BatchNorm2d is supported in Slim Pruner.
+    optimizer : torch.optim.Optimizer
+            Optimizer used to train model
+    trainer : function
+        Function used to sparsify BatchNorm2d scaling factors.
+        Users should write this function as a normal function to train the Pytorch model
+        and include `model, optimizer, criterion, epoch` as function arguments.
+    criterion : function
+        Function used to calculate the loss between the target and the output.
+        For example, you can use ``torch.nn.CrossEntropyLoss()`` as input.
+    sparsifying_training_epochs: int
+        The number of channel sparsity regularization training epochs before pruning.
+    scale : float
+        Penalty parameters for sparsification.
+    dependency_aware: bool
+        If prune the model in a dependency-aware way. If it is `True`, this pruner will
+        prune the model according to the l2-norm of weights and the channel-dependency or
+        group-dependency of the model. In this way, the pruner will force the conv layers
+        that have dependencies to prune the same channels, so the speedup module can better
+        harvest the speed benefit from the pruned model. Note that, if this flag is set True
+        , the dummy_input cannot be None, because the pruner needs a dummy input to trace the
+        dependency between the conv layers.
+    dummy_input : torch.Tensor
+        The dummy input to analyze the topology constraints. Note that, the dummy_input
+        should on the same device with the model.
+    &#34;&#34;&#34;
+    def __init__(self, model, config_list, optimizer, trainer, criterion, sparsifying_training_epochs=10, scale=0.0001,
+                 dependency_aware=False, dummy_input=None):
+        super().__init__(model, config_list, optimizer=optimizer, pruning_algorithm=&#39;slim&#39;, trainer=trainer, criterion=criterion,
+                         num_iterations=1, epochs_per_iteration=sparsifying_training_epochs, dependency_aware=dependency_aware,
+                         dummy_input=dummy_input)
+        self.scale = scale
+        self.patch_optimizer_before(self._callback)
+
+    def validate_config(self, model, config_list):
+        schema = PrunerSchema([{
+            Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+            &#39;op_types&#39;: [&#39;BatchNorm2d&#39;],
+            Optional(&#39;op_names&#39;): [str],
+            Optional(&#39;exclude&#39;): bool
+        }], model, logger)
+        schema.validate(config_list)
+        if len(config_list) &gt; 1:
+            logger.warning(&#39;Slim pruner only supports 1 configuration&#39;)
+
+    def _supported_dependency_aware(self):
+        return True
+
+    def _callback(self):
+        for _, wrapper in enumerate(self.get_modules_wrapper()):
+            wrapper.module.weight.grad.data.add_(self.scale * torch.sign(wrapper.module.weight.data))
+
+
+class TaylorFOWeightFilterPruner(IterativePruner):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    model : torch.nn.Module
+        Model to be pruned
+    config_list : list
+        Supported keys:
+            - sparsity : How much percentage of convolutional filters are to be pruned.
+            - op_types : Currently only Conv2d is supported in TaylorFOWeightFilterPruner.
+    optimizer: torch.optim.Optimizer
+            Optimizer used to train model
+    trainer : function
+        Function used to sparsify BatchNorm2d scaling factors.
+        Users should write this function as a normal function to train the Pytorch model
+        and include `model, optimizer, criterion, epoch` as function arguments.
+    criterion : function
+        Function used to calculate the loss between the target and the output.
+        For example, you can use ``torch.nn.CrossEntropyLoss()`` as input.
+    sparsifying_training_batches: int
+        The number of batches to collect the contributions. Note that the number need to be less than the maximum batch number in one epoch.
+    dependency_aware: bool
+        If prune the model in a dependency-aware way. If it is `True`, this pruner will
+        prune the model according to the l2-norm of weights and the channel-dependency or
+        group-dependency of the model. In this way, the pruner will force the conv layers
+        that have dependencies to prune the same channels, so the speedup module can better
+        harvest the speed benefit from the pruned model. Note that, if this flag is set True
+        , the dummy_input cannot be None, because the pruner needs a dummy input to trace the
+        dependency between the conv layers.
+    dummy_input : torch.Tensor
+        The dummy input to analyze the topology constraints. Note that, the dummy_input
+        should on the same device with the model.
+    global_sort: bool
+        Only support TaylorFOWeightFilterPruner currently.
+        If prune the model in a global-sort way. If it is `True`, this pruner will prune
+        the model according to the global contributions information which means channel contributions
+        will be sorted globally and whether specific channel will be pruned depends on global information.
+    &#34;&#34;&#34;
+    def __init__(self, model, config_list, optimizer, trainer, criterion, sparsifying_training_batches=1,
+                 dependency_aware=False, dummy_input=None, global_sort=False):
+        super().__init__(model, config_list, optimizer=optimizer, pruning_algorithm=&#39;taylorfo&#39;, trainer=trainer,
+                         criterion=criterion, statistics_batch_num=sparsifying_training_batches, num_iterations=1,
+                         epochs_per_iteration=1, dependency_aware=dependency_aware,
+                         dummy_input=dummy_input)
+        self.masker.global_sort = global_sort
+
+    def _supported_dependency_aware(self):
+        return True
+
+
+class ActivationAPoZRankFilterPruner(IterativePruner):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    model : torch.nn.Module
+        Model to be pruned
+    config_list : list
+        Supported keys:
+            - sparsity : How much percentage of convolutional filters are to be pruned.
+            - op_types : Only Conv2d is supported in ActivationAPoZRankFilterPruner.
+    optimizer: torch.optim.Optimizer
+            Optimizer used to train model
+    trainer: function
+        Function used to train the model.
+        Users should write this function as a normal function to train the Pytorch model
+        and include `model, optimizer, criterion, epoch` as function arguments.
+    criterion : function
+        Function used to calculate the loss between the target and the output.
+        For example, you can use ``torch.nn.CrossEntropyLoss()`` as input.
+    activation: str
+        The activation type.
+    sparsifying_training_batches: int
+        The number of batches to collect the contributions. Note that the number need to be less than the maximum batch number in one epoch.
+    dependency_aware: bool
+        If prune the model in a dependency-aware way. If it is `True`, this pruner will
+        prune the model according to the l2-norm of weights and the channel-dependency or
+        group-dependency of the model. In this way, the pruner will force the conv layers
+        that have dependencies to prune the same channels, so the speedup module can better
+        harvest the speed benefit from the pruned model. Note that, if this flag is set True
+        , the dummy_input cannot be None, because the pruner needs a dummy input to trace the
+        dependency between the conv layers.
+    dummy_input : torch.Tensor
+        The dummy input to analyze the topology constraints. Note that, the dummy_input
+        should on the same device with the model.
+
+    &#34;&#34;&#34;
+
+    def __init__(self, model, config_list, optimizer, trainer, criterion, activation=&#39;relu&#39;,
+                 sparsifying_training_batches=1, dependency_aware=False, dummy_input=None):
+        super().__init__(model, config_list, pruning_algorithm=&#39;apoz&#39;, optimizer=optimizer, trainer=trainer,
+                         criterion=criterion, dependency_aware=dependency_aware, dummy_input=dummy_input,
+                         activation=activation, statistics_batch_num=sparsifying_training_batches, num_iterations=1,
+                         epochs_per_iteration=1)
+        self.patch_optimizer(self.update_mask)
+
+    def _supported_dependency_aware(self):
+        return True
+
+
+class ActivationMeanRankFilterPruner(IterativePruner):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    model : torch.nn.Module
+        Model to be pruned
+    config_list : list
+        Supported keys:
+            - sparsity : How much percentage of convolutional filters are to be pruned.
+            - op_types : Only Conv2d is supported in ActivationMeanRankFilterPruner.
+    optimizer: torch.optim.Optimizer
+            Optimizer used to train model.
+    trainer: function
+            Function used to train the model.
+            Users should write this function as a normal function to train the Pytorch model
+            and include `model, optimizer, criterion, epoch` as function arguments.
+    criterion : function
+        Function used to calculate the loss between the target and the output.
+        For example, you can use ``torch.nn.CrossEntropyLoss()`` as input.
+    activation: str
+        The activation type.
+    sparsifying_training_batches: int
+        The number of batches to collect the contributions. Note that the number need to be less than the maximum batch number in one epoch.
+    dependency_aware: bool
+        If prune the model in a dependency-aware way. If it is `True`, this pruner will
+        prune the model according to the l2-norm of weights and the channel-dependency or
+        group-dependency of the model. In this way, the pruner will force the conv layers
+        that have dependencies to prune the same channels, so the speedup module can better
+        harvest the speed benefit from the pruned model. Note that, if this flag is set True
+        , the dummy_input cannot be None, because the pruner needs a dummy input to trace the
+        dependency between the conv layers.
+    dummy_input : torch.Tensor
+        The dummy input to analyze the topology constraints. Note that, the dummy_input
+        should on the same device with the model.
+    &#34;&#34;&#34;
+    def __init__(self, model, config_list, optimizer, trainer, criterion, activation=&#39;relu&#39;,
+                 sparsifying_training_batches=1, dependency_aware=False, dummy_input=None):
+        super().__init__(model, config_list, pruning_algorithm=&#39;mean_activation&#39;, optimizer=optimizer, trainer=trainer,
+                         criterion=criterion, dependency_aware=dependency_aware, dummy_input=dummy_input,
+                         activation=activation, statistics_batch_num=sparsifying_training_batches, num_iterations=1,
+                         epochs_per_iteration=1)
+        self.patch_optimizer(self.update_mask)
+
+    def _supported_dependency_aware(self):
+        return True</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="optimization.pruning.prune.iterative_pruner.ADMMPruner"><code class="flex name class">
+<span>class <span class="ident">ADMMPruner</span></span>
+<span>(</span><span>model, config_list, trainer, criterion=CrossEntropyLoss(), num_iterations=30, epochs_per_iteration=5, row=0.0001, base_algo='l1')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A Pytorch implementation of ADMM Pruner algorithm.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>Model to be pruned.</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>List on pruning configs.</dd>
+<dt><strong><code>trainer</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used for the first subproblem.
+Users should write this function as a normal function to train the Pytorch model
+and include <code>model, optimizer, criterion, epoch</code> as function arguments.</dd>
+<dt><strong><code>criterion</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to calculate the loss between the target and the output. By default, we use CrossEntropyLoss in ADMMPruner.
+For example, you can use <code>torch.nn.CrossEntropyLoss()</code> as input.</dd>
+<dt><strong><code>num_iterations</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total number of iterations in pruning process. We will calculate mask after we finish all iterations in ADMMPruner.</dd>
+<dt><strong><code>epochs_per_iteration</code></strong> :&ensp;<code>int</code></dt>
+<dd>Training epochs of the first subproblem.</dd>
+<dt><strong><code>row</code></strong> :&ensp;<code>float</code></dt>
+<dd>Penalty parameters for ADMM training.</dd>
+<dt><strong><code>base_algo</code></strong> :&ensp;<code>str</code></dt>
+<dd>Base pruning algorithm. <code>level</code>, <code>l1</code>, <code>l2</code> or <code>fpgm</code>, by default <code>l1</code>. Given the sparsity distribution among
+the ops, the assigned <code>base_algo</code> is used to decide which filters/channels/weights to prune.</dd>
+</dl>
+<h2 id="parameters_1">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>Model to be pruned</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>List on pruning configs</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>torch.optim.Optimizer</code></dt>
+<dd>Optimizer used to train model</dd>
+<dt><strong><code>pruning_algorithm</code></strong> :&ensp;<code>str</code></dt>
+<dd>algorithms being used to prune model</dd>
+<dt><strong><code>trainer</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to train the model.
+Users should write this function as a normal function to train the Pytorch model
+and include <code>model, optimizer, criterion, epoch</code> as function arguments.</dd>
+<dt><strong><code>criterion</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to calculate the loss between the target and the output.
+For example, you can use <code>torch.nn.CrossEntropyLoss()</code> as input.</dd>
+<dt><strong><code>num_iterations</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total number of iterations in pruning process. We will calculate mask at the end of an iteration.</dd>
+<dt><strong><code>epochs_per_iteration</code></strong> :&ensp;<code>Union[int, list]</code></dt>
+<dd>The number of training epochs for each iteration. <code>int</code> represents the same value for each iteration.
+<code>list</code> represents the specific value for each iteration.</dd>
+<dt><strong><code>dependency_aware</code></strong> :&ensp;<code>bool</code></dt>
+<dd>If prune the model in a dependency-aware way.</dd>
+<dt><strong><code>dummy_input</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>The dummy input to analyze the topology constraints. Note that,
+the dummy_input should on the same device with the model.</dd>
+<dt><strong><code>algo_kwargs</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Additional parameters passed to pruning algorithm masker class</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ADMMPruner(IterativePruner):
+    &#34;&#34;&#34;
+    A Pytorch implementation of ADMM Pruner algorithm.
+
+    Parameters
+    ----------
+    model : torch.nn.Module
+        Model to be pruned.
+    config_list : list
+        List on pruning configs.
+    trainer : function
+        Function used for the first subproblem.
+        Users should write this function as a normal function to train the Pytorch model
+        and include `model, optimizer, criterion, epoch` as function arguments.
+    criterion: function
+        Function used to calculate the loss between the target and the output. By default, we use CrossEntropyLoss in ADMMPruner.
+        For example, you can use ``torch.nn.CrossEntropyLoss()`` as input.
+    num_iterations: int
+        Total number of iterations in pruning process. We will calculate mask after we finish all iterations in ADMMPruner.
+    epochs_per_iteration: int
+        Training epochs of the first subproblem.
+    row : float
+        Penalty parameters for ADMM training.
+    base_algo : str
+        Base pruning algorithm. `level`, `l1`, `l2` or `fpgm`, by default `l1`. Given the sparsity distribution among
+        the ops, the assigned `base_algo` is used to decide which filters/channels/weights to prune.
+    &#34;&#34;&#34;
+    def __init__(self, model, config_list, trainer, criterion=torch.nn.CrossEntropyLoss(),
+                 num_iterations=30, epochs_per_iteration=5, row=1e-4, base_algo=&#39;l1&#39;):
+        self._base_algo = base_algo
+        super().__init__(model, config_list)
+        self._trainer = trainer
+        self.optimizer = torch.optim.Adam(
+            self.bound_model.parameters(), lr=1e-3, weight_decay=5e-5)
+        self._criterion = criterion
+        self._num_iterations = num_iterations
+        self._training_epochs = epochs_per_iteration
+        self._row = row
+        self.set_wrappers_attribute(&#34;if_calculated&#34;, False)
+        self.masker = MASKER_DICT[self._base_algo](self.bound_model, self)
+        self.patch_optimizer_before(self._callback)
+
+    def validate_config(self, model, config_list):
+        &#34;&#34;&#34;
+        Parameters
+        ----------
+        model : torch.nn.Module
+            Model to be pruned
+        config_list : list
+            List on pruning configs
+        &#34;&#34;&#34;
+        if self._base_algo == &#39;level&#39;:
+            schema = PrunerSchema([{
+                Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+                Optional(&#39;op_types&#39;): [str],
+                Optional(&#39;op_names&#39;): [str],
+                Optional(&#39;exclude&#39;): bool
+            }], model, logger)
+        elif self._base_algo in [&#39;l1&#39;, &#39;l2&#39;, &#39;fpgm&#39;]:
+            schema = PrunerSchema([{
+                Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+                &#39;op_types&#39;: [&#39;Conv2d&#39;],
+                Optional(&#39;op_names&#39;): [str],
+                Optional(&#39;exclude&#39;): bool
+            }], model, logger)
+        schema.validate(config_list)
+
+    def _supported_dependency_aware(self):
+        return False
+
+    def _projection(self, weight, sparsity, wrapper):
+        &#39;&#39;&#39;
+        Return the Euclidean projection of the weight matrix according to the pruning mode.
+
+        Parameters
+        ----------
+        weight : tensor
+            original matrix
+        sparsity : float
+            the ratio of parameters which need to be set to zero
+        wrapper: PrunerModuleWrapper
+            layer wrapper of this layer
+
+        Returns
+        -------
+        tensor
+            the projected matrix
+        &#39;&#39;&#39;
+        wrapper_copy = copy.deepcopy(wrapper)
+        wrapper_copy.module.weight.data = weight
+        return weight.data.mul(self.masker.calc_mask(sparsity, wrapper_copy)[&#39;weight_mask&#39;])
+
+    def _callback(self):
+        for i, wrapper in enumerate(self.get_modules_wrapper()):
+            wrapper.module.weight.data -= self._row * \
+                (wrapper.module.weight.data - self.Z[i] + self.U[i])
+
+    def compress(self):
+        &#34;&#34;&#34;
+        Compress the model with ADMM.
+
+        Returns
+        -------
+        torch.nn.Module
+            model with specified modules compressed.
+        &#34;&#34;&#34;
+        logger.info(&#39;Starting ADMM Compression...&#39;)
+        self.Z = []
+        self.U = []
+        for wrapper in self.get_modules_wrapper():
+            z = wrapper.module.weight.data
+            self.Z.append(z)
+            self.U.append(torch.zeros_like(z))
+        for k in range(self._num_iterations):
+            logger.info(&#39;ADMM iteration : %d&#39;, k)
+            for epoch in range(self._training_epochs):
+                self._trainer(self.bound_model, optimizer=self.optimizer, criterion=self._criterion, epoch=epoch)
+            for i, wrapper in enumerate(self.get_modules_wrapper()):
+                z = wrapper.module.weight.data + self.U[i]
+                self.Z[i] = self._projection(z, wrapper.config[&#39;sparsity&#39;], wrapper)
+                torch.cuda.empty_cache()
+                self.U[i] = self.U[i] + wrapper.module.weight.data - self.Z[i]
+
+        self.update_mask()
+
+        logger.info(&#39;Compression finished.&#39;)
+
+        return self.bound_model</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>optimization.pruning.prune.iterative_pruner.IterativePruner</li>
+<li><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner" href="dependency_aware_prune.html#optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner">DependencyAwarePruner</a></li>
+<li><a title="optimization.pruning.core.pruner.Pruner" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner">Pruner</a></li>
+<li><a title="optimization.common.base.compressor.Compressor" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor">Compressor</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="optimization.pruning.prune.iterative_pruner.ADMMPruner.compress"><code class="name flex">
+<span>def <span class="ident">compress</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compress the model with ADMM.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>torch.nn.Module</code></dt>
+<dd>model with specified modules compressed.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compress(self):
+    &#34;&#34;&#34;
+    Compress the model with ADMM.
+
+    Returns
+    -------
+    torch.nn.Module
+        model with specified modules compressed.
+    &#34;&#34;&#34;
+    logger.info(&#39;Starting ADMM Compression...&#39;)
+    self.Z = []
+    self.U = []
+    for wrapper in self.get_modules_wrapper():
+        z = wrapper.module.weight.data
+        self.Z.append(z)
+        self.U.append(torch.zeros_like(z))
+    for k in range(self._num_iterations):
+        logger.info(&#39;ADMM iteration : %d&#39;, k)
+        for epoch in range(self._training_epochs):
+            self._trainer(self.bound_model, optimizer=self.optimizer, criterion=self._criterion, epoch=epoch)
+        for i, wrapper in enumerate(self.get_modules_wrapper()):
+            z = wrapper.module.weight.data + self.U[i]
+            self.Z[i] = self._projection(z, wrapper.config[&#39;sparsity&#39;], wrapper)
+            torch.cuda.empty_cache()
+            self.U[i] = self.U[i] + wrapper.module.weight.data - self.Z[i]
+
+    self.update_mask()
+
+    logger.info(&#39;Compression finished.&#39;)
+
+    return self.bound_model</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.prune.iterative_pruner.ADMMPruner.validate_config"><code class="name flex">
+<span>def <span class="ident">validate_config</span></span>(<span>self, model, config_list)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>Model to be pruned</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>List on pruning configs</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_config(self, model, config_list):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    model : torch.nn.Module
+        Model to be pruned
+    config_list : list
+        List on pruning configs
+    &#34;&#34;&#34;
+    if self._base_algo == &#39;level&#39;:
+        schema = PrunerSchema([{
+            Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+            Optional(&#39;op_types&#39;): [str],
+            Optional(&#39;op_names&#39;): [str],
+            Optional(&#39;exclude&#39;): bool
+        }], model, logger)
+    elif self._base_algo in [&#39;l1&#39;, &#39;l2&#39;, &#39;fpgm&#39;]:
+        schema = PrunerSchema([{
+            Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+            &#39;op_types&#39;: [&#39;Conv2d&#39;],
+            Optional(&#39;op_names&#39;): [str],
+            Optional(&#39;exclude&#39;): bool
+        }], model, logger)
+    schema.validate(config_list)</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner" href="dependency_aware_prune.html#optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner">DependencyAwarePruner</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.calc_mask" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.calc_mask">calc_mask</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.export_model" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.export_model">export_model</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.get_modules_to_compress" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.get_modules_to_compress">get_modules_to_compress</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.get_modules_wrapper" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.get_modules_wrapper">get_modules_wrapper</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.get_pruned_weights" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.get_pruned_weights">get_pruned_weights</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.load_model_state_dict" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.load_model_state_dict">load_model_state_dict</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.reset" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.reset">reset</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.select_config" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.select_config">select_config</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.set_wrappers_attribute" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.set_wrappers_attribute">set_wrappers_attribute</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.update_epoch" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.update_epoch">update_epoch</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="optimization.pruning.prune.iterative_pruner.AGPPruner"><code class="flex name class">
+<span>class <span class="ident">AGPPruner</span></span>
+<span>(</span><span>model, config_list, optimizer, trainer, criterion, num_iterations=10, epochs_per_iteration=1, pruning_algorithm='level')</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>Model to be pruned.</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>listlist</code></dt>
+<dd>Supported keys:
+- sparsity : This is to specify the sparsity operations to be compressed to.
+- op_types : See supported type in your specific pruning algorithm.</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>torch.optim.Optimizer</code></dt>
+<dd>Optimizer used to train model.</dd>
+<dt><strong><code>trainer</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function to train the model</dd>
+<dt><strong><code>criterion</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to calculate the loss between the target and the output.
+For example, you can use <code>torch.nn.CrossEntropyLoss()</code> as input.</dd>
+<dt><strong><code>num_iterations</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total number of iterations in pruning process. We will calculate mask at the end of an iteration.</dd>
+<dt><strong><code>epochs_per_iteration</code></strong> :&ensp;<code>int</code></dt>
+<dd>The number of training epochs for each iteration.</dd>
+<dt><strong><code>pruning_algorithm</code></strong> :&ensp;<code>str</code></dt>
+<dd>Algorithms being used to prune model,
+choose from <code>['level', 'slim', 'l1', 'l2', 'fpgm', 'taylorfo', 'apoz', 'mean_activation']</code>, by default <code>level</code></dd>
+</dl>
+<h2 id="parameters_1">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>Model to be pruned</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>List on pruning configs</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>torch.optim.Optimizer</code></dt>
+<dd>Optimizer used to train model</dd>
+<dt><strong><code>pruning_algorithm</code></strong> :&ensp;<code>str</code></dt>
+<dd>algorithms being used to prune model</dd>
+<dt><strong><code>trainer</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to train the model.
+Users should write this function as a normal function to train the Pytorch model
+and include <code>model, optimizer, criterion, epoch</code> as function arguments.</dd>
+<dt><strong><code>criterion</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to calculate the loss between the target and the output.
+For example, you can use <code>torch.nn.CrossEntropyLoss()</code> as input.</dd>
+<dt><strong><code>num_iterations</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total number of iterations in pruning process. We will calculate mask at the end of an iteration.</dd>
+<dt><strong><code>epochs_per_iteration</code></strong> :&ensp;<code>Union[int, list]</code></dt>
+<dd>The number of training epochs for each iteration. <code>int</code> represents the same value for each iteration.
+<code>list</code> represents the specific value for each iteration.</dd>
+<dt><strong><code>dependency_aware</code></strong> :&ensp;<code>bool</code></dt>
+<dd>If prune the model in a dependency-aware way.</dd>
+<dt><strong><code>dummy_input</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>The dummy input to analyze the topology constraints. Note that,
+the dummy_input should on the same device with the model.</dd>
+<dt><strong><code>algo_kwargs</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Additional parameters passed to pruning algorithm masker class</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AGPPruner(IterativePruner):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    model : torch.nn.Module
+        Model to be pruned.
+    config_list : listlist
+        Supported keys:
+            - sparsity : This is to specify the sparsity operations to be compressed to.
+            - op_types : See supported type in your specific pruning algorithm.
+    optimizer: torch.optim.Optimizer
+        Optimizer used to train model.
+    trainer: function
+        Function to train the model
+    criterion: function
+        Function used to calculate the loss between the target and the output.
+        For example, you can use ``torch.nn.CrossEntropyLoss()`` as input.
+    num_iterations: int
+        Total number of iterations in pruning process. We will calculate mask at the end of an iteration.
+    epochs_per_iteration: int
+        The number of training epochs for each iteration.
+    pruning_algorithm: str
+        Algorithms being used to prune model,
+        choose from `[&#39;level&#39;, &#39;slim&#39;, &#39;l1&#39;, &#39;l2&#39;, &#39;fpgm&#39;, &#39;taylorfo&#39;, &#39;apoz&#39;, &#39;mean_activation&#39;]`, by default `level`
+    &#34;&#34;&#34;
+    def __init__(self, model, config_list, optimizer, trainer, criterion,
+                 num_iterations=10, epochs_per_iteration=1, pruning_algorithm=&#39;level&#39;):
+        super().__init__(model, config_list, optimizer=optimizer, trainer=trainer, criterion=criterion,
+                         num_iterations=num_iterations, epochs_per_iteration=epochs_per_iteration)
+        assert isinstance(optimizer, torch.optim.Optimizer), &#34;AGP pruner is an iterative pruner, please pass optimizer of the model to it&#34;
+        self.masker = MASKER_DICT[pruning_algorithm](model, self)
+        self.now_epoch = 0
+        self.freq = epochs_per_iteration
+        self.end_epoch = epochs_per_iteration * num_iterations
+        self.set_wrappers_attribute(&#34;if_calculated&#34;, False)
+
+    def validate_config(self, model, config_list):
+        &#34;&#34;&#34;
+        Parameters
+        ----------
+        model : torch.nn.Module
+            Model to be pruned
+        config_list : list
+            List on pruning configs
+        &#34;&#34;&#34;
+        schema = PrunerSchema([{
+            Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt;= n &lt;= 1),
+            Optional(&#39;op_types&#39;): [str],
+            Optional(&#39;op_names&#39;): [str],
+            Optional(&#39;exclude&#39;): bool
+        }], model, logger)
+
+        schema.validate(config_list)
+
+    def _supported_dependency_aware(self):
+        return False
+
+    def calc_mask(self, wrapper, wrapper_idx=None):
+        &#34;&#34;&#34;
+        Calculate the mask of given layer.
+        Scale factors with the smallest absolute value in the BN layer are masked.
+        Parameters
+        ----------
+        wrapper : Module
+            the layer to instrument the compression operation
+        wrapper_idx: int
+            index of this wrapper in pruner&#39;s all wrappers
+        Returns
+        -------
+        dict | None
+            Dictionary for storing masks, keys of the dict:
+            &#39;weight_mask&#39;:  weight mask tensor
+            &#39;bias_mask&#39;: bias mask tensor (optional)
+        &#34;&#34;&#34;
+        config = wrapper.config
+
+        if wrapper.if_calculated:
+            return None
+
+        if not self.now_epoch % self.freq == 0:
+            return None
+
+        target_sparsity = self.compute_target_sparsity(config)
+        new_mask = self.masker.calc_mask(sparsity=target_sparsity, wrapper=wrapper, wrapper_idx=wrapper_idx)
+
+        if new_mask is not None:
+            wrapper.if_calculated = True
+
+        return new_mask
+
+    def compute_target_sparsity(self, config):
+        &#34;&#34;&#34;
+        Calculate the sparsity for pruning
+        Parameters
+        ----------
+        config : dict
+            Layer&#39;s pruning config
+        Returns
+        -------
+        float
+            Target sparsity to be pruned
+        &#34;&#34;&#34;
+        initial_sparsity = 0
+        self.target_sparsity = final_sparsity = config.get(&#39;sparsity&#39;, 0)
+
+        if initial_sparsity &gt;= final_sparsity:
+            logger.warning(&#39;your initial_sparsity &gt;= final_sparsity&#39;)
+            return final_sparsity
+
+        if self.end_epoch == 1 or self.end_epoch &lt;= self.now_epoch:
+            return final_sparsity
+
+        span = ((self.end_epoch - 1) // self.freq) * self.freq
+        assert span &gt; 0
+        self.target_sparsity = (final_sparsity + (initial_sparsity - final_sparsity) * (1.0 - (self.now_epoch / span)) ** 3)
+        return self.target_sparsity
+
+    def update_epoch(self, epoch):
+        &#34;&#34;&#34;
+        Update epoch
+        Parameters
+        ----------
+        epoch : int
+            current training epoch
+        &#34;&#34;&#34;
+        if epoch &gt; 0:
+            self.now_epoch = epoch
+            for wrapper in self.get_modules_wrapper():
+                wrapper.if_calculated = False
+
+    def compress(self):
+        training = self.bound_model.training
+        self.bound_model.train()
+
+        for epoch in range(self.end_epoch):
+            self.update_epoch(epoch)
+            self._trainer(self.bound_model, optimizer=self.optimizer, criterion=self._criterion, epoch=epoch)
+            self.update_mask()
+            logger.info(f&#39;sparsity is {self.target_sparsity:.2f} at epoch {epoch}&#39;)
+            self.get_pruned_weights()
+
+        self.bound_model.train(training)
+
+        return self.bound_model</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>optimization.pruning.prune.iterative_pruner.IterativePruner</li>
+<li><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner" href="dependency_aware_prune.html#optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner">DependencyAwarePruner</a></li>
+<li><a title="optimization.pruning.core.pruner.Pruner" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner">Pruner</a></li>
+<li><a title="optimization.common.base.compressor.Compressor" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor">Compressor</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="optimization.pruning.prune.iterative_pruner.AGPPruner.calc_mask"><code class="name flex">
+<span>def <span class="ident">calc_mask</span></span>(<span>self, wrapper, wrapper_idx=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Calculate the mask of given layer.
+Scale factors with the smallest absolute value in the BN layer are masked.
+Parameters</p>
+<hr>
+<dl>
+<dt><strong><code>wrapper</code></strong> :&ensp;<code>Module</code></dt>
+<dd>the layer to instrument the compression operation</dd>
+<dt><strong><code>wrapper_idx</code></strong> :&ensp;<code>int</code></dt>
+<dd>index of this wrapper in pruner's all wrappers</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>dict | None</code></dt>
+<dd>Dictionary for storing masks, keys of the dict:
+'weight_mask':
+weight mask tensor
+'bias_mask': bias mask tensor (optional)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calc_mask(self, wrapper, wrapper_idx=None):
+    &#34;&#34;&#34;
+    Calculate the mask of given layer.
+    Scale factors with the smallest absolute value in the BN layer are masked.
+    Parameters
+    ----------
+    wrapper : Module
+        the layer to instrument the compression operation
+    wrapper_idx: int
+        index of this wrapper in pruner&#39;s all wrappers
+    Returns
+    -------
+    dict | None
+        Dictionary for storing masks, keys of the dict:
+        &#39;weight_mask&#39;:  weight mask tensor
+        &#39;bias_mask&#39;: bias mask tensor (optional)
+    &#34;&#34;&#34;
+    config = wrapper.config
+
+    if wrapper.if_calculated:
+        return None
+
+    if not self.now_epoch % self.freq == 0:
+        return None
+
+    target_sparsity = self.compute_target_sparsity(config)
+    new_mask = self.masker.calc_mask(sparsity=target_sparsity, wrapper=wrapper, wrapper_idx=wrapper_idx)
+
+    if new_mask is not None:
+        wrapper.if_calculated = True
+
+    return new_mask</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.prune.iterative_pruner.AGPPruner.compute_target_sparsity"><code class="name flex">
+<span>def <span class="ident">compute_target_sparsity</span></span>(<span>self, config)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Calculate the sparsity for pruning
+Parameters</p>
+<hr>
+<dl>
+<dt><strong><code>config</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Layer's pruning config</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>float</code></dt>
+<dd>Target sparsity to be pruned</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_target_sparsity(self, config):
+    &#34;&#34;&#34;
+    Calculate the sparsity for pruning
+    Parameters
+    ----------
+    config : dict
+        Layer&#39;s pruning config
+    Returns
+    -------
+    float
+        Target sparsity to be pruned
+    &#34;&#34;&#34;
+    initial_sparsity = 0
+    self.target_sparsity = final_sparsity = config.get(&#39;sparsity&#39;, 0)
+
+    if initial_sparsity &gt;= final_sparsity:
+        logger.warning(&#39;your initial_sparsity &gt;= final_sparsity&#39;)
+        return final_sparsity
+
+    if self.end_epoch == 1 or self.end_epoch &lt;= self.now_epoch:
+        return final_sparsity
+
+    span = ((self.end_epoch - 1) // self.freq) * self.freq
+    assert span &gt; 0
+    self.target_sparsity = (final_sparsity + (initial_sparsity - final_sparsity) * (1.0 - (self.now_epoch / span)) ** 3)
+    return self.target_sparsity</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.prune.iterative_pruner.AGPPruner.update_epoch"><code class="name flex">
+<span>def <span class="ident">update_epoch</span></span>(<span>self, epoch)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Update epoch
+Parameters</p>
+<hr>
+<dl>
+<dt><strong><code>epoch</code></strong> :&ensp;<code>int</code></dt>
+<dd>current training epoch</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_epoch(self, epoch):
+    &#34;&#34;&#34;
+    Update epoch
+    Parameters
+    ----------
+    epoch : int
+        current training epoch
+    &#34;&#34;&#34;
+    if epoch &gt; 0:
+        self.now_epoch = epoch
+        for wrapper in self.get_modules_wrapper():
+            wrapper.if_calculated = False</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.prune.iterative_pruner.AGPPruner.validate_config"><code class="name flex">
+<span>def <span class="ident">validate_config</span></span>(<span>self, model, config_list)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>Model to be pruned</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>List on pruning configs</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_config(self, model, config_list):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    model : torch.nn.Module
+        Model to be pruned
+    config_list : list
+        List on pruning configs
+    &#34;&#34;&#34;
+    schema = PrunerSchema([{
+        Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt;= n &lt;= 1),
+        Optional(&#39;op_types&#39;): [str],
+        Optional(&#39;op_names&#39;): [str],
+        Optional(&#39;exclude&#39;): bool
+    }], model, logger)
+
+    schema.validate(config_list)</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner" href="dependency_aware_prune.html#optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner">DependencyAwarePruner</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.compress" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.compress">compress</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.export_model" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.export_model">export_model</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.get_modules_to_compress" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.get_modules_to_compress">get_modules_to_compress</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.get_modules_wrapper" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.get_modules_wrapper">get_modules_wrapper</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.get_pruned_weights" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.get_pruned_weights">get_pruned_weights</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.load_model_state_dict" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.load_model_state_dict">load_model_state_dict</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.reset" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.reset">reset</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.select_config" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.select_config">select_config</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.set_wrappers_attribute" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.set_wrappers_attribute">set_wrappers_attribute</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="optimization.pruning.prune.iterative_pruner.ActivationAPoZRankFilterPruner"><code class="flex name class">
+<span>class <span class="ident">ActivationAPoZRankFilterPruner</span></span>
+<span>(</span><span>model, config_list, optimizer, trainer, criterion, activation='relu', sparsifying_training_batches=1, dependency_aware=False, dummy_input=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>Model to be pruned</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>Supported keys:
+- sparsity : How much percentage of convolutional filters are to be pruned.
+- op_types : Only Conv2d is supported in ActivationAPoZRankFilterPruner.</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>torch.optim.Optimizer</code></dt>
+<dd>Optimizer used to train model</dd>
+<dt><strong><code>trainer</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to train the model.
+Users should write this function as a normal function to train the Pytorch model
+and include <code>model, optimizer, criterion, epoch</code> as function arguments.</dd>
+<dt><strong><code>criterion</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to calculate the loss between the target and the output.
+For example, you can use <code>torch.nn.CrossEntropyLoss()</code> as input.</dd>
+<dt><strong><code>activation</code></strong> :&ensp;<code>str</code></dt>
+<dd>The activation type.</dd>
+<dt><strong><code>sparsifying_training_batches</code></strong> :&ensp;<code>int</code></dt>
+<dd>The number of batches to collect the contributions. Note that the number need to be less than the maximum batch number in one epoch.</dd>
+<dt><strong><code>dependency_aware</code></strong> :&ensp;<code>bool</code></dt>
+<dd>If prune the model in a dependency-aware way. If it is <code>True</code>, this pruner will
+prune the model according to the l2-norm of weights and the channel-dependency or
+group-dependency of the model. In this way, the pruner will force the conv layers
+that have dependencies to prune the same channels, so the speedup module can better
+harvest the speed benefit from the pruned model. Note that, if this flag is set True
+, the dummy_input cannot be None, because the pruner needs a dummy input to trace the
+dependency between the conv layers.</dd>
+<dt><strong><code>dummy_input</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>The dummy input to analyze the topology constraints. Note that, the dummy_input
+should on the same device with the model.</dd>
+</dl>
+<h2 id="parameters_1">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>Model to be pruned</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>List on pruning configs</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>torch.optim.Optimizer</code></dt>
+<dd>Optimizer used to train model</dd>
+<dt><strong><code>pruning_algorithm</code></strong> :&ensp;<code>str</code></dt>
+<dd>algorithms being used to prune model</dd>
+<dt><strong><code>trainer</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to train the model.
+Users should write this function as a normal function to train the Pytorch model
+and include <code>model, optimizer, criterion, epoch</code> as function arguments.</dd>
+<dt><strong><code>criterion</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to calculate the loss between the target and the output.
+For example, you can use <code>torch.nn.CrossEntropyLoss()</code> as input.</dd>
+<dt><strong><code>num_iterations</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total number of iterations in pruning process. We will calculate mask at the end of an iteration.</dd>
+<dt><strong><code>epochs_per_iteration</code></strong> :&ensp;<code>Union[int, list]</code></dt>
+<dd>The number of training epochs for each iteration. <code>int</code> represents the same value for each iteration.
+<code>list</code> represents the specific value for each iteration.</dd>
+<dt><strong><code>dependency_aware</code></strong> :&ensp;<code>bool</code></dt>
+<dd>If prune the model in a dependency-aware way.</dd>
+<dt><strong><code>dummy_input</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>The dummy input to analyze the topology constraints. Note that,
+the dummy_input should on the same device with the model.</dd>
+<dt><strong><code>algo_kwargs</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Additional parameters passed to pruning algorithm masker class</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ActivationAPoZRankFilterPruner(IterativePruner):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    model : torch.nn.Module
+        Model to be pruned
+    config_list : list
+        Supported keys:
+            - sparsity : How much percentage of convolutional filters are to be pruned.
+            - op_types : Only Conv2d is supported in ActivationAPoZRankFilterPruner.
+    optimizer: torch.optim.Optimizer
+            Optimizer used to train model
+    trainer: function
+        Function used to train the model.
+        Users should write this function as a normal function to train the Pytorch model
+        and include `model, optimizer, criterion, epoch` as function arguments.
+    criterion : function
+        Function used to calculate the loss between the target and the output.
+        For example, you can use ``torch.nn.CrossEntropyLoss()`` as input.
+    activation: str
+        The activation type.
+    sparsifying_training_batches: int
+        The number of batches to collect the contributions. Note that the number need to be less than the maximum batch number in one epoch.
+    dependency_aware: bool
+        If prune the model in a dependency-aware way. If it is `True`, this pruner will
+        prune the model according to the l2-norm of weights and the channel-dependency or
+        group-dependency of the model. In this way, the pruner will force the conv layers
+        that have dependencies to prune the same channels, so the speedup module can better
+        harvest the speed benefit from the pruned model. Note that, if this flag is set True
+        , the dummy_input cannot be None, because the pruner needs a dummy input to trace the
+        dependency between the conv layers.
+    dummy_input : torch.Tensor
+        The dummy input to analyze the topology constraints. Note that, the dummy_input
+        should on the same device with the model.
+
+    &#34;&#34;&#34;
+
+    def __init__(self, model, config_list, optimizer, trainer, criterion, activation=&#39;relu&#39;,
+                 sparsifying_training_batches=1, dependency_aware=False, dummy_input=None):
+        super().__init__(model, config_list, pruning_algorithm=&#39;apoz&#39;, optimizer=optimizer, trainer=trainer,
+                         criterion=criterion, dependency_aware=dependency_aware, dummy_input=dummy_input,
+                         activation=activation, statistics_batch_num=sparsifying_training_batches, num_iterations=1,
+                         epochs_per_iteration=1)
+        self.patch_optimizer(self.update_mask)
+
+    def _supported_dependency_aware(self):
+        return True</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>optimization.pruning.prune.iterative_pruner.IterativePruner</li>
+<li><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner" href="dependency_aware_prune.html#optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner">DependencyAwarePruner</a></li>
+<li><a title="optimization.pruning.core.pruner.Pruner" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner">Pruner</a></li>
+<li><a title="optimization.common.base.compressor.Compressor" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor">Compressor</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner" href="dependency_aware_prune.html#optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner">DependencyAwarePruner</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.calc_mask" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.calc_mask">calc_mask</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.compress" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.compress">compress</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.export_model" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.export_model">export_model</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.get_modules_to_compress" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.get_modules_to_compress">get_modules_to_compress</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.get_modules_wrapper" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.get_modules_wrapper">get_modules_wrapper</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.get_pruned_weights" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.get_pruned_weights">get_pruned_weights</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.load_model_state_dict" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.load_model_state_dict">load_model_state_dict</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.reset" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.reset">reset</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.select_config" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.select_config">select_config</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.set_wrappers_attribute" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.set_wrappers_attribute">set_wrappers_attribute</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.update_epoch" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.update_epoch">update_epoch</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.validate_config" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.validate_config">validate_config</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="optimization.pruning.prune.iterative_pruner.ActivationMeanRankFilterPruner"><code class="flex name class">
+<span>class <span class="ident">ActivationMeanRankFilterPruner</span></span>
+<span>(</span><span>model, config_list, optimizer, trainer, criterion, activation='relu', sparsifying_training_batches=1, dependency_aware=False, dummy_input=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>Model to be pruned</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>Supported keys:
+- sparsity : How much percentage of convolutional filters are to be pruned.
+- op_types : Only Conv2d is supported in ActivationMeanRankFilterPruner.</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>torch.optim.Optimizer</code></dt>
+<dd>Optimizer used to train model.</dd>
+<dt><strong><code>trainer</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to train the model.
+Users should write this function as a normal function to train the Pytorch model
+and include <code>model, optimizer, criterion, epoch</code> as function arguments.</dd>
+<dt><strong><code>criterion</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to calculate the loss between the target and the output.
+For example, you can use <code>torch.nn.CrossEntropyLoss()</code> as input.</dd>
+<dt><strong><code>activation</code></strong> :&ensp;<code>str</code></dt>
+<dd>The activation type.</dd>
+<dt><strong><code>sparsifying_training_batches</code></strong> :&ensp;<code>int</code></dt>
+<dd>The number of batches to collect the contributions. Note that the number need to be less than the maximum batch number in one epoch.</dd>
+<dt><strong><code>dependency_aware</code></strong> :&ensp;<code>bool</code></dt>
+<dd>If prune the model in a dependency-aware way. If it is <code>True</code>, this pruner will
+prune the model according to the l2-norm of weights and the channel-dependency or
+group-dependency of the model. In this way, the pruner will force the conv layers
+that have dependencies to prune the same channels, so the speedup module can better
+harvest the speed benefit from the pruned model. Note that, if this flag is set True
+, the dummy_input cannot be None, because the pruner needs a dummy input to trace the
+dependency between the conv layers.</dd>
+<dt><strong><code>dummy_input</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>The dummy input to analyze the topology constraints. Note that, the dummy_input
+should on the same device with the model.</dd>
+</dl>
+<h2 id="parameters_1">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>Model to be pruned</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>List on pruning configs</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>torch.optim.Optimizer</code></dt>
+<dd>Optimizer used to train model</dd>
+<dt><strong><code>pruning_algorithm</code></strong> :&ensp;<code>str</code></dt>
+<dd>algorithms being used to prune model</dd>
+<dt><strong><code>trainer</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to train the model.
+Users should write this function as a normal function to train the Pytorch model
+and include <code>model, optimizer, criterion, epoch</code> as function arguments.</dd>
+<dt><strong><code>criterion</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to calculate the loss between the target and the output.
+For example, you can use <code>torch.nn.CrossEntropyLoss()</code> as input.</dd>
+<dt><strong><code>num_iterations</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total number of iterations in pruning process. We will calculate mask at the end of an iteration.</dd>
+<dt><strong><code>epochs_per_iteration</code></strong> :&ensp;<code>Union[int, list]</code></dt>
+<dd>The number of training epochs for each iteration. <code>int</code> represents the same value for each iteration.
+<code>list</code> represents the specific value for each iteration.</dd>
+<dt><strong><code>dependency_aware</code></strong> :&ensp;<code>bool</code></dt>
+<dd>If prune the model in a dependency-aware way.</dd>
+<dt><strong><code>dummy_input</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>The dummy input to analyze the topology constraints. Note that,
+the dummy_input should on the same device with the model.</dd>
+<dt><strong><code>algo_kwargs</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Additional parameters passed to pruning algorithm masker class</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ActivationMeanRankFilterPruner(IterativePruner):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    model : torch.nn.Module
+        Model to be pruned
+    config_list : list
+        Supported keys:
+            - sparsity : How much percentage of convolutional filters are to be pruned.
+            - op_types : Only Conv2d is supported in ActivationMeanRankFilterPruner.
+    optimizer: torch.optim.Optimizer
+            Optimizer used to train model.
+    trainer: function
+            Function used to train the model.
+            Users should write this function as a normal function to train the Pytorch model
+            and include `model, optimizer, criterion, epoch` as function arguments.
+    criterion : function
+        Function used to calculate the loss between the target and the output.
+        For example, you can use ``torch.nn.CrossEntropyLoss()`` as input.
+    activation: str
+        The activation type.
+    sparsifying_training_batches: int
+        The number of batches to collect the contributions. Note that the number need to be less than the maximum batch number in one epoch.
+    dependency_aware: bool
+        If prune the model in a dependency-aware way. If it is `True`, this pruner will
+        prune the model according to the l2-norm of weights and the channel-dependency or
+        group-dependency of the model. In this way, the pruner will force the conv layers
+        that have dependencies to prune the same channels, so the speedup module can better
+        harvest the speed benefit from the pruned model. Note that, if this flag is set True
+        , the dummy_input cannot be None, because the pruner needs a dummy input to trace the
+        dependency between the conv layers.
+    dummy_input : torch.Tensor
+        The dummy input to analyze the topology constraints. Note that, the dummy_input
+        should on the same device with the model.
+    &#34;&#34;&#34;
+    def __init__(self, model, config_list, optimizer, trainer, criterion, activation=&#39;relu&#39;,
+                 sparsifying_training_batches=1, dependency_aware=False, dummy_input=None):
+        super().__init__(model, config_list, pruning_algorithm=&#39;mean_activation&#39;, optimizer=optimizer, trainer=trainer,
+                         criterion=criterion, dependency_aware=dependency_aware, dummy_input=dummy_input,
+                         activation=activation, statistics_batch_num=sparsifying_training_batches, num_iterations=1,
+                         epochs_per_iteration=1)
+        self.patch_optimizer(self.update_mask)
+
+    def _supported_dependency_aware(self):
+        return True</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>optimization.pruning.prune.iterative_pruner.IterativePruner</li>
+<li><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner" href="dependency_aware_prune.html#optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner">DependencyAwarePruner</a></li>
+<li><a title="optimization.pruning.core.pruner.Pruner" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner">Pruner</a></li>
+<li><a title="optimization.common.base.compressor.Compressor" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor">Compressor</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner" href="dependency_aware_prune.html#optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner">DependencyAwarePruner</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.calc_mask" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.calc_mask">calc_mask</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.compress" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.compress">compress</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.export_model" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.export_model">export_model</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.get_modules_to_compress" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.get_modules_to_compress">get_modules_to_compress</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.get_modules_wrapper" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.get_modules_wrapper">get_modules_wrapper</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.get_pruned_weights" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.get_pruned_weights">get_pruned_weights</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.load_model_state_dict" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.load_model_state_dict">load_model_state_dict</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.reset" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.reset">reset</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.select_config" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.select_config">select_config</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.set_wrappers_attribute" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.set_wrappers_attribute">set_wrappers_attribute</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.update_epoch" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.update_epoch">update_epoch</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.validate_config" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.validate_config">validate_config</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="optimization.pruning.prune.iterative_pruner.SlimPruner"><code class="flex name class">
+<span>class <span class="ident">SlimPruner</span></span>
+<span>(</span><span>model, config_list, optimizer, trainer, criterion, sparsifying_training_epochs=10, scale=0.0001, dependency_aware=False, dummy_input=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>Model to be pruned</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>Supported keys:
+- sparsity : This is to specify the sparsity operations to be compressed to.
+- op_types : Only BatchNorm2d is supported in Slim Pruner.</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>torch.optim.Optimizer</code></dt>
+<dd>Optimizer used to train model</dd>
+<dt><strong><code>trainer</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to sparsify BatchNorm2d scaling factors.
+Users should write this function as a normal function to train the Pytorch model
+and include <code>model, optimizer, criterion, epoch</code> as function arguments.</dd>
+<dt><strong><code>criterion</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to calculate the loss between the target and the output.
+For example, you can use <code>torch.nn.CrossEntropyLoss()</code> as input.</dd>
+<dt><strong><code>sparsifying_training_epochs</code></strong> :&ensp;<code>int</code></dt>
+<dd>The number of channel sparsity regularization training epochs before pruning.</dd>
+<dt><strong><code>scale</code></strong> :&ensp;<code>float</code></dt>
+<dd>Penalty parameters for sparsification.</dd>
+<dt><strong><code>dependency_aware</code></strong> :&ensp;<code>bool</code></dt>
+<dd>If prune the model in a dependency-aware way. If it is <code>True</code>, this pruner will
+prune the model according to the l2-norm of weights and the channel-dependency or
+group-dependency of the model. In this way, the pruner will force the conv layers
+that have dependencies to prune the same channels, so the speedup module can better
+harvest the speed benefit from the pruned model. Note that, if this flag is set True
+, the dummy_input cannot be None, because the pruner needs a dummy input to trace the
+dependency between the conv layers.</dd>
+<dt><strong><code>dummy_input</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>The dummy input to analyze the topology constraints. Note that, the dummy_input
+should on the same device with the model.</dd>
+</dl>
+<h2 id="parameters_1">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>Model to be pruned</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>List on pruning configs</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>torch.optim.Optimizer</code></dt>
+<dd>Optimizer used to train model</dd>
+<dt><strong><code>pruning_algorithm</code></strong> :&ensp;<code>str</code></dt>
+<dd>algorithms being used to prune model</dd>
+<dt><strong><code>trainer</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to train the model.
+Users should write this function as a normal function to train the Pytorch model
+and include <code>model, optimizer, criterion, epoch</code> as function arguments.</dd>
+<dt><strong><code>criterion</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to calculate the loss between the target and the output.
+For example, you can use <code>torch.nn.CrossEntropyLoss()</code> as input.</dd>
+<dt><strong><code>num_iterations</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total number of iterations in pruning process. We will calculate mask at the end of an iteration.</dd>
+<dt><strong><code>epochs_per_iteration</code></strong> :&ensp;<code>Union[int, list]</code></dt>
+<dd>The number of training epochs for each iteration. <code>int</code> represents the same value for each iteration.
+<code>list</code> represents the specific value for each iteration.</dd>
+<dt><strong><code>dependency_aware</code></strong> :&ensp;<code>bool</code></dt>
+<dd>If prune the model in a dependency-aware way.</dd>
+<dt><strong><code>dummy_input</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>The dummy input to analyze the topology constraints. Note that,
+the dummy_input should on the same device with the model.</dd>
+<dt><strong><code>algo_kwargs</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Additional parameters passed to pruning algorithm masker class</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SlimPruner(IterativePruner):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    model : torch.nn.Module
+        Model to be pruned
+    config_list : list
+        Supported keys:
+            - sparsity : This is to specify the sparsity operations to be compressed to.
+            - op_types : Only BatchNorm2d is supported in Slim Pruner.
+    optimizer : torch.optim.Optimizer
+            Optimizer used to train model
+    trainer : function
+        Function used to sparsify BatchNorm2d scaling factors.
+        Users should write this function as a normal function to train the Pytorch model
+        and include `model, optimizer, criterion, epoch` as function arguments.
+    criterion : function
+        Function used to calculate the loss between the target and the output.
+        For example, you can use ``torch.nn.CrossEntropyLoss()`` as input.
+    sparsifying_training_epochs: int
+        The number of channel sparsity regularization training epochs before pruning.
+    scale : float
+        Penalty parameters for sparsification.
+    dependency_aware: bool
+        If prune the model in a dependency-aware way. If it is `True`, this pruner will
+        prune the model according to the l2-norm of weights and the channel-dependency or
+        group-dependency of the model. In this way, the pruner will force the conv layers
+        that have dependencies to prune the same channels, so the speedup module can better
+        harvest the speed benefit from the pruned model. Note that, if this flag is set True
+        , the dummy_input cannot be None, because the pruner needs a dummy input to trace the
+        dependency between the conv layers.
+    dummy_input : torch.Tensor
+        The dummy input to analyze the topology constraints. Note that, the dummy_input
+        should on the same device with the model.
+    &#34;&#34;&#34;
+    def __init__(self, model, config_list, optimizer, trainer, criterion, sparsifying_training_epochs=10, scale=0.0001,
+                 dependency_aware=False, dummy_input=None):
+        super().__init__(model, config_list, optimizer=optimizer, pruning_algorithm=&#39;slim&#39;, trainer=trainer, criterion=criterion,
+                         num_iterations=1, epochs_per_iteration=sparsifying_training_epochs, dependency_aware=dependency_aware,
+                         dummy_input=dummy_input)
+        self.scale = scale
+        self.patch_optimizer_before(self._callback)
+
+    def validate_config(self, model, config_list):
+        schema = PrunerSchema([{
+            Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+            &#39;op_types&#39;: [&#39;BatchNorm2d&#39;],
+            Optional(&#39;op_names&#39;): [str],
+            Optional(&#39;exclude&#39;): bool
+        }], model, logger)
+        schema.validate(config_list)
+        if len(config_list) &gt; 1:
+            logger.warning(&#39;Slim pruner only supports 1 configuration&#39;)
+
+    def _supported_dependency_aware(self):
+        return True
+
+    def _callback(self):
+        for _, wrapper in enumerate(self.get_modules_wrapper()):
+            wrapper.module.weight.grad.data.add_(self.scale * torch.sign(wrapper.module.weight.data))</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>optimization.pruning.prune.iterative_pruner.IterativePruner</li>
+<li><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner" href="dependency_aware_prune.html#optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner">DependencyAwarePruner</a></li>
+<li><a title="optimization.pruning.core.pruner.Pruner" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner">Pruner</a></li>
+<li><a title="optimization.common.base.compressor.Compressor" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor">Compressor</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner" href="dependency_aware_prune.html#optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner">DependencyAwarePruner</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.calc_mask" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.calc_mask">calc_mask</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.compress" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.compress">compress</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.export_model" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.export_model">export_model</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.get_modules_to_compress" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.get_modules_to_compress">get_modules_to_compress</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.get_modules_wrapper" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.get_modules_wrapper">get_modules_wrapper</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.get_pruned_weights" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.get_pruned_weights">get_pruned_weights</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.load_model_state_dict" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.load_model_state_dict">load_model_state_dict</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.reset" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.reset">reset</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.select_config" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.select_config">select_config</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.set_wrappers_attribute" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.set_wrappers_attribute">set_wrappers_attribute</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.update_epoch" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.update_epoch">update_epoch</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.validate_config" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.validate_config">validate_config</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="optimization.pruning.prune.iterative_pruner.TaylorFOWeightFilterPruner"><code class="flex name class">
+<span>class <span class="ident">TaylorFOWeightFilterPruner</span></span>
+<span>(</span><span>model, config_list, optimizer, trainer, criterion, sparsifying_training_batches=1, dependency_aware=False, dummy_input=None, global_sort=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>Model to be pruned</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>Supported keys:
+- sparsity : How much percentage of convolutional filters are to be pruned.
+- op_types : Currently only Conv2d is supported in TaylorFOWeightFilterPruner.</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>torch.optim.Optimizer</code></dt>
+<dd>Optimizer used to train model</dd>
+<dt><strong><code>trainer</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to sparsify BatchNorm2d scaling factors.
+Users should write this function as a normal function to train the Pytorch model
+and include <code>model, optimizer, criterion, epoch</code> as function arguments.</dd>
+<dt><strong><code>criterion</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to calculate the loss between the target and the output.
+For example, you can use <code>torch.nn.CrossEntropyLoss()</code> as input.</dd>
+<dt><strong><code>sparsifying_training_batches</code></strong> :&ensp;<code>int</code></dt>
+<dd>The number of batches to collect the contributions. Note that the number need to be less than the maximum batch number in one epoch.</dd>
+<dt><strong><code>dependency_aware</code></strong> :&ensp;<code>bool</code></dt>
+<dd>If prune the model in a dependency-aware way. If it is <code>True</code>, this pruner will
+prune the model according to the l2-norm of weights and the channel-dependency or
+group-dependency of the model. In this way, the pruner will force the conv layers
+that have dependencies to prune the same channels, so the speedup module can better
+harvest the speed benefit from the pruned model. Note that, if this flag is set True
+, the dummy_input cannot be None, because the pruner needs a dummy input to trace the
+dependency between the conv layers.</dd>
+<dt><strong><code>dummy_input</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>The dummy input to analyze the topology constraints. Note that, the dummy_input
+should on the same device with the model.</dd>
+<dt><strong><code>global_sort</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Only support TaylorFOWeightFilterPruner currently.
+If prune the model in a global-sort way. If it is <code>True</code>, this pruner will prune
+the model according to the global contributions information which means channel contributions
+will be sorted globally and whether specific channel will be pruned depends on global information.</dd>
+</dl>
+<h2 id="parameters_1">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>Model to be pruned</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>List on pruning configs</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>torch.optim.Optimizer</code></dt>
+<dd>Optimizer used to train model</dd>
+<dt><strong><code>pruning_algorithm</code></strong> :&ensp;<code>str</code></dt>
+<dd>algorithms being used to prune model</dd>
+<dt><strong><code>trainer</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to train the model.
+Users should write this function as a normal function to train the Pytorch model
+and include <code>model, optimizer, criterion, epoch</code> as function arguments.</dd>
+<dt><strong><code>criterion</code></strong> :&ensp;<code>function</code></dt>
+<dd>Function used to calculate the loss between the target and the output.
+For example, you can use <code>torch.nn.CrossEntropyLoss()</code> as input.</dd>
+<dt><strong><code>num_iterations</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total number of iterations in pruning process. We will calculate mask at the end of an iteration.</dd>
+<dt><strong><code>epochs_per_iteration</code></strong> :&ensp;<code>Union[int, list]</code></dt>
+<dd>The number of training epochs for each iteration. <code>int</code> represents the same value for each iteration.
+<code>list</code> represents the specific value for each iteration.</dd>
+<dt><strong><code>dependency_aware</code></strong> :&ensp;<code>bool</code></dt>
+<dd>If prune the model in a dependency-aware way.</dd>
+<dt><strong><code>dummy_input</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>The dummy input to analyze the topology constraints. Note that,
+the dummy_input should on the same device with the model.</dd>
+<dt><strong><code>algo_kwargs</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Additional parameters passed to pruning algorithm masker class</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TaylorFOWeightFilterPruner(IterativePruner):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    model : torch.nn.Module
+        Model to be pruned
+    config_list : list
+        Supported keys:
+            - sparsity : How much percentage of convolutional filters are to be pruned.
+            - op_types : Currently only Conv2d is supported in TaylorFOWeightFilterPruner.
+    optimizer: torch.optim.Optimizer
+            Optimizer used to train model
+    trainer : function
+        Function used to sparsify BatchNorm2d scaling factors.
+        Users should write this function as a normal function to train the Pytorch model
+        and include `model, optimizer, criterion, epoch` as function arguments.
+    criterion : function
+        Function used to calculate the loss between the target and the output.
+        For example, you can use ``torch.nn.CrossEntropyLoss()`` as input.
+    sparsifying_training_batches: int
+        The number of batches to collect the contributions. Note that the number need to be less than the maximum batch number in one epoch.
+    dependency_aware: bool
+        If prune the model in a dependency-aware way. If it is `True`, this pruner will
+        prune the model according to the l2-norm of weights and the channel-dependency or
+        group-dependency of the model. In this way, the pruner will force the conv layers
+        that have dependencies to prune the same channels, so the speedup module can better
+        harvest the speed benefit from the pruned model. Note that, if this flag is set True
+        , the dummy_input cannot be None, because the pruner needs a dummy input to trace the
+        dependency between the conv layers.
+    dummy_input : torch.Tensor
+        The dummy input to analyze the topology constraints. Note that, the dummy_input
+        should on the same device with the model.
+    global_sort: bool
+        Only support TaylorFOWeightFilterPruner currently.
+        If prune the model in a global-sort way. If it is `True`, this pruner will prune
+        the model according to the global contributions information which means channel contributions
+        will be sorted globally and whether specific channel will be pruned depends on global information.
+    &#34;&#34;&#34;
+    def __init__(self, model, config_list, optimizer, trainer, criterion, sparsifying_training_batches=1,
+                 dependency_aware=False, dummy_input=None, global_sort=False):
+        super().__init__(model, config_list, optimizer=optimizer, pruning_algorithm=&#39;taylorfo&#39;, trainer=trainer,
+                         criterion=criterion, statistics_batch_num=sparsifying_training_batches, num_iterations=1,
+                         epochs_per_iteration=1, dependency_aware=dependency_aware,
+                         dummy_input=dummy_input)
+        self.masker.global_sort = global_sort
+
+    def _supported_dependency_aware(self):
+        return True</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>optimization.pruning.prune.iterative_pruner.IterativePruner</li>
+<li><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner" href="dependency_aware_prune.html#optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner">DependencyAwarePruner</a></li>
+<li><a title="optimization.pruning.core.pruner.Pruner" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner">Pruner</a></li>
+<li><a title="optimization.common.base.compressor.Compressor" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor">Compressor</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner" href="dependency_aware_prune.html#optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner">DependencyAwarePruner</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.calc_mask" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.calc_mask">calc_mask</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.compress" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.compress">compress</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.export_model" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.export_model">export_model</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.get_modules_to_compress" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.get_modules_to_compress">get_modules_to_compress</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.get_modules_wrapper" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.get_modules_wrapper">get_modules_wrapper</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.get_pruned_weights" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.get_pruned_weights">get_pruned_weights</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.load_model_state_dict" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.load_model_state_dict">load_model_state_dict</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.reset" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.reset">reset</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.select_config" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.select_config">select_config</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.set_wrappers_attribute" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.set_wrappers_attribute">set_wrappers_attribute</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.update_epoch" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.update_epoch">update_epoch</a></code></li>
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.validate_config" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.validate_config">validate_config</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="optimization.pruning.prune" href="index.html">optimization.pruning.prune</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="optimization.pruning.prune.iterative_pruner.ADMMPruner" href="#optimization.pruning.prune.iterative_pruner.ADMMPruner">ADMMPruner</a></code></h4>
+<ul class="">
+<li><code><a title="optimization.pruning.prune.iterative_pruner.ADMMPruner.compress" href="#optimization.pruning.prune.iterative_pruner.ADMMPruner.compress">compress</a></code></li>
+<li><code><a title="optimization.pruning.prune.iterative_pruner.ADMMPruner.validate_config" href="#optimization.pruning.prune.iterative_pruner.ADMMPruner.validate_config">validate_config</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="optimization.pruning.prune.iterative_pruner.AGPPruner" href="#optimization.pruning.prune.iterative_pruner.AGPPruner">AGPPruner</a></code></h4>
+<ul class="">
+<li><code><a title="optimization.pruning.prune.iterative_pruner.AGPPruner.calc_mask" href="#optimization.pruning.prune.iterative_pruner.AGPPruner.calc_mask">calc_mask</a></code></li>
+<li><code><a title="optimization.pruning.prune.iterative_pruner.AGPPruner.compute_target_sparsity" href="#optimization.pruning.prune.iterative_pruner.AGPPruner.compute_target_sparsity">compute_target_sparsity</a></code></li>
+<li><code><a title="optimization.pruning.prune.iterative_pruner.AGPPruner.update_epoch" href="#optimization.pruning.prune.iterative_pruner.AGPPruner.update_epoch">update_epoch</a></code></li>
+<li><code><a title="optimization.pruning.prune.iterative_pruner.AGPPruner.validate_config" href="#optimization.pruning.prune.iterative_pruner.AGPPruner.validate_config">validate_config</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="optimization.pruning.prune.iterative_pruner.ActivationAPoZRankFilterPruner" href="#optimization.pruning.prune.iterative_pruner.ActivationAPoZRankFilterPruner">ActivationAPoZRankFilterPruner</a></code></h4>
+</li>
+<li>
+<h4><code><a title="optimization.pruning.prune.iterative_pruner.ActivationMeanRankFilterPruner" href="#optimization.pruning.prune.iterative_pruner.ActivationMeanRankFilterPruner">ActivationMeanRankFilterPruner</a></code></h4>
+</li>
+<li>
+<h4><code><a title="optimization.pruning.prune.iterative_pruner.SlimPruner" href="#optimization.pruning.prune.iterative_pruner.SlimPruner">SlimPruner</a></code></h4>
+</li>
+<li>
+<h4><code><a title="optimization.pruning.prune.iterative_pruner.TaylorFOWeightFilterPruner" href="#optimization.pruning.prune.iterative_pruner.TaylorFOWeightFilterPruner">TaylorFOWeightFilterPruner</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,2278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>optimization.pruning.core.dependency API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>optimization.pruning.core.dependency</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import csv
+import logging
+import re
+import torch
+import numpy as np
+
+from optimization.common.graph import TorchModuleGraph
+from .pruner import PrunerModuleWrapper
+from .utils import get_module_by_name
+
+
+_logger = logging.getLogger(__name__)
+
+def lcm_list(L):
+    lcm = 1
+    for i in L:
+        lcm = np.lcm(lcm, i)
+    return lcm
+
+def gcd_list(L):
+    gcd = L[0]
+    for i in L:
+        gcd = np.gcd(gcd, i)
+    return gcd
+
+CONV_TYPE = &#34;aten::_convolution&#34;
+ADD_TYPES = [&#39;aten::add&#39;, &#34;aten::add_&#34;]
+MUL_TYPES = [&#39;atten::mul&#39;, &#39;atten::mul_&#39;]
+CAT_TYPE = &#34;aten::cat&#34;
+RESHAPE_OPS = [CAT_TYPE, &#34;aten::view&#34;, &#34;aten::reshape&#34;, &#34;aten::flatten&#34;, &#34;aten::mean&#34;]
+
+class Dependency:
+    &#34;&#34;&#34;
+    Build the graph for the model.
+    &#34;&#34;&#34;
+    def __init__(self, model = None, dummy_input =None, traced_model = None):
+
+        if traced_model is None:
+            assert model is not None and dummy_input is not None
+        self.graph = TorchModuleGraph(model, dummy_input, traced_model)
+        self.model = model
+        self.dependency = dict()
+        self.build_dependency()
+
+    def build_dependency(self):
+        raise NotImplementedError()
+    
+    def export(self, file_path):
+        raise NotImplementedError()
+
+
+def reshape_break_channel_dependency(op_node):
+    &#34;&#34;&#34;
+    The reshape operations such as (reshape, view, flatten) may break
+    the channel dependency. We need to check the input parameters of
+    these reshape operations to check if this reshape node will break
+    the channel dependency. However, it&#39;s complicated to analyze the the input
+    parameters for each reshape function and infer if it will break the channel
+    dependency. So currently, we just check if the input channel and the output
+    channel is the same, if so, then we can say the original reshape function
+    doesn&#39;t want to change the number of the channels, which means the channel
+    dependency is not broken. In contrast, the original reshap operation wants
+    to change the number of channels, so it breaks the channel dependency.
+
+    Parameters
+    ----------
+    opnode: NodePyOP
+        A Op node of the graph.
+    Returns
+    -------
+    bool
+        If this operation will break the channel dependency.
+    &#34;&#34;&#34;
+    in_shape = op_node.auxiliary[&#39;in_shape&#39;]
+    out_shape = op_node.auxiliary[&#39;out_shape&#39;]
+    in_channel = in_shape[1]
+    out_channel = out_shape[1]
+    return in_channel != out_channel
+
+
+class ChannelDependency(Dependency):
+
+    def __init__(self, model, dummy_input, traced_model = None, prune_type=&#34;Filter&#34;):
+        &#34;&#34;&#34;
+        This model analyze the channel dependencies between the conv
+        layers in a model.
+        Parameters
+        ----------
+        model : torch.nn.Module
+            The model to be analyzed.
+        data : torch.Tensor
+            The example input data to trace the network architecture.
+        traced_model : torch._C.Graph
+            if we alreay has the traced graph of the target model, we donnot
+            need to trace the model again.
+        prune_type: str
+            This parameter indicates the channel pruning type: 1) `Filter`
+            prune the filter of the convolution layer to prune the corresponding
+            channels 2) `Batchnorm`: prune the channel in the batchnorm layer
+        &#34;&#34;&#34;
+        self.prune_type = prune_type
+        self.target_types = []
+        if self.prune_type == &#39;Filter&#39;:
+            self.target_types.extend([&#39;Conv2d&#39;, &#39;Linear&#39;, &#39;ConvTranspose2d&#39;])
+        elif self.prune_type == &#34;BatchNorm&#34;:
+            self.target_types.append(&#34;BatchNorm2d&#34;)
+        
+        super(ChannelDependency, self).__init__(model, dummy_input, traced_model)
+
+    def _get_parent_layers(self, node):
+        &#34;&#34;&#34;
+        Find the nearest father conv layers for the target node.
+        Parameters
+        ---------
+        node : torch._C.Node
+            target node.
+        Returns
+        -------
+        parent_layers: list
+            nearest father conv/linear layers for the target worknode.
+        &#34;&#34;&#34;
+        parent_layers = []
+        queue = []
+        queue.append(node)
+
+        while queue:
+            curnode = queue.pop(0)
+            if curnode.op_type in self.target_types:
+                parent_layers.append(curnode.name)
+            elif curnode.op_type in RESHAPE_OPS:
+                if reshape_break_channel_dependency(curnode):
+                    continue
+            parents = self.graph.find_predecessors(curnode.unique_name)
+            parents = [self.graph.name_to_node[name] for name in parents]
+            for parent in parents:
+                queue.append(parent)
+        return parent_layers
+
+    def build_dependency(self):
+        &#34;&#34;&#34;
+        Build the channel dependency for the conv layers
+        in the model.
+        &#34;&#34;&#34;
+        self.graph.unpack_manually()
+
+        for node in self.graph.nodes_py.nodes_op:
+            parent_layers = []
+
+            if node.op_type in ADD_TYPES:
+                parent_layers = self._get_parent_layers(node)
+            
+            elif node.op_type == CAT_TYPE:
+                cat_dim = None
+                for cnode in node.node_cpps:
+                    cat_dim = list(cnode.inputs())[1].toIValue()
+                    break
+                if cat_dim != 1:
+                    parent_layer = self._get_parent_layers(node)
+            dependency_set = set(parent_layers)
+            
+            for parent in parent_layers:
+                if parent in self.dependency:
+                    dependency_set.update(self.dependency[parent])
+                
+            for _node in dependency_set:
+                self.dependency[_node] = dependency_set
+        
+    def export(self, file_path):
+        &#34;&#34;&#34;
+        export the channel dependencies as a csv file.
+        The layers at the same line have output channel
+        dependencies with each other. For example,
+        layer1.1.conv2, conv1, and layer1.0.conv2 have
+        output channel dependencies with each other, which
+        means the output channel(filters) numbers of these
+        three layers should be same with each other, otherwise
+        the model may has shape conflict.
+        Output example:
+        Dependency Set,Convolutional Layers
+        Set 1,layer1.1.conv2,layer1.0.conv2,conv1
+        Set 2,layer1.0.conv1
+        Set 3,layer1.1.conv1
+        &#34;&#34;&#34;
+        header = [&#39;Dependency Set&#39;, &#39;Layers&#39;]
+        setid = 0
+        visited = set()
+
+        with open(file_path, &#39;w&#39;) as csvf:
+            csv_w = csv.writer(csvf, delimiter=&#34;,&#34;)
+            csv_w.writerow(header)
+
+            for node in self.graph.nodes_py.nodes_op:
+                if node.op_type not in self.target_types or node in visited:
+                    continue
+                setid += 1
+                row = [&#39;Set %d&#39; %setid]
+                if node.name not in self.dependency:
+                    visited.add(node)
+                    row.append(node.name)
+                else:
+                    for other in self.dependency[node.name]:
+                        visited.add(self.graph.name_to_node[other])
+                        row.append(other)
+                
+                csv_w.writerow(row)
+    
+    @property
+    def dependency_set(self):
+        &#34;&#34;&#34;
+        Get the list of the dependency set.
+
+        Returns
+        -------
+        dependency_sets : list
+            list of the dependency sets. For example,
+            [set([&#39;conv1&#39;, &#39;conv2&#39;]), set([&#39;conv3&#39;, &#39;conv4&#39;])]
+        &#34;&#34;&#34;
+        d_sets = []
+        visited = set()
+        for node in self.graph.nodes_py.nodes_op:
+            if node.op_type not in self.target_types or node in visited:
+                continue
+            tmp_set = set()
+            if node.name not in self.dependency:
+                visited.add(node)
+                tmp_set.add(node.name)
+            else:
+                for other in self.dependency[node.name]:
+                    visited.add(self.graph.name_to_node[other])
+                    tmp_set.add(other)
+
+                d_sets.append(tmp_set)
+        return d_sets
+        
+class InputChannelDependency(ChannelDependency):
+    &#34;&#34;&#34;
+    Some pruners may prune the input channel of the convolutional
+    layers. While pruning the input channel of the convolutional layers,
+    the layers that share the same input tensor should prune the same
+    channels, and we say these layers that share the same input tensor/channel
+    has the input channel dependency. If we only prune the input channel of one
+    layer in the dependency set, there will be a shape conflict for the other
+    layers in the same dependency set, which may trigger a runtime error.
+    Here we judge whether the application will truncate the dependency by analyzing
+    whether the number of channels before and after the operation has changed.
+    If not, the input channel dependency will be passed to the following nodes.
+    &#34;&#34;&#34;
+    def __init__(self, model, dummy_input, traced_model = None):
+        &#34;&#34;&#34;
+        This model analyze the input channel dependencies between the conv
+        layers in a model.
+        Parameters
+        ----------
+        model : torch.nn.Module
+            The model to be analyzed.
+        data : torch.Tensor
+            The example input data to trace the network architecture.
+        traced_model : torch._C.Graph
+            if we alreay has the traced graph of the target model, we donnot
+            need to trace the model again.
+        &#34;&#34;&#34;
+        super(InputChannelDependency, self).__init__(model, dummy_input, traced_model)
+    
+    def _get_following_convs(self, tensor):
+        queue = []
+        key_layers = []
+        queue.extend(self.graph.input_to_node[tensor])
+        while queue:
+            curnode = queue.pop(0)
+            if curnode.op_type == &#34;Conv2d&#34; or curnode.op_type == &#39;Linear&#39; or curnode.op_type == &#34;ConvTranspose2d&#34;:
+                key_layers.append(curnode.name)
+                continue
+            
+            elif curnode.op_type in RESHAPE_OPS:
+                if reshape_break_channel_dependency(curnode):
+                    continue
+            
+            successors = self.graph.find_successors(curnode.unique_name)
+            successors = [self.graph.name_to_node[name] for name in successors]
+
+            for layer in successors:
+                queue.append(layer)
+        return key_layers
+
+    def build_dependency(self):
+        &#34;&#34;&#34;
+        Build the input channel dependencies.
+        The `InputChannelDependency` indicates the layers that have
+        dependencies when pruning the input channel of the conv layers.
+        In contrast, `ChannelDependency` indicates the dependent layers
+        when pruning the output channles of conv layers (for example, L1FilterPruner).
+        &#34;&#34;&#34;
+        self.graph.unpack_manually()
+        for tensor in self.graph.input_to_node:
+            layers = self._get_following_convs(tensor)
+            dependency_set = set(layers)
+
+            for layer in layers:
+                if layer in self.dependency:
+                    dependency_set.update(self.dependency[layer])
+            for layer in dependency_set:
+                self.dependency[layer] = dependency_set
+
+
+class GroupDependency(Dependency):
+
+    def __init__(self, model, dummy_input, traced_model =None):
+        &#34;&#34;&#34;
+        This model analyze the group dependencis between the conv
+        layers in a model.
+        Parameters
+        ----------
+        model : torch.nn.Module
+            The model to be analyzed.
+        data : torch.Tensor
+            The example input data to trace the network architecture.
+        traced_model : torch._C.Graph
+            if we alreay has the traced graph of the target model, we donnot
+            need to trace the model again.
+        &#34;&#34;&#34;
+        self.min_groups = {}
+        super(GroupDependency, self).__init__(model, dummy_input, traced_model)
+
+    def _get_parent_convs(self, node):
+        &#34;&#34;&#34;
+        Find the nearest father conv layers for the target node.
+        Parameters
+        ---------
+        node : torch._C.Node
+            target node.
+        Returns
+        -------
+        parent_layers : list
+            nearest father conv layers for the target node. Due to the group
+            dependency only exists between the conv layers, so we only find
+            the parent conv layers.
+        &#34;&#34;&#34;
+        parent_layers = []
+        predecessors = self.graph.find_predecessors(node.unique_name)
+        predecessors = [self.graph.node_to_name[node] for node in predecessors]
+
+        queue = predecessors
+        while queue:
+
+            curnode = queue.pop(0)
+            if curnode.op_type == &#34;Conv2d&#34; or curnode.optype == &#34;ConvTranspose2d&#34;:
+                parent_layers.append(curnode.name)
+                continue
+            parents = self.graph.find_predecessors(curnode.unique_name)
+            parents = [self.graph.name_to_node[name] for name in parents]
+
+            for parent in parents:
+                queue.append(parent)
+        return parent_layers
+
+    
+    def _get_conv_groups(self, node_group):
+        &#34;&#34;&#34;
+        Get the number of groups for a convolutional layer.
+        Parameters
+        ----------
+        node_group : NodePyGroup
+            target node.
+        Returns
+        -------
+        group : int
+            the number of the groups of the target conv layer.
+        &#34;&#34;&#34;
+        node_name = node_group.name
+        _, leaf_module = get_module_by_name(self.model, node_name)
+        if isinstance(leaf_module, PrunerModuleWrapper):
+            leaf_module = leaf_module.module
+        assert isinstance(leaf_module, (torch.nn.Conv2d, torch.nn.ConvTranspose2d))
+        group = leaf_module.groups
+        n_filter = leaf_module.out_channels
+        if n_filter == group:
+            return 1
+        return group
+
+    def build_dependency(self):
+        &#34;&#34;&#34;
+        Build the channel dependency for the conv layers
+        in the model. This function return the group number
+        of each conv layers. Note that, here, the group count
+        of conv layers may be larger than their originl groups.
+        This is because that the input channel will also be grouped
+        for the group conv layers. To make this clear, assume we
+        have two group conv layers: conv1(group=2), conv2(group=4).
+        conv2 takes the output features of conv1 as input.
+        Then we have to the filters of conv1 can still be
+        divided into 4 groups after filter pruning, because
+        the input channels of conv2 should be divided into
+        4 groups.
+
+        Returns
+        -------
+        self.dependency : dict
+            key: the name of conv layers, value: the minimum value that the number of
+            filters should be divisible to.
+        &#34;&#34;&#34;
+        self.groups = {}
+        for node in self.graph.nodes_py.nodes_op:
+            if node.op_type == &#34;Conv2d&#34; or node.op_type == &#34;ConvTranspose2d&#34;:
+                group = self._get_conv_groups(node)
+                if node.name in self.groups:
+                    self.groups[node.name].append(group)
+                else:
+                    self.groups[node.name] = [group]
+            
+            if group &gt; 1:
+                parent_convs = self._get_parent_convs(node)
+                for parent in parent_convs:
+                    if parent in self.groups:
+                        self.group[parent].append(group)
+                    else:
+                        self.groups[parent] = [group]
+        
+        for name in self.groups:
+            self.dependency[name] = lcm_list(self.groups[name])
+            if min(self.groups[name]) == gcd_list(self.groups[name]):
+                self.min_groups[name] = min(self.groups[name])
+            else:
+                self.min_groups[name] = 1
+        
+        return self.dependency
+
+    def export(self, file_path):
+        &#34;&#34;&#34;
+        export the group dependency to a csv file.
+        Each line describes a convolution layer, the
+        first part of each line is the Pytorch module
+        name of the conv layer. The second part of each
+        line is the group count of the filters in this layer.
+        Note that, the group count may be larger than this
+        layers original group number.
+        output example:
+        Conv layer, Groups
+        Conv1, 1
+        Conv2, 2
+        Conv3, 4
+        &#34;&#34;&#34;
+        header = [&#39;Conv Layer Name&#39;, &#39;Group&#39;]
+        with open(file_path, &#39;w&#39;) as csvf:
+            csv_w = csv.writer(csvf, delimiter = &#34;,&#34;)
+            csv_w.writerow(header)
+            for name in self.dependency:
+                group = self.dependency[name]
+                csv_w.writerow([name, group])
+    
+    @property
+    def dependency_set(self):
+        return self.dependency
+
+
+class ReshapeDependency(Dependency):
+
+    def __init__(self, model = None, dummy_input = None, traced_model = None):
+        &#34;&#34;&#34;
+        Some model may have the view/reshape functions, such functions may have fixed parameters
+        and cannot be replaced at all. Therefore, these functions may have some constraints on
+        their input shapes. In this class, we find the direct input conv/linear layers of these
+        reshape functions. If you get the shape conflict when run the forward inference on the
+        speeduped model, please try remove these layers from the pruner config list and try again.
+
+        Parameters
+        ----------
+        model : torch.nn.Module
+            The model to be analyzed.
+        data : torch.Tensor
+            The example input data to trace the network architecture.
+        traced_model : torch._C.Graph
+            if we alreay has the traced graph of the target model, we donnot
+            need to trace the model again.
+        &#34;&#34;&#34;
+        super(ReshapeDependency, self).__init__(model, dummy_input, traced_model)
+
+    def _get_parent_layers(self, node):
+        parent_layers = []
+        &#34;&#34;&#34;
+        Find the nearest father conv layers for the target node.
+
+        Parameters
+        ---------
+        node : torch._C.Node
+            target node.
+
+        Returns
+        -------
+        parent_layers: list
+            nearest father conv/linear layers for the target worknode.
+        &#34;&#34;&#34;
+        queue = []
+        queue.append(node)
+        while queue:
+            curnode = queue.pop(0)
+            if curnode.op_type == &#34;Conv2d&#34; or curnode.op_type == &#34;ConvTranspose2d&#34; or curnode.op_type == &#34;Linear&#34;:
+                parent_layers.append(node.name)
+                continue
+            parents = self.graph.find_predecessors(curnode.unique_name)
+            parents = [self.graph.name_to_node(name) for name in parents]
+            for parent in parents:
+                queue.append(parent) 
+        return parent_layers
+
+    def build_dependency(self):
+        &#34;&#34;&#34;
+        Build the channel dependency for the conv layers
+        in the model.
+        &#34;&#34;&#34;
+        self.graph.unpack_manually()
+
+        for node in self.graph.node_py.nodes_op:
+            parent_layers = []
+            for node.op_type in [&#39;aten::view&#39;, &#39;aten::reshape&#39;]:
+                _logger.info(&#39;Detect reshape-like functions: %s&#39;, node.op_type)
+                parent_layers = self._get_parent_layers(node)
+                print(&#34;Parent layers&#34;, parent_layers)
+                self.dependency[node.unique_name] = parent_layers
+
+    def export(self, file_path):
+        &#34;&#34;&#34;
+        export the reshape dependencies as a csv file.
+
+        Output example:
+        Reshape OP, Dependent Layers
+        model.view.1,layer1.1.conv2,layer1.0.conv2,conv1
+        model.mean.1,layer1.0.conv1
+        model.reshape.1,layer1.1.conv1
+        &#34;&#34;&#34;
+        header = [&#39;Reshape OP&#39;, &#39;Dependent Layers&#39;]
+        with open(file_path, &#39;w&#39;) as csvf:
+            csv_w = csv.writer(csvf, delimiter = &#34;,&#34;)
+            csv_w.writerow(header)
+
+            for reshape_op in self.dependency:
+                row = [reshape_op].extend(self.dependency[reshape_op])
+                csv_w.writerow(row)
+                
+
+    @property
+    def dependency_set(self):
+        &#34;&#34;&#34;
+        Get the list of the dependency set.
+
+        Returns
+        -------
+        dependency_sets : list
+            list of the dependency sets. For example,
+            [set([&#39;conv1&#39;, &#39;conv2&#39;]), set([&#39;conv3&#39;, &#39;conv4&#39;])]
+
+        &#34;&#34;&#34;
+        d_sets = []
+        for rehsape_node in self.dependency:
+            d_sets.extend(self.dependency[rehsape_node])
+        d_sets = list(set(d_sets))
+        return d_sets
+
+
+class AttentionWeightDependency(Dependency):
+
+    def __init__(self, model = None, dummy_input = None, traced_model = None):
+        &#34;&#34;&#34;
+        Groups the linear layers belonging to the same attention layer in a model.
+        Currently, we only capture weights in attention layers with forward computations written
+        as four Linear layers (projections for Q, K, V, and output) and two matmul operations.
+        The method implemented here can work for Huggingface transformers but may not correctly
+        capture transformers written in other fashions (e.g., torch.nn.Transformer).
+
+        Parameters
+        ----------
+        model : torch.nn.Module
+            The model to be analyzed.
+        dummy_input : torch.Tensor
+            The example input data to trace the network architecture.
+        traced_model : torch._C.Graph
+            if we already have the traced graph of the target model, we do not
+            need to trace the model again.
+        &#34;&#34;&#34;
+        super( AttentionWeightDependency, self).__init__(model, dummy_input, traced_model)
+
+    def _get_parent_layers(self, node):
+        &#34;&#34;&#34;
+        Find the nearest parent linear layers for the target node.
+
+        Parameters
+        ---------
+        node : torch._C.Node
+            target node.
+
+        Returns
+        -------
+        parent_layers: list
+            nearest parent linear layers for the target worknode.
+        &#34;&#34;&#34;
+        parent_layers = []
+        queue = []
+        queue.append(node)
+        while queue:
+            curnode = queue.pop(0)
+            if curnode.op_type == &#34;Linear&#34;:
+                if curnode.name not in parent_layers:
+                    parent_layers.append(curnode.name)
+                continue
+            if curnode.op_type == &#34;LayerNorm&#34;:
+                continue
+
+            parents = self.graph.find_predecessors(curnode.unique_name)
+            parents = [self.graph.name_to_node[name] for name in parents]
+            for parent in parents:
+                queue.append(parent)
+        return parent_layers
+
+
+    def _get_children_layers(self, node):
+        &#34;&#34;&#34;
+        Find the nearest children linear layers for the target node.
+
+        Parameters
+        ---------
+        node : torch._C.Node
+            target node.
+
+        Returns
+        -------
+        children_layers: list
+            nearest children linear layers for the target worknode.
+        &#34;&#34;&#34;
+        children_layers = []
+        queue = []
+        queue.append(node)
+        while queue:
+            curnode = queue.pop(0)
+            if curnode.op_type == &#34;Linear&#34;:
+                if curnode.name not in children_layers:
+                    children_layers.append(curnode.name)
+                continue
+            if curnode.op_type == &#34;LayerNorm&#34;:
+                continue
+            children = self.graph.find_successors(curnode.unique_name)
+            children = [self.graph.name_to_node[name] for name in children]
+            for child in children:
+                queue.append(children)
+        return children_layers
+
+    def build_dependency(self):
+        &#34;&#34;&#34;
+        For every matmul operation, find the immediate parent and children Linear operations.
+        If we get three parents and one children, add these four weights as a dependecy group.
+        &#34;&#34;&#34;
+        self.graph.unpack_manually()
+
+        for node in self.graph.nodes_py.nodes_op:
+            layers = []
+            if node.op_type == &#34;aten::matmul&#34;:
+                parent_layers = self._get_parent_layers(node)
+                children_layers = self._get_children_layers(node)
+
+                if len(parent_layers) == 3 and len(children_layers) == 1:
+                    layers.extend(parent_layers)
+                    layers.extend(children_layers)
+
+            self.dependency[node.name] = layers
+
+    @property
+    def dependency_set(self):
+        &#34;&#34;&#34;
+        Get the list of the dependency set.
+
+        Returns
+        -------
+        dependency_sets : list
+            list of the dependency sets.
+            Each dependency set is a 4-element list of module names, with the first three elements being the projection
+            matrices for Q, K, V (in any order), and the last element being the dense matrix.
+        &#34;&#34;&#34;
+        d_sets = []
+        for node in self.graph.nodes_py.nodes_op:
+            if node.op_type != &#34;aten::matmul&#34; or node.name not in self.dependency or len(self.dependency[node.name]) != 4:
+                continue
+            d_sets.append(self.dependency[node.name])
+        return d_sets
+
+    def export(self, file_path):
+        &#34;&#34;&#34;
+        Export the group dependency to a csv file. Each line describes an attention layer.
+
+        Output example:
+        Attention layer matmul op, Group
+        &#34;&#34;&#34;
+        header = [&#39;Attentiobn layer matmul op&#39;, &#39;Group&#39;]
+        with open(file_path, &#39;w&#39;) as csvf:
+            csv_w = csv.writer(csvf, delimiter = &#34;,&#34;)
+            csv_w.writerow(header)
+
+            for name in self.dependency:
+                group = self.dependency[name]
+                if len(group) &gt; 0:
+                    csv_w.writerow([name, group])</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="optimization.pruning.core.dependency.gcd_list"><code class="name flex">
+<span>def <span class="ident">gcd_list</span></span>(<span>L)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def gcd_list(L):
+    gcd = L[0]
+    for i in L:
+        gcd = np.gcd(gcd, i)
+    return gcd</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.core.dependency.lcm_list"><code class="name flex">
+<span>def <span class="ident">lcm_list</span></span>(<span>L)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def lcm_list(L):
+    lcm = 1
+    for i in L:
+        lcm = np.lcm(lcm, i)
+    return lcm</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.core.dependency.reshape_break_channel_dependency"><code class="name flex">
+<span>def <span class="ident">reshape_break_channel_dependency</span></span>(<span>op_node)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The reshape operations such as (reshape, view, flatten) may break
+the channel dependency. We need to check the input parameters of
+these reshape operations to check if this reshape node will break
+the channel dependency. However, it's complicated to analyze the the input
+parameters for each reshape function and infer if it will break the channel
+dependency. So currently, we just check if the input channel and the output
+channel is the same, if so, then we can say the original reshape function
+doesn't want to change the number of the channels, which means the channel
+dependency is not broken. In contrast, the original reshap operation wants
+to change the number of channels, so it breaks the channel dependency.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>opnode</code></strong> :&ensp;<code>NodePyOP</code></dt>
+<dd>A Op node of the graph.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>bool</code></dt>
+<dd>If this operation will break the channel dependency.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def reshape_break_channel_dependency(op_node):
+    &#34;&#34;&#34;
+    The reshape operations such as (reshape, view, flatten) may break
+    the channel dependency. We need to check the input parameters of
+    these reshape operations to check if this reshape node will break
+    the channel dependency. However, it&#39;s complicated to analyze the the input
+    parameters for each reshape function and infer if it will break the channel
+    dependency. So currently, we just check if the input channel and the output
+    channel is the same, if so, then we can say the original reshape function
+    doesn&#39;t want to change the number of the channels, which means the channel
+    dependency is not broken. In contrast, the original reshap operation wants
+    to change the number of channels, so it breaks the channel dependency.
+
+    Parameters
+    ----------
+    opnode: NodePyOP
+        A Op node of the graph.
+    Returns
+    -------
+    bool
+        If this operation will break the channel dependency.
+    &#34;&#34;&#34;
+    in_shape = op_node.auxiliary[&#39;in_shape&#39;]
+    out_shape = op_node.auxiliary[&#39;out_shape&#39;]
+    in_channel = in_shape[1]
+    out_channel = out_shape[1]
+    return in_channel != out_channel</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="optimization.pruning.core.dependency.AttentionWeightDependency"><code class="flex name class">
+<span>class <span class="ident">AttentionWeightDependency</span></span>
+<span>(</span><span>model=None, dummy_input=None, traced_model=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Build the graph for the model.</p>
+<p>Groups the linear layers belonging to the same attention layer in a model.
+Currently, we only capture weights in attention layers with forward computations written
+as four Linear layers (projections for Q, K, V, and output) and two matmul operations.
+The method implemented here can work for Huggingface transformers but may not correctly
+capture transformers written in other fashions (e.g., torch.nn.Transformer).</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>The model to be analyzed.</dd>
+<dt><strong><code>dummy_input</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>The example input data to trace the network architecture.</dd>
+<dt><strong><code>traced_model</code></strong> :&ensp;<code>torch._C.Graph</code></dt>
+<dd>if we already have the traced graph of the target model, we do not
+need to trace the model again.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AttentionWeightDependency(Dependency):
+
+    def __init__(self, model = None, dummy_input = None, traced_model = None):
+        &#34;&#34;&#34;
+        Groups the linear layers belonging to the same attention layer in a model.
+        Currently, we only capture weights in attention layers with forward computations written
+        as four Linear layers (projections for Q, K, V, and output) and two matmul operations.
+        The method implemented here can work for Huggingface transformers but may not correctly
+        capture transformers written in other fashions (e.g., torch.nn.Transformer).
+
+        Parameters
+        ----------
+        model : torch.nn.Module
+            The model to be analyzed.
+        dummy_input : torch.Tensor
+            The example input data to trace the network architecture.
+        traced_model : torch._C.Graph
+            if we already have the traced graph of the target model, we do not
+            need to trace the model again.
+        &#34;&#34;&#34;
+        super( AttentionWeightDependency, self).__init__(model, dummy_input, traced_model)
+
+    def _get_parent_layers(self, node):
+        &#34;&#34;&#34;
+        Find the nearest parent linear layers for the target node.
+
+        Parameters
+        ---------
+        node : torch._C.Node
+            target node.
+
+        Returns
+        -------
+        parent_layers: list
+            nearest parent linear layers for the target worknode.
+        &#34;&#34;&#34;
+        parent_layers = []
+        queue = []
+        queue.append(node)
+        while queue:
+            curnode = queue.pop(0)
+            if curnode.op_type == &#34;Linear&#34;:
+                if curnode.name not in parent_layers:
+                    parent_layers.append(curnode.name)
+                continue
+            if curnode.op_type == &#34;LayerNorm&#34;:
+                continue
+
+            parents = self.graph.find_predecessors(curnode.unique_name)
+            parents = [self.graph.name_to_node[name] for name in parents]
+            for parent in parents:
+                queue.append(parent)
+        return parent_layers
+
+
+    def _get_children_layers(self, node):
+        &#34;&#34;&#34;
+        Find the nearest children linear layers for the target node.
+
+        Parameters
+        ---------
+        node : torch._C.Node
+            target node.
+
+        Returns
+        -------
+        children_layers: list
+            nearest children linear layers for the target worknode.
+        &#34;&#34;&#34;
+        children_layers = []
+        queue = []
+        queue.append(node)
+        while queue:
+            curnode = queue.pop(0)
+            if curnode.op_type == &#34;Linear&#34;:
+                if curnode.name not in children_layers:
+                    children_layers.append(curnode.name)
+                continue
+            if curnode.op_type == &#34;LayerNorm&#34;:
+                continue
+            children = self.graph.find_successors(curnode.unique_name)
+            children = [self.graph.name_to_node[name] for name in children]
+            for child in children:
+                queue.append(children)
+        return children_layers
+
+    def build_dependency(self):
+        &#34;&#34;&#34;
+        For every matmul operation, find the immediate parent and children Linear operations.
+        If we get three parents and one children, add these four weights as a dependecy group.
+        &#34;&#34;&#34;
+        self.graph.unpack_manually()
+
+        for node in self.graph.nodes_py.nodes_op:
+            layers = []
+            if node.op_type == &#34;aten::matmul&#34;:
+                parent_layers = self._get_parent_layers(node)
+                children_layers = self._get_children_layers(node)
+
+                if len(parent_layers) == 3 and len(children_layers) == 1:
+                    layers.extend(parent_layers)
+                    layers.extend(children_layers)
+
+            self.dependency[node.name] = layers
+
+    @property
+    def dependency_set(self):
+        &#34;&#34;&#34;
+        Get the list of the dependency set.
+
+        Returns
+        -------
+        dependency_sets : list
+            list of the dependency sets.
+            Each dependency set is a 4-element list of module names, with the first three elements being the projection
+            matrices for Q, K, V (in any order), and the last element being the dense matrix.
+        &#34;&#34;&#34;
+        d_sets = []
+        for node in self.graph.nodes_py.nodes_op:
+            if node.op_type != &#34;aten::matmul&#34; or node.name not in self.dependency or len(self.dependency[node.name]) != 4:
+                continue
+            d_sets.append(self.dependency[node.name])
+        return d_sets
+
+    def export(self, file_path):
+        &#34;&#34;&#34;
+        Export the group dependency to a csv file. Each line describes an attention layer.
+
+        Output example:
+        Attention layer matmul op, Group
+        &#34;&#34;&#34;
+        header = [&#39;Attentiobn layer matmul op&#39;, &#39;Group&#39;]
+        with open(file_path, &#39;w&#39;) as csvf:
+            csv_w = csv.writer(csvf, delimiter = &#34;,&#34;)
+            csv_w.writerow(header)
+
+            for name in self.dependency:
+                group = self.dependency[name]
+                if len(group) &gt; 0:
+                    csv_w.writerow([name, group])</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimization.pruning.core.dependency.Dependency" href="#optimization.pruning.core.dependency.Dependency">Dependency</a></li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="optimization.pruning.core.dependency.AttentionWeightDependency.dependency_set"><code class="name">var <span class="ident">dependency_set</span></code></dt>
+<dd>
+<div class="desc"><p>Get the list of the dependency set.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>dependency_sets</code></strong> :&ensp;<code>list</code></dt>
+<dd>list of the dependency sets.
+Each dependency set is a 4-element list of module names, with the first three elements being the projection
+matrices for Q, K, V (in any order), and the last element being the dense matrix.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def dependency_set(self):
+    &#34;&#34;&#34;
+    Get the list of the dependency set.
+
+    Returns
+    -------
+    dependency_sets : list
+        list of the dependency sets.
+        Each dependency set is a 4-element list of module names, with the first three elements being the projection
+        matrices for Q, K, V (in any order), and the last element being the dense matrix.
+    &#34;&#34;&#34;
+    d_sets = []
+    for node in self.graph.nodes_py.nodes_op:
+        if node.op_type != &#34;aten::matmul&#34; or node.name not in self.dependency or len(self.dependency[node.name]) != 4:
+            continue
+        d_sets.append(self.dependency[node.name])
+    return d_sets</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="optimization.pruning.core.dependency.AttentionWeightDependency.build_dependency"><code class="name flex">
+<span>def <span class="ident">build_dependency</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>For every matmul operation, find the immediate parent and children Linear operations.
+If we get three parents and one children, add these four weights as a dependecy group.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_dependency(self):
+    &#34;&#34;&#34;
+    For every matmul operation, find the immediate parent and children Linear operations.
+    If we get three parents and one children, add these four weights as a dependecy group.
+    &#34;&#34;&#34;
+    self.graph.unpack_manually()
+
+    for node in self.graph.nodes_py.nodes_op:
+        layers = []
+        if node.op_type == &#34;aten::matmul&#34;:
+            parent_layers = self._get_parent_layers(node)
+            children_layers = self._get_children_layers(node)
+
+            if len(parent_layers) == 3 and len(children_layers) == 1:
+                layers.extend(parent_layers)
+                layers.extend(children_layers)
+
+        self.dependency[node.name] = layers</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.core.dependency.AttentionWeightDependency.export"><code class="name flex">
+<span>def <span class="ident">export</span></span>(<span>self, file_path)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Export the group dependency to a csv file. Each line describes an attention layer.</p>
+<p>Output example:
+Attention layer matmul op, Group</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def export(self, file_path):
+    &#34;&#34;&#34;
+    Export the group dependency to a csv file. Each line describes an attention layer.
+
+    Output example:
+    Attention layer matmul op, Group
+    &#34;&#34;&#34;
+    header = [&#39;Attentiobn layer matmul op&#39;, &#39;Group&#39;]
+    with open(file_path, &#39;w&#39;) as csvf:
+        csv_w = csv.writer(csvf, delimiter = &#34;,&#34;)
+        csv_w.writerow(header)
+
+        for name in self.dependency:
+            group = self.dependency[name]
+            if len(group) &gt; 0:
+                csv_w.writerow([name, group])</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="optimization.pruning.core.dependency.ChannelDependency"><code class="flex name class">
+<span>class <span class="ident">ChannelDependency</span></span>
+<span>(</span><span>model, dummy_input, traced_model=None, prune_type='Filter')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Build the graph for the model.</p>
+<p>This model analyze the channel dependencies between the conv
+layers in a model.
+Parameters</p>
+<hr>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>The model to be analyzed.</dd>
+<dt><strong><code>data</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>The example input data to trace the network architecture.</dd>
+<dt><strong><code>traced_model</code></strong> :&ensp;<code>torch._C.Graph</code></dt>
+<dd>if we alreay has the traced graph of the target model, we donnot
+need to trace the model again.</dd>
+<dt><strong><code>prune_type</code></strong> :&ensp;<code>str</code></dt>
+<dd>This parameter indicates the channel pruning type: 1) <code>Filter</code>
+prune the filter of the convolution layer to prune the corresponding
+channels 2) <code>Batchnorm</code>: prune the channel in the batchnorm layer</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ChannelDependency(Dependency):
+
+    def __init__(self, model, dummy_input, traced_model = None, prune_type=&#34;Filter&#34;):
+        &#34;&#34;&#34;
+        This model analyze the channel dependencies between the conv
+        layers in a model.
+        Parameters
+        ----------
+        model : torch.nn.Module
+            The model to be analyzed.
+        data : torch.Tensor
+            The example input data to trace the network architecture.
+        traced_model : torch._C.Graph
+            if we alreay has the traced graph of the target model, we donnot
+            need to trace the model again.
+        prune_type: str
+            This parameter indicates the channel pruning type: 1) `Filter`
+            prune the filter of the convolution layer to prune the corresponding
+            channels 2) `Batchnorm`: prune the channel in the batchnorm layer
+        &#34;&#34;&#34;
+        self.prune_type = prune_type
+        self.target_types = []
+        if self.prune_type == &#39;Filter&#39;:
+            self.target_types.extend([&#39;Conv2d&#39;, &#39;Linear&#39;, &#39;ConvTranspose2d&#39;])
+        elif self.prune_type == &#34;BatchNorm&#34;:
+            self.target_types.append(&#34;BatchNorm2d&#34;)
+        
+        super(ChannelDependency, self).__init__(model, dummy_input, traced_model)
+
+    def _get_parent_layers(self, node):
+        &#34;&#34;&#34;
+        Find the nearest father conv layers for the target node.
+        Parameters
+        ---------
+        node : torch._C.Node
+            target node.
+        Returns
+        -------
+        parent_layers: list
+            nearest father conv/linear layers for the target worknode.
+        &#34;&#34;&#34;
+        parent_layers = []
+        queue = []
+        queue.append(node)
+
+        while queue:
+            curnode = queue.pop(0)
+            if curnode.op_type in self.target_types:
+                parent_layers.append(curnode.name)
+            elif curnode.op_type in RESHAPE_OPS:
+                if reshape_break_channel_dependency(curnode):
+                    continue
+            parents = self.graph.find_predecessors(curnode.unique_name)
+            parents = [self.graph.name_to_node[name] for name in parents]
+            for parent in parents:
+                queue.append(parent)
+        return parent_layers
+
+    def build_dependency(self):
+        &#34;&#34;&#34;
+        Build the channel dependency for the conv layers
+        in the model.
+        &#34;&#34;&#34;
+        self.graph.unpack_manually()
+
+        for node in self.graph.nodes_py.nodes_op:
+            parent_layers = []
+
+            if node.op_type in ADD_TYPES:
+                parent_layers = self._get_parent_layers(node)
+            
+            elif node.op_type == CAT_TYPE:
+                cat_dim = None
+                for cnode in node.node_cpps:
+                    cat_dim = list(cnode.inputs())[1].toIValue()
+                    break
+                if cat_dim != 1:
+                    parent_layer = self._get_parent_layers(node)
+            dependency_set = set(parent_layers)
+            
+            for parent in parent_layers:
+                if parent in self.dependency:
+                    dependency_set.update(self.dependency[parent])
+                
+            for _node in dependency_set:
+                self.dependency[_node] = dependency_set
+        
+    def export(self, file_path):
+        &#34;&#34;&#34;
+        export the channel dependencies as a csv file.
+        The layers at the same line have output channel
+        dependencies with each other. For example,
+        layer1.1.conv2, conv1, and layer1.0.conv2 have
+        output channel dependencies with each other, which
+        means the output channel(filters) numbers of these
+        three layers should be same with each other, otherwise
+        the model may has shape conflict.
+        Output example:
+        Dependency Set,Convolutional Layers
+        Set 1,layer1.1.conv2,layer1.0.conv2,conv1
+        Set 2,layer1.0.conv1
+        Set 3,layer1.1.conv1
+        &#34;&#34;&#34;
+        header = [&#39;Dependency Set&#39;, &#39;Layers&#39;]
+        setid = 0
+        visited = set()
+
+        with open(file_path, &#39;w&#39;) as csvf:
+            csv_w = csv.writer(csvf, delimiter=&#34;,&#34;)
+            csv_w.writerow(header)
+
+            for node in self.graph.nodes_py.nodes_op:
+                if node.op_type not in self.target_types or node in visited:
+                    continue
+                setid += 1
+                row = [&#39;Set %d&#39; %setid]
+                if node.name not in self.dependency:
+                    visited.add(node)
+                    row.append(node.name)
+                else:
+                    for other in self.dependency[node.name]:
+                        visited.add(self.graph.name_to_node[other])
+                        row.append(other)
+                
+                csv_w.writerow(row)
+    
+    @property
+    def dependency_set(self):
+        &#34;&#34;&#34;
+        Get the list of the dependency set.
+
+        Returns
+        -------
+        dependency_sets : list
+            list of the dependency sets. For example,
+            [set([&#39;conv1&#39;, &#39;conv2&#39;]), set([&#39;conv3&#39;, &#39;conv4&#39;])]
+        &#34;&#34;&#34;
+        d_sets = []
+        visited = set()
+        for node in self.graph.nodes_py.nodes_op:
+            if node.op_type not in self.target_types or node in visited:
+                continue
+            tmp_set = set()
+            if node.name not in self.dependency:
+                visited.add(node)
+                tmp_set.add(node.name)
+            else:
+                for other in self.dependency[node.name]:
+                    visited.add(self.graph.name_to_node[other])
+                    tmp_set.add(other)
+
+                d_sets.append(tmp_set)
+        return d_sets</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimization.pruning.core.dependency.Dependency" href="#optimization.pruning.core.dependency.Dependency">Dependency</a></li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="optimization.pruning.core.dependency.InputChannelDependency" href="#optimization.pruning.core.dependency.InputChannelDependency">InputChannelDependency</a></li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="optimization.pruning.core.dependency.ChannelDependency.dependency_set"><code class="name">var <span class="ident">dependency_set</span></code></dt>
+<dd>
+<div class="desc"><p>Get the list of the dependency set.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>dependency_sets</code></strong> :&ensp;<code>list</code></dt>
+<dd>list of the dependency sets. For example,
+[set(['conv1', 'conv2']), set(['conv3', 'conv4'])]</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def dependency_set(self):
+    &#34;&#34;&#34;
+    Get the list of the dependency set.
+
+    Returns
+    -------
+    dependency_sets : list
+        list of the dependency sets. For example,
+        [set([&#39;conv1&#39;, &#39;conv2&#39;]), set([&#39;conv3&#39;, &#39;conv4&#39;])]
+    &#34;&#34;&#34;
+    d_sets = []
+    visited = set()
+    for node in self.graph.nodes_py.nodes_op:
+        if node.op_type not in self.target_types or node in visited:
+            continue
+        tmp_set = set()
+        if node.name not in self.dependency:
+            visited.add(node)
+            tmp_set.add(node.name)
+        else:
+            for other in self.dependency[node.name]:
+                visited.add(self.graph.name_to_node[other])
+                tmp_set.add(other)
+
+            d_sets.append(tmp_set)
+    return d_sets</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="optimization.pruning.core.dependency.ChannelDependency.build_dependency"><code class="name flex">
+<span>def <span class="ident">build_dependency</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Build the channel dependency for the conv layers
+in the model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_dependency(self):
+    &#34;&#34;&#34;
+    Build the channel dependency for the conv layers
+    in the model.
+    &#34;&#34;&#34;
+    self.graph.unpack_manually()
+
+    for node in self.graph.nodes_py.nodes_op:
+        parent_layers = []
+
+        if node.op_type in ADD_TYPES:
+            parent_layers = self._get_parent_layers(node)
+        
+        elif node.op_type == CAT_TYPE:
+            cat_dim = None
+            for cnode in node.node_cpps:
+                cat_dim = list(cnode.inputs())[1].toIValue()
+                break
+            if cat_dim != 1:
+                parent_layer = self._get_parent_layers(node)
+        dependency_set = set(parent_layers)
+        
+        for parent in parent_layers:
+            if parent in self.dependency:
+                dependency_set.update(self.dependency[parent])
+            
+        for _node in dependency_set:
+            self.dependency[_node] = dependency_set</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.core.dependency.ChannelDependency.export"><code class="name flex">
+<span>def <span class="ident">export</span></span>(<span>self, file_path)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>export the channel dependencies as a csv file.
+The layers at the same line have output channel
+dependencies with each other. For example,
+layer1.1.conv2, conv1, and layer1.0.conv2 have
+output channel dependencies with each other, which
+means the output channel(filters) numbers of these
+three layers should be same with each other, otherwise
+the model may has shape conflict.
+Output example:
+Dependency Set,Convolutional Layers
+Set 1,layer1.1.conv2,layer1.0.conv2,conv1
+Set 2,layer1.0.conv1
+Set 3,layer1.1.conv1</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def export(self, file_path):
+    &#34;&#34;&#34;
+    export the channel dependencies as a csv file.
+    The layers at the same line have output channel
+    dependencies with each other. For example,
+    layer1.1.conv2, conv1, and layer1.0.conv2 have
+    output channel dependencies with each other, which
+    means the output channel(filters) numbers of these
+    three layers should be same with each other, otherwise
+    the model may has shape conflict.
+    Output example:
+    Dependency Set,Convolutional Layers
+    Set 1,layer1.1.conv2,layer1.0.conv2,conv1
+    Set 2,layer1.0.conv1
+    Set 3,layer1.1.conv1
+    &#34;&#34;&#34;
+    header = [&#39;Dependency Set&#39;, &#39;Layers&#39;]
+    setid = 0
+    visited = set()
+
+    with open(file_path, &#39;w&#39;) as csvf:
+        csv_w = csv.writer(csvf, delimiter=&#34;,&#34;)
+        csv_w.writerow(header)
+
+        for node in self.graph.nodes_py.nodes_op:
+            if node.op_type not in self.target_types or node in visited:
+                continue
+            setid += 1
+            row = [&#39;Set %d&#39; %setid]
+            if node.name not in self.dependency:
+                visited.add(node)
+                row.append(node.name)
+            else:
+                for other in self.dependency[node.name]:
+                    visited.add(self.graph.name_to_node[other])
+                    row.append(other)
+            
+            csv_w.writerow(row)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="optimization.pruning.core.dependency.Dependency"><code class="flex name class">
+<span>class <span class="ident">Dependency</span></span>
+<span>(</span><span>model=None, dummy_input=None, traced_model=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Build the graph for the model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Dependency:
+    &#34;&#34;&#34;
+    Build the graph for the model.
+    &#34;&#34;&#34;
+    def __init__(self, model = None, dummy_input =None, traced_model = None):
+
+        if traced_model is None:
+            assert model is not None and dummy_input is not None
+        self.graph = TorchModuleGraph(model, dummy_input, traced_model)
+        self.model = model
+        self.dependency = dict()
+        self.build_dependency()
+
+    def build_dependency(self):
+        raise NotImplementedError()
+    
+    def export(self, file_path):
+        raise NotImplementedError()</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="optimization.pruning.core.dependency.AttentionWeightDependency" href="#optimization.pruning.core.dependency.AttentionWeightDependency">AttentionWeightDependency</a></li>
+<li><a title="optimization.pruning.core.dependency.ChannelDependency" href="#optimization.pruning.core.dependency.ChannelDependency">ChannelDependency</a></li>
+<li><a title="optimization.pruning.core.dependency.GroupDependency" href="#optimization.pruning.core.dependency.GroupDependency">GroupDependency</a></li>
+<li><a title="optimization.pruning.core.dependency.ReshapeDependency" href="#optimization.pruning.core.dependency.ReshapeDependency">ReshapeDependency</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="optimization.pruning.core.dependency.Dependency.build_dependency"><code class="name flex">
+<span>def <span class="ident">build_dependency</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_dependency(self):
+    raise NotImplementedError()</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.core.dependency.Dependency.export"><code class="name flex">
+<span>def <span class="ident">export</span></span>(<span>self, file_path)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def export(self, file_path):
+    raise NotImplementedError()</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="optimization.pruning.core.dependency.GroupDependency"><code class="flex name class">
+<span>class <span class="ident">GroupDependency</span></span>
+<span>(</span><span>model, dummy_input, traced_model=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Build the graph for the model.</p>
+<p>This model analyze the group dependencis between the conv
+layers in a model.
+Parameters</p>
+<hr>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>The model to be analyzed.</dd>
+<dt><strong><code>data</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>The example input data to trace the network architecture.</dd>
+<dt><strong><code>traced_model</code></strong> :&ensp;<code>torch._C.Graph</code></dt>
+<dd>if we alreay has the traced graph of the target model, we donnot
+need to trace the model again.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class GroupDependency(Dependency):
+
+    def __init__(self, model, dummy_input, traced_model =None):
+        &#34;&#34;&#34;
+        This model analyze the group dependencis between the conv
+        layers in a model.
+        Parameters
+        ----------
+        model : torch.nn.Module
+            The model to be analyzed.
+        data : torch.Tensor
+            The example input data to trace the network architecture.
+        traced_model : torch._C.Graph
+            if we alreay has the traced graph of the target model, we donnot
+            need to trace the model again.
+        &#34;&#34;&#34;
+        self.min_groups = {}
+        super(GroupDependency, self).__init__(model, dummy_input, traced_model)
+
+    def _get_parent_convs(self, node):
+        &#34;&#34;&#34;
+        Find the nearest father conv layers for the target node.
+        Parameters
+        ---------
+        node : torch._C.Node
+            target node.
+        Returns
+        -------
+        parent_layers : list
+            nearest father conv layers for the target node. Due to the group
+            dependency only exists between the conv layers, so we only find
+            the parent conv layers.
+        &#34;&#34;&#34;
+        parent_layers = []
+        predecessors = self.graph.find_predecessors(node.unique_name)
+        predecessors = [self.graph.node_to_name[node] for node in predecessors]
+
+        queue = predecessors
+        while queue:
+
+            curnode = queue.pop(0)
+            if curnode.op_type == &#34;Conv2d&#34; or curnode.optype == &#34;ConvTranspose2d&#34;:
+                parent_layers.append(curnode.name)
+                continue
+            parents = self.graph.find_predecessors(curnode.unique_name)
+            parents = [self.graph.name_to_node[name] for name in parents]
+
+            for parent in parents:
+                queue.append(parent)
+        return parent_layers
+
+    
+    def _get_conv_groups(self, node_group):
+        &#34;&#34;&#34;
+        Get the number of groups for a convolutional layer.
+        Parameters
+        ----------
+        node_group : NodePyGroup
+            target node.
+        Returns
+        -------
+        group : int
+            the number of the groups of the target conv layer.
+        &#34;&#34;&#34;
+        node_name = node_group.name
+        _, leaf_module = get_module_by_name(self.model, node_name)
+        if isinstance(leaf_module, PrunerModuleWrapper):
+            leaf_module = leaf_module.module
+        assert isinstance(leaf_module, (torch.nn.Conv2d, torch.nn.ConvTranspose2d))
+        group = leaf_module.groups
+        n_filter = leaf_module.out_channels
+        if n_filter == group:
+            return 1
+        return group
+
+    def build_dependency(self):
+        &#34;&#34;&#34;
+        Build the channel dependency for the conv layers
+        in the model. This function return the group number
+        of each conv layers. Note that, here, the group count
+        of conv layers may be larger than their originl groups.
+        This is because that the input channel will also be grouped
+        for the group conv layers. To make this clear, assume we
+        have two group conv layers: conv1(group=2), conv2(group=4).
+        conv2 takes the output features of conv1 as input.
+        Then we have to the filters of conv1 can still be
+        divided into 4 groups after filter pruning, because
+        the input channels of conv2 should be divided into
+        4 groups.
+
+        Returns
+        -------
+        self.dependency : dict
+            key: the name of conv layers, value: the minimum value that the number of
+            filters should be divisible to.
+        &#34;&#34;&#34;
+        self.groups = {}
+        for node in self.graph.nodes_py.nodes_op:
+            if node.op_type == &#34;Conv2d&#34; or node.op_type == &#34;ConvTranspose2d&#34;:
+                group = self._get_conv_groups(node)
+                if node.name in self.groups:
+                    self.groups[node.name].append(group)
+                else:
+                    self.groups[node.name] = [group]
+            
+            if group &gt; 1:
+                parent_convs = self._get_parent_convs(node)
+                for parent in parent_convs:
+                    if parent in self.groups:
+                        self.group[parent].append(group)
+                    else:
+                        self.groups[parent] = [group]
+        
+        for name in self.groups:
+            self.dependency[name] = lcm_list(self.groups[name])
+            if min(self.groups[name]) == gcd_list(self.groups[name]):
+                self.min_groups[name] = min(self.groups[name])
+            else:
+                self.min_groups[name] = 1
+        
+        return self.dependency
+
+    def export(self, file_path):
+        &#34;&#34;&#34;
+        export the group dependency to a csv file.
+        Each line describes a convolution layer, the
+        first part of each line is the Pytorch module
+        name of the conv layer. The second part of each
+        line is the group count of the filters in this layer.
+        Note that, the group count may be larger than this
+        layers original group number.
+        output example:
+        Conv layer, Groups
+        Conv1, 1
+        Conv2, 2
+        Conv3, 4
+        &#34;&#34;&#34;
+        header = [&#39;Conv Layer Name&#39;, &#39;Group&#39;]
+        with open(file_path, &#39;w&#39;) as csvf:
+            csv_w = csv.writer(csvf, delimiter = &#34;,&#34;)
+            csv_w.writerow(header)
+            for name in self.dependency:
+                group = self.dependency[name]
+                csv_w.writerow([name, group])
+    
+    @property
+    def dependency_set(self):
+        return self.dependency</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimization.pruning.core.dependency.Dependency" href="#optimization.pruning.core.dependency.Dependency">Dependency</a></li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="optimization.pruning.core.dependency.GroupDependency.dependency_set"><code class="name">var <span class="ident">dependency_set</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def dependency_set(self):
+    return self.dependency</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="optimization.pruning.core.dependency.GroupDependency.build_dependency"><code class="name flex">
+<span>def <span class="ident">build_dependency</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Build the channel dependency for the conv layers
+in the model. This function return the group number
+of each conv layers. Note that, here, the group count
+of conv layers may be larger than their originl groups.
+This is because that the input channel will also be grouped
+for the group conv layers. To make this clear, assume we
+have two group conv layers: conv1(group=2), conv2(group=4).
+conv2 takes the output features of conv1 as input.
+Then we have to the filters of conv1 can still be
+divided into 4 groups after filter pruning, because
+the input channels of conv2 should be divided into
+4 groups.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>self.dependency : dict</code></dt>
+<dd>key: the name of conv layers, value: the minimum value that the number of
+filters should be divisible to.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_dependency(self):
+    &#34;&#34;&#34;
+    Build the channel dependency for the conv layers
+    in the model. This function return the group number
+    of each conv layers. Note that, here, the group count
+    of conv layers may be larger than their originl groups.
+    This is because that the input channel will also be grouped
+    for the group conv layers. To make this clear, assume we
+    have two group conv layers: conv1(group=2), conv2(group=4).
+    conv2 takes the output features of conv1 as input.
+    Then we have to the filters of conv1 can still be
+    divided into 4 groups after filter pruning, because
+    the input channels of conv2 should be divided into
+    4 groups.
+
+    Returns
+    -------
+    self.dependency : dict
+        key: the name of conv layers, value: the minimum value that the number of
+        filters should be divisible to.
+    &#34;&#34;&#34;
+    self.groups = {}
+    for node in self.graph.nodes_py.nodes_op:
+        if node.op_type == &#34;Conv2d&#34; or node.op_type == &#34;ConvTranspose2d&#34;:
+            group = self._get_conv_groups(node)
+            if node.name in self.groups:
+                self.groups[node.name].append(group)
+            else:
+                self.groups[node.name] = [group]
+        
+        if group &gt; 1:
+            parent_convs = self._get_parent_convs(node)
+            for parent in parent_convs:
+                if parent in self.groups:
+                    self.group[parent].append(group)
+                else:
+                    self.groups[parent] = [group]
+    
+    for name in self.groups:
+        self.dependency[name] = lcm_list(self.groups[name])
+        if min(self.groups[name]) == gcd_list(self.groups[name]):
+            self.min_groups[name] = min(self.groups[name])
+        else:
+            self.min_groups[name] = 1
+    
+    return self.dependency</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.core.dependency.GroupDependency.export"><code class="name flex">
+<span>def <span class="ident">export</span></span>(<span>self, file_path)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>export the group dependency to a csv file.
+Each line describes a convolution layer, the
+first part of each line is the Pytorch module
+name of the conv layer. The second part of each
+line is the group count of the filters in this layer.
+Note that, the group count may be larger than this
+layers original group number.
+output example:
+Conv layer, Groups
+Conv1, 1
+Conv2, 2
+Conv3, 4</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def export(self, file_path):
+    &#34;&#34;&#34;
+    export the group dependency to a csv file.
+    Each line describes a convolution layer, the
+    first part of each line is the Pytorch module
+    name of the conv layer. The second part of each
+    line is the group count of the filters in this layer.
+    Note that, the group count may be larger than this
+    layers original group number.
+    output example:
+    Conv layer, Groups
+    Conv1, 1
+    Conv2, 2
+    Conv3, 4
+    &#34;&#34;&#34;
+    header = [&#39;Conv Layer Name&#39;, &#39;Group&#39;]
+    with open(file_path, &#39;w&#39;) as csvf:
+        csv_w = csv.writer(csvf, delimiter = &#34;,&#34;)
+        csv_w.writerow(header)
+        for name in self.dependency:
+            group = self.dependency[name]
+            csv_w.writerow([name, group])</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="optimization.pruning.core.dependency.InputChannelDependency"><code class="flex name class">
+<span>class <span class="ident">InputChannelDependency</span></span>
+<span>(</span><span>model, dummy_input, traced_model=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Some pruners may prune the input channel of the convolutional
+layers. While pruning the input channel of the convolutional layers,
+the layers that share the same input tensor should prune the same
+channels, and we say these layers that share the same input tensor/channel
+has the input channel dependency. If we only prune the input channel of one
+layer in the dependency set, there will be a shape conflict for the other
+layers in the same dependency set, which may trigger a runtime error.
+Here we judge whether the application will truncate the dependency by analyzing
+whether the number of channels before and after the operation has changed.
+If not, the input channel dependency will be passed to the following nodes.</p>
+<p>This model analyze the input channel dependencies between the conv
+layers in a model.
+Parameters</p>
+<hr>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>The model to be analyzed.</dd>
+<dt><strong><code>data</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>The example input data to trace the network architecture.</dd>
+<dt><strong><code>traced_model</code></strong> :&ensp;<code>torch._C.Graph</code></dt>
+<dd>if we alreay has the traced graph of the target model, we donnot
+need to trace the model again.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class InputChannelDependency(ChannelDependency):
+    &#34;&#34;&#34;
+    Some pruners may prune the input channel of the convolutional
+    layers. While pruning the input channel of the convolutional layers,
+    the layers that share the same input tensor should prune the same
+    channels, and we say these layers that share the same input tensor/channel
+    has the input channel dependency. If we only prune the input channel of one
+    layer in the dependency set, there will be a shape conflict for the other
+    layers in the same dependency set, which may trigger a runtime error.
+    Here we judge whether the application will truncate the dependency by analyzing
+    whether the number of channels before and after the operation has changed.
+    If not, the input channel dependency will be passed to the following nodes.
+    &#34;&#34;&#34;
+    def __init__(self, model, dummy_input, traced_model = None):
+        &#34;&#34;&#34;
+        This model analyze the input channel dependencies between the conv
+        layers in a model.
+        Parameters
+        ----------
+        model : torch.nn.Module
+            The model to be analyzed.
+        data : torch.Tensor
+            The example input data to trace the network architecture.
+        traced_model : torch._C.Graph
+            if we alreay has the traced graph of the target model, we donnot
+            need to trace the model again.
+        &#34;&#34;&#34;
+        super(InputChannelDependency, self).__init__(model, dummy_input, traced_model)
+    
+    def _get_following_convs(self, tensor):
+        queue = []
+        key_layers = []
+        queue.extend(self.graph.input_to_node[tensor])
+        while queue:
+            curnode = queue.pop(0)
+            if curnode.op_type == &#34;Conv2d&#34; or curnode.op_type == &#39;Linear&#39; or curnode.op_type == &#34;ConvTranspose2d&#34;:
+                key_layers.append(curnode.name)
+                continue
+            
+            elif curnode.op_type in RESHAPE_OPS:
+                if reshape_break_channel_dependency(curnode):
+                    continue
+            
+            successors = self.graph.find_successors(curnode.unique_name)
+            successors = [self.graph.name_to_node[name] for name in successors]
+
+            for layer in successors:
+                queue.append(layer)
+        return key_layers
+
+    def build_dependency(self):
+        &#34;&#34;&#34;
+        Build the input channel dependencies.
+        The `InputChannelDependency` indicates the layers that have
+        dependencies when pruning the input channel of the conv layers.
+        In contrast, `ChannelDependency` indicates the dependent layers
+        when pruning the output channles of conv layers (for example, L1FilterPruner).
+        &#34;&#34;&#34;
+        self.graph.unpack_manually()
+        for tensor in self.graph.input_to_node:
+            layers = self._get_following_convs(tensor)
+            dependency_set = set(layers)
+
+            for layer in layers:
+                if layer in self.dependency:
+                    dependency_set.update(self.dependency[layer])
+            for layer in dependency_set:
+                self.dependency[layer] = dependency_set</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimization.pruning.core.dependency.ChannelDependency" href="#optimization.pruning.core.dependency.ChannelDependency">ChannelDependency</a></li>
+<li><a title="optimization.pruning.core.dependency.Dependency" href="#optimization.pruning.core.dependency.Dependency">Dependency</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="optimization.pruning.core.dependency.InputChannelDependency.build_dependency"><code class="name flex">
+<span>def <span class="ident">build_dependency</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Build the input channel dependencies.
+The <code><a title="optimization.pruning.core.dependency.InputChannelDependency" href="#optimization.pruning.core.dependency.InputChannelDependency">InputChannelDependency</a></code> indicates the layers that have
+dependencies when pruning the input channel of the conv layers.
+In contrast, <code><a title="optimization.pruning.core.dependency.ChannelDependency" href="#optimization.pruning.core.dependency.ChannelDependency">ChannelDependency</a></code> indicates the dependent layers
+when pruning the output channles of conv layers (for example, L1FilterPruner).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_dependency(self):
+    &#34;&#34;&#34;
+    Build the input channel dependencies.
+    The `InputChannelDependency` indicates the layers that have
+    dependencies when pruning the input channel of the conv layers.
+    In contrast, `ChannelDependency` indicates the dependent layers
+    when pruning the output channles of conv layers (for example, L1FilterPruner).
+    &#34;&#34;&#34;
+    self.graph.unpack_manually()
+    for tensor in self.graph.input_to_node:
+        layers = self._get_following_convs(tensor)
+        dependency_set = set(layers)
+
+        for layer in layers:
+            if layer in self.dependency:
+                dependency_set.update(self.dependency[layer])
+        for layer in dependency_set:
+            self.dependency[layer] = dependency_set</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimization.pruning.core.dependency.ChannelDependency" href="#optimization.pruning.core.dependency.ChannelDependency">ChannelDependency</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimization.pruning.core.dependency.ChannelDependency.dependency_set" href="#optimization.pruning.core.dependency.ChannelDependency.dependency_set">dependency_set</a></code></li>
+<li><code><a title="optimization.pruning.core.dependency.ChannelDependency.export" href="#optimization.pruning.core.dependency.ChannelDependency.export">export</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="optimization.pruning.core.dependency.ReshapeDependency"><code class="flex name class">
+<span>class <span class="ident">ReshapeDependency</span></span>
+<span>(</span><span>model=None, dummy_input=None, traced_model=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Build the graph for the model.</p>
+<p>Some model may have the view/reshape functions, such functions may have fixed parameters
+and cannot be replaced at all. Therefore, these functions may have some constraints on
+their input shapes. In this class, we find the direct input conv/linear layers of these
+reshape functions. If you get the shape conflict when run the forward inference on the
+speeduped model, please try remove these layers from the pruner config list and try again.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>The model to be analyzed.</dd>
+<dt><strong><code>data</code></strong> :&ensp;<code>torch.Tensor</code></dt>
+<dd>The example input data to trace the network architecture.</dd>
+<dt><strong><code>traced_model</code></strong> :&ensp;<code>torch._C.Graph</code></dt>
+<dd>if we alreay has the traced graph of the target model, we donnot
+need to trace the model again.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ReshapeDependency(Dependency):
+
+    def __init__(self, model = None, dummy_input = None, traced_model = None):
+        &#34;&#34;&#34;
+        Some model may have the view/reshape functions, such functions may have fixed parameters
+        and cannot be replaced at all. Therefore, these functions may have some constraints on
+        their input shapes. In this class, we find the direct input conv/linear layers of these
+        reshape functions. If you get the shape conflict when run the forward inference on the
+        speeduped model, please try remove these layers from the pruner config list and try again.
+
+        Parameters
+        ----------
+        model : torch.nn.Module
+            The model to be analyzed.
+        data : torch.Tensor
+            The example input data to trace the network architecture.
+        traced_model : torch._C.Graph
+            if we alreay has the traced graph of the target model, we donnot
+            need to trace the model again.
+        &#34;&#34;&#34;
+        super(ReshapeDependency, self).__init__(model, dummy_input, traced_model)
+
+    def _get_parent_layers(self, node):
+        parent_layers = []
+        &#34;&#34;&#34;
+        Find the nearest father conv layers for the target node.
+
+        Parameters
+        ---------
+        node : torch._C.Node
+            target node.
+
+        Returns
+        -------
+        parent_layers: list
+            nearest father conv/linear layers for the target worknode.
+        &#34;&#34;&#34;
+        queue = []
+        queue.append(node)
+        while queue:
+            curnode = queue.pop(0)
+            if curnode.op_type == &#34;Conv2d&#34; or curnode.op_type == &#34;ConvTranspose2d&#34; or curnode.op_type == &#34;Linear&#34;:
+                parent_layers.append(node.name)
+                continue
+            parents = self.graph.find_predecessors(curnode.unique_name)
+            parents = [self.graph.name_to_node(name) for name in parents]
+            for parent in parents:
+                queue.append(parent) 
+        return parent_layers
+
+    def build_dependency(self):
+        &#34;&#34;&#34;
+        Build the channel dependency for the conv layers
+        in the model.
+        &#34;&#34;&#34;
+        self.graph.unpack_manually()
+
+        for node in self.graph.node_py.nodes_op:
+            parent_layers = []
+            for node.op_type in [&#39;aten::view&#39;, &#39;aten::reshape&#39;]:
+                _logger.info(&#39;Detect reshape-like functions: %s&#39;, node.op_type)
+                parent_layers = self._get_parent_layers(node)
+                print(&#34;Parent layers&#34;, parent_layers)
+                self.dependency[node.unique_name] = parent_layers
+
+    def export(self, file_path):
+        &#34;&#34;&#34;
+        export the reshape dependencies as a csv file.
+
+        Output example:
+        Reshape OP, Dependent Layers
+        model.view.1,layer1.1.conv2,layer1.0.conv2,conv1
+        model.mean.1,layer1.0.conv1
+        model.reshape.1,layer1.1.conv1
+        &#34;&#34;&#34;
+        header = [&#39;Reshape OP&#39;, &#39;Dependent Layers&#39;]
+        with open(file_path, &#39;w&#39;) as csvf:
+            csv_w = csv.writer(csvf, delimiter = &#34;,&#34;)
+            csv_w.writerow(header)
+
+            for reshape_op in self.dependency:
+                row = [reshape_op].extend(self.dependency[reshape_op])
+                csv_w.writerow(row)
+                
+
+    @property
+    def dependency_set(self):
+        &#34;&#34;&#34;
+        Get the list of the dependency set.
+
+        Returns
+        -------
+        dependency_sets : list
+            list of the dependency sets. For example,
+            [set([&#39;conv1&#39;, &#39;conv2&#39;]), set([&#39;conv3&#39;, &#39;conv4&#39;])]
+
+        &#34;&#34;&#34;
+        d_sets = []
+        for rehsape_node in self.dependency:
+            d_sets.extend(self.dependency[rehsape_node])
+        d_sets = list(set(d_sets))
+        return d_sets</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimization.pruning.core.dependency.Dependency" href="#optimization.pruning.core.dependency.Dependency">Dependency</a></li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="optimization.pruning.core.dependency.ReshapeDependency.dependency_set"><code class="name">var <span class="ident">dependency_set</span></code></dt>
+<dd>
+<div class="desc"><p>Get the list of the dependency set.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>dependency_sets</code></strong> :&ensp;<code>list</code></dt>
+<dd>list of the dependency sets. For example,
+[set(['conv1', 'conv2']), set(['conv3', 'conv4'])]</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def dependency_set(self):
+    &#34;&#34;&#34;
+    Get the list of the dependency set.
+
+    Returns
+    -------
+    dependency_sets : list
+        list of the dependency sets. For example,
+        [set([&#39;conv1&#39;, &#39;conv2&#39;]), set([&#39;conv3&#39;, &#39;conv4&#39;])]
+
+    &#34;&#34;&#34;
+    d_sets = []
+    for rehsape_node in self.dependency:
+        d_sets.extend(self.dependency[rehsape_node])
+    d_sets = list(set(d_sets))
+    return d_sets</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="optimization.pruning.core.dependency.ReshapeDependency.build_dependency"><code class="name flex">
+<span>def <span class="ident">build_dependency</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Build the channel dependency for the conv layers
+in the model.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def build_dependency(self):
+    &#34;&#34;&#34;
+    Build the channel dependency for the conv layers
+    in the model.
+    &#34;&#34;&#34;
+    self.graph.unpack_manually()
+
+    for node in self.graph.node_py.nodes_op:
+        parent_layers = []
+        for node.op_type in [&#39;aten::view&#39;, &#39;aten::reshape&#39;]:
+            _logger.info(&#39;Detect reshape-like functions: %s&#39;, node.op_type)
+            parent_layers = self._get_parent_layers(node)
+            print(&#34;Parent layers&#34;, parent_layers)
+            self.dependency[node.unique_name] = parent_layers</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.core.dependency.ReshapeDependency.export"><code class="name flex">
+<span>def <span class="ident">export</span></span>(<span>self, file_path)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>export the reshape dependencies as a csv file.</p>
+<p>Output example:
+Reshape OP, Dependent Layers
+model.view.1,layer1.1.conv2,layer1.0.conv2,conv1
+model.mean.1,layer1.0.conv1
+model.reshape.1,layer1.1.conv1</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def export(self, file_path):
+    &#34;&#34;&#34;
+    export the reshape dependencies as a csv file.
+
+    Output example:
+    Reshape OP, Dependent Layers
+    model.view.1,layer1.1.conv2,layer1.0.conv2,conv1
+    model.mean.1,layer1.0.conv1
+    model.reshape.1,layer1.1.conv1
+    &#34;&#34;&#34;
+    header = [&#39;Reshape OP&#39;, &#39;Dependent Layers&#39;]
+    with open(file_path, &#39;w&#39;) as csvf:
+        csv_w = csv.writer(csvf, delimiter = &#34;,&#34;)
+        csv_w.writerow(header)
+
+        for reshape_op in self.dependency:
+            row = [reshape_op].extend(self.dependency[reshape_op])
+            csv_w.writerow(row)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="optimization.pruning.core" href="index.html">optimization.pruning.core</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="optimization.pruning.core.dependency.gcd_list" href="#optimization.pruning.core.dependency.gcd_list">gcd_list</a></code></li>
+<li><code><a title="optimization.pruning.core.dependency.lcm_list" href="#optimization.pruning.core.dependency.lcm_list">lcm_list</a></code></li>
+<li><code><a title="optimization.pruning.core.dependency.reshape_break_channel_dependency" href="#optimization.pruning.core.dependency.reshape_break_channel_dependency">reshape_break_channel_dependency</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="optimization.pruning.core.dependency.AttentionWeightDependency" href="#optimization.pruning.core.dependency.AttentionWeightDependency">AttentionWeightDependency</a></code></h4>
+<ul class="">
+<li><code><a title="optimization.pruning.core.dependency.AttentionWeightDependency.build_dependency" href="#optimization.pruning.core.dependency.AttentionWeightDependency.build_dependency">build_dependency</a></code></li>
+<li><code><a title="optimization.pruning.core.dependency.AttentionWeightDependency.dependency_set" href="#optimization.pruning.core.dependency.AttentionWeightDependency.dependency_set">dependency_set</a></code></li>
+<li><code><a title="optimization.pruning.core.dependency.AttentionWeightDependency.export" href="#optimization.pruning.core.dependency.AttentionWeightDependency.export">export</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="optimization.pruning.core.dependency.ChannelDependency" href="#optimization.pruning.core.dependency.ChannelDependency">ChannelDependency</a></code></h4>
+<ul class="">
+<li><code><a title="optimization.pruning.core.dependency.ChannelDependency.build_dependency" href="#optimization.pruning.core.dependency.ChannelDependency.build_dependency">build_dependency</a></code></li>
+<li><code><a title="optimization.pruning.core.dependency.ChannelDependency.dependency_set" href="#optimization.pruning.core.dependency.ChannelDependency.dependency_set">dependency_set</a></code></li>
+<li><code><a title="optimization.pruning.core.dependency.ChannelDependency.export" href="#optimization.pruning.core.dependency.ChannelDependency.export">export</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="optimization.pruning.core.dependency.Dependency" href="#optimization.pruning.core.dependency.Dependency">Dependency</a></code></h4>
+<ul class="">
+<li><code><a title="optimization.pruning.core.dependency.Dependency.build_dependency" href="#optimization.pruning.core.dependency.Dependency.build_dependency">build_dependency</a></code></li>
+<li><code><a title="optimization.pruning.core.dependency.Dependency.export" href="#optimization.pruning.core.dependency.Dependency.export">export</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="optimization.pruning.core.dependency.GroupDependency" href="#optimization.pruning.core.dependency.GroupDependency">GroupDependency</a></code></h4>
+<ul class="">
+<li><code><a title="optimization.pruning.core.dependency.GroupDependency.build_dependency" href="#optimization.pruning.core.dependency.GroupDependency.build_dependency">build_dependency</a></code></li>
+<li><code><a title="optimization.pruning.core.dependency.GroupDependency.dependency_set" href="#optimization.pruning.core.dependency.GroupDependency.dependency_set">dependency_set</a></code></li>
+<li><code><a title="optimization.pruning.core.dependency.GroupDependency.export" href="#optimization.pruning.core.dependency.GroupDependency.export">export</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="optimization.pruning.core.dependency.InputChannelDependency" href="#optimization.pruning.core.dependency.InputChannelDependency">InputChannelDependency</a></code></h4>
+<ul class="">
+<li><code><a title="optimization.pruning.core.dependency.InputChannelDependency.build_dependency" href="#optimization.pruning.core.dependency.InputChannelDependency.build_dependency">build_dependency</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="optimization.pruning.core.dependency.ReshapeDependency" href="#optimization.pruning.core.dependency.ReshapeDependency">ReshapeDependency</a></code></h4>
+<ul class="">
+<li><code><a title="optimization.pruning.core.dependency.ReshapeDependency.build_dependency" href="#optimization.pruning.core.dependency.ReshapeDependency.build_dependency">build_dependency</a></code></li>
+<li><code><a title="optimization.pruning.core.dependency.ReshapeDependency.dependency_set" href="#optimization.pruning.core.dependency.ReshapeDependency.dependency_set">dependency_set</a></code></li>
+<li><code><a title="optimization.pruning.core.dependency.ReshapeDependency.export" href="#optimization.pruning.core.dependency.ReshapeDependency.export">export</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

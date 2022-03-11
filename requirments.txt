@@ -1,0 +1,7 @@
+torch
+torchextractor
+numpy
+pandas
+schema
+prettytable
+

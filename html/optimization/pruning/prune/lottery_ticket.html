@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>optimization.pruning.prune.lottery_ticket API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>optimization.pruning.prune.lottery_ticket</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import copy
+import logging
+import torch
+from schema import And, Optional
+from optimization.common.base import PrunerSchema
+from optimization.pruning.core import Pruner, WeightMasker
+
+logger = logging.getLogger(__name__)
+
+class LevelPrunerMasker(WeightMasker):
+
+    def calc_mask(self, sparsity, wrapper, wrapper_idx=None):
+        weight = wrapper.module.weight.data.clone()
+        if wrapper.weight_mask is not None:
+            weight = weight * wrapper.weight_mask
+
+        w_abs = weight.abs()
+        k = int(weight.numel() * sparsity)
+        if k == 0:
+            return {&#39;weight_mask&#39;: torch.ones(weight.shape).type_as(weight)}
+        threshold = torch.topk(w_abs.view(-1), k, largest=False)[0].max()
+        mask_weight = torch.gt(w_abs, threshold).type_as(weight)
+        mask = {&#39;weight_mask&#39;: mask_weight}
+        return mask
+
+class LotteryTicketPruner(Pruner):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    model : pytorch model
+        The model to be pruned
+    config_list : list
+        Supported keys:
+            - prune_iterations : The number of rounds for the iterative pruning.
+            - sparsity : The final sparsity when the compression is done.
+    optimizer : pytorch optimizer
+        The optimizer for the model
+    lr_scheduler : pytorch lr scheduler
+        The lr scheduler for the model if used
+    reset_weights : bool
+        Whether reset weights and optimizer at the beginning of each round.
+    &#34;&#34;&#34;
+    def __init__(self, model, config_list, optimizer=None, lr_scheduler=None, reset_weights=True):
+        self.reset_weights = reset_weights
+        if self.reset_weights:
+            self._model = model
+            self._optimizer = optimizer
+            self._model_state = copy.deepcopy(model.state_dict())
+            self._optimizer_state = copy.deepcopy(optimizer.state_dict())
+            self._lr_scheduler = lr_scheduler
+            if lr_scheduler is not None:
+                self._scheduler_state = copy.deepcopy(lr_scheduler.state_dict())
+
+        super().__init__(model, config_list, optimizer)
+        self.curr_prune_iteration = None
+        self.prune_iterations = config_list[0][&#39;prune_iterations&#39;]
+        self.masker = LevelPrunerMasker(model, self)
+
+    def validate_config(self, model, config_list):
+        &#34;&#34;&#34;
+        Parameters
+        ----------
+        model : torch.nn.Module
+            Model to be pruned
+        config_list : list
+            Supported keys:
+                - prune_iterations : The number of rounds for the iterative pruning.
+                - sparsity : The final sparsity when the compression is done.
+        &#34;&#34;&#34;
+        schema = PrunerSchema([{
+            Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+            &#39;prune_iterations&#39;: And(int, lambda n: n &gt; 0),
+            Optional(&#39;op_types&#39;): [str],
+            Optional(&#39;op_names&#39;): [str],
+            Optional(&#39;exclude&#39;): bool
+        }], model, logger)
+
+        schema.validate(config_list)
+        assert len(set([x[&#39;prune_iterations&#39;] for x in config_list])) == 1, &#39;The values of prune_iterations must be equal in your config&#39;
+
+    def _calc_sparsity(self, sparsity):
+        keep_ratio_once = (1 - sparsity) ** (1 / self.prune_iterations)
+        curr_keep_ratio = keep_ratio_once ** self.curr_prune_iteration
+        return max(1 - curr_keep_ratio, 0)
+
+    def _calc_mask(self, wrapper, sparsity):
+
+        weight = wrapper.module.weight.data
+        if self.curr_prune_iteration == 0:
+            mask = {&#39;weight_mask&#39;: torch.ones(weight.shape).type_as(weight)}
+        else:
+            curr_sparsity = self._calc_sparsity(sparsity)
+            mask = self.masker.calc_mask(sparsity=curr_sparsity, wrapper=wrapper)
+        return mask
+
+    def calc_mask(self, wrapper, **kwargs):
+        &#34;&#34;&#34;
+        Generate mask for the given ``weight``.
+
+        Parameters
+        ----------
+        wrapper : Module
+            The layer to be pruned
+
+        Returns
+        -------
+        tensor
+            The mask for this weight, it is ```None``` because this pruner
+            calculates and assigns masks in ```prune_iteration_start```,
+            no need to do anything in this function.
+        &#34;&#34;&#34;
+        return None
+
+    def get_prune_iterations(self):
+        &#34;&#34;&#34;
+        Return the range for iterations.
+        In the first prune iteration, masks are all one, thus, add one more iteration
+
+        Returns
+        -------
+        list
+            A list for pruning iterations
+        &#34;&#34;&#34;
+        return range(self.prune_iterations + 1)
+
+    def prune_iteration_start(self):
+        &#34;&#34;&#34;
+        Control the pruning procedure on updated epoch number.
+        Should be called at the beginning of the epoch.
+        &#34;&#34;&#34;
+        if self.curr_prune_iteration is None:
+            self.curr_prune_iteration = 0
+        else:
+            self.curr_prune_iteration += 1
+        assert self.curr_prune_iteration &lt; self.prune_iterations + 1, &#39;Exceed the configured prune_iterations&#39;
+
+        modules_wrapper = self.get_modules_wrapper()
+        modules_to_compress = self.get_modules_to_compress()
+        for layer, config in modules_to_compress:
+            module_wrapper = None
+            for wrapper in modules_wrapper:
+                if wrapper.name == layer.name:
+                    module_wrapper = wrapper
+                    break
+            assert module_wrapper is not None
+
+            sparsity = config.get(&#39;sparsity&#39;)
+            mask = self._calc_mask(module_wrapper, sparsity)
+            module_wrapper.weight_mask = mask[&#39;weight_mask&#39;]
+
+        if self.reset_weights:
+            self.load_model_state_dict(self._model_state)
+            self._optimizer.load_state_dict(self._optimizer_state)
+            if self._lr_scheduler is not None:
+                self._lr_scheduler.load_state_dict(self._scheduler_state)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="optimization.pruning.prune.lottery_ticket.LevelPrunerMasker"><code class="flex name class">
+<span>class <span class="ident">LevelPrunerMasker</span></span>
+<span>(</span><span>model, pruner, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LevelPrunerMasker(WeightMasker):
+
+    def calc_mask(self, sparsity, wrapper, wrapper_idx=None):
+        weight = wrapper.module.weight.data.clone()
+        if wrapper.weight_mask is not None:
+            weight = weight * wrapper.weight_mask
+
+        w_abs = weight.abs()
+        k = int(weight.numel() * sparsity)
+        if k == 0:
+            return {&#39;weight_mask&#39;: torch.ones(weight.shape).type_as(weight)}
+        threshold = torch.topk(w_abs.view(-1), k, largest=False)[0].max()
+        mask_weight = torch.gt(w_abs, threshold).type_as(weight)
+        mask = {&#39;weight_mask&#39;: mask_weight}
+        return mask</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimization.pruning.core.weight_masker.WeightMasker" href="../core/weight_masker.html#optimization.pruning.core.weight_masker.WeightMasker">WeightMasker</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimization.pruning.core.weight_masker.WeightMasker" href="../core/weight_masker.html#optimization.pruning.core.weight_masker.WeightMasker">WeightMasker</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimization.pruning.core.weight_masker.WeightMasker.calc_mask" href="../core/weight_masker.html#optimization.pruning.core.weight_masker.WeightMasker.calc_mask">calc_mask</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="optimization.pruning.prune.lottery_ticket.LotteryTicketPruner"><code class="flex name class">
+<span>class <span class="ident">LotteryTicketPruner</span></span>
+<span>(</span><span>model, config_list, optimizer=None, lr_scheduler=None, reset_weights=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>pytorch model</code></dt>
+<dd>The model to be pruned</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>Supported keys:
+- prune_iterations : The number of rounds for the iterative pruning.
+- sparsity : The final sparsity when the compression is done.</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>pytorch optimizer</code></dt>
+<dd>The optimizer for the model</dd>
+<dt><strong><code>lr_scheduler</code></strong> :&ensp;<code>pytorch lr scheduler</code></dt>
+<dd>The lr scheduler for the model if used</dd>
+<dt><strong><code>reset_weights</code></strong> :&ensp;<code>bool</code></dt>
+<dd>Whether reset weights and optimizer at the beginning of each round.</dd>
+</dl>
+<p>Record necessary info in class members</p>
+<h2 id="parameters_1">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>pytorch model</code></dt>
+<dd>the model user wants to compress</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>the configurations that users specify for compression</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>pytorch optimizer</code></dt>
+<dd>optimizer used to train the model</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LotteryTicketPruner(Pruner):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    model : pytorch model
+        The model to be pruned
+    config_list : list
+        Supported keys:
+            - prune_iterations : The number of rounds for the iterative pruning.
+            - sparsity : The final sparsity when the compression is done.
+    optimizer : pytorch optimizer
+        The optimizer for the model
+    lr_scheduler : pytorch lr scheduler
+        The lr scheduler for the model if used
+    reset_weights : bool
+        Whether reset weights and optimizer at the beginning of each round.
+    &#34;&#34;&#34;
+    def __init__(self, model, config_list, optimizer=None, lr_scheduler=None, reset_weights=True):
+        self.reset_weights = reset_weights
+        if self.reset_weights:
+            self._model = model
+            self._optimizer = optimizer
+            self._model_state = copy.deepcopy(model.state_dict())
+            self._optimizer_state = copy.deepcopy(optimizer.state_dict())
+            self._lr_scheduler = lr_scheduler
+            if lr_scheduler is not None:
+                self._scheduler_state = copy.deepcopy(lr_scheduler.state_dict())
+
+        super().__init__(model, config_list, optimizer)
+        self.curr_prune_iteration = None
+        self.prune_iterations = config_list[0][&#39;prune_iterations&#39;]
+        self.masker = LevelPrunerMasker(model, self)
+
+    def validate_config(self, model, config_list):
+        &#34;&#34;&#34;
+        Parameters
+        ----------
+        model : torch.nn.Module
+            Model to be pruned
+        config_list : list
+            Supported keys:
+                - prune_iterations : The number of rounds for the iterative pruning.
+                - sparsity : The final sparsity when the compression is done.
+        &#34;&#34;&#34;
+        schema = PrunerSchema([{
+            Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+            &#39;prune_iterations&#39;: And(int, lambda n: n &gt; 0),
+            Optional(&#39;op_types&#39;): [str],
+            Optional(&#39;op_names&#39;): [str],
+            Optional(&#39;exclude&#39;): bool
+        }], model, logger)
+
+        schema.validate(config_list)
+        assert len(set([x[&#39;prune_iterations&#39;] for x in config_list])) == 1, &#39;The values of prune_iterations must be equal in your config&#39;
+
+    def _calc_sparsity(self, sparsity):
+        keep_ratio_once = (1 - sparsity) ** (1 / self.prune_iterations)
+        curr_keep_ratio = keep_ratio_once ** self.curr_prune_iteration
+        return max(1 - curr_keep_ratio, 0)
+
+    def _calc_mask(self, wrapper, sparsity):
+
+        weight = wrapper.module.weight.data
+        if self.curr_prune_iteration == 0:
+            mask = {&#39;weight_mask&#39;: torch.ones(weight.shape).type_as(weight)}
+        else:
+            curr_sparsity = self._calc_sparsity(sparsity)
+            mask = self.masker.calc_mask(sparsity=curr_sparsity, wrapper=wrapper)
+        return mask
+
+    def calc_mask(self, wrapper, **kwargs):
+        &#34;&#34;&#34;
+        Generate mask for the given ``weight``.
+
+        Parameters
+        ----------
+        wrapper : Module
+            The layer to be pruned
+
+        Returns
+        -------
+        tensor
+            The mask for this weight, it is ```None``` because this pruner
+            calculates and assigns masks in ```prune_iteration_start```,
+            no need to do anything in this function.
+        &#34;&#34;&#34;
+        return None
+
+    def get_prune_iterations(self):
+        &#34;&#34;&#34;
+        Return the range for iterations.
+        In the first prune iteration, masks are all one, thus, add one more iteration
+
+        Returns
+        -------
+        list
+            A list for pruning iterations
+        &#34;&#34;&#34;
+        return range(self.prune_iterations + 1)
+
+    def prune_iteration_start(self):
+        &#34;&#34;&#34;
+        Control the pruning procedure on updated epoch number.
+        Should be called at the beginning of the epoch.
+        &#34;&#34;&#34;
+        if self.curr_prune_iteration is None:
+            self.curr_prune_iteration = 0
+        else:
+            self.curr_prune_iteration += 1
+        assert self.curr_prune_iteration &lt; self.prune_iterations + 1, &#39;Exceed the configured prune_iterations&#39;
+
+        modules_wrapper = self.get_modules_wrapper()
+        modules_to_compress = self.get_modules_to_compress()
+        for layer, config in modules_to_compress:
+            module_wrapper = None
+            for wrapper in modules_wrapper:
+                if wrapper.name == layer.name:
+                    module_wrapper = wrapper
+                    break
+            assert module_wrapper is not None
+
+            sparsity = config.get(&#39;sparsity&#39;)
+            mask = self._calc_mask(module_wrapper, sparsity)
+            module_wrapper.weight_mask = mask[&#39;weight_mask&#39;]
+
+        if self.reset_weights:
+            self.load_model_state_dict(self._model_state)
+            self._optimizer.load_state_dict(self._optimizer_state)
+            if self._lr_scheduler is not None:
+                self._lr_scheduler.load_state_dict(self._scheduler_state)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimization.pruning.core.pruner.Pruner" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner">Pruner</a></li>
+<li><a title="optimization.common.base.compressor.Compressor" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor">Compressor</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="optimization.pruning.prune.lottery_ticket.LotteryTicketPruner.calc_mask"><code class="name flex">
+<span>def <span class="ident">calc_mask</span></span>(<span>self, wrapper, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate mask for the given <code>weight</code>.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>wrapper</code></strong> :&ensp;<code>Module</code></dt>
+<dd>The layer to be pruned</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>tensor</code></dt>
+<dd>The mask for this weight, it is <code>None</code> because this pruner
+calculates and assigns masks in <code>prune_iteration_start</code>,
+no need to do anything in this function.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calc_mask(self, wrapper, **kwargs):
+    &#34;&#34;&#34;
+    Generate mask for the given ``weight``.
+
+    Parameters
+    ----------
+    wrapper : Module
+        The layer to be pruned
+
+    Returns
+    -------
+    tensor
+        The mask for this weight, it is ```None``` because this pruner
+        calculates and assigns masks in ```prune_iteration_start```,
+        no need to do anything in this function.
+    &#34;&#34;&#34;
+    return None</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.prune.lottery_ticket.LotteryTicketPruner.get_prune_iterations"><code class="name flex">
+<span>def <span class="ident">get_prune_iterations</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the range for iterations.
+In the first prune iteration, masks are all one, thus, add one more iteration</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>list</code></dt>
+<dd>A list for pruning iterations</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_prune_iterations(self):
+    &#34;&#34;&#34;
+    Return the range for iterations.
+    In the first prune iteration, masks are all one, thus, add one more iteration
+
+    Returns
+    -------
+    list
+        A list for pruning iterations
+    &#34;&#34;&#34;
+    return range(self.prune_iterations + 1)</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.prune.lottery_ticket.LotteryTicketPruner.prune_iteration_start"><code class="name flex">
+<span>def <span class="ident">prune_iteration_start</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Control the pruning procedure on updated epoch number.
+Should be called at the beginning of the epoch.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def prune_iteration_start(self):
+    &#34;&#34;&#34;
+    Control the pruning procedure on updated epoch number.
+    Should be called at the beginning of the epoch.
+    &#34;&#34;&#34;
+    if self.curr_prune_iteration is None:
+        self.curr_prune_iteration = 0
+    else:
+        self.curr_prune_iteration += 1
+    assert self.curr_prune_iteration &lt; self.prune_iterations + 1, &#39;Exceed the configured prune_iterations&#39;
+
+    modules_wrapper = self.get_modules_wrapper()
+    modules_to_compress = self.get_modules_to_compress()
+    for layer, config in modules_to_compress:
+        module_wrapper = None
+        for wrapper in modules_wrapper:
+            if wrapper.name == layer.name:
+                module_wrapper = wrapper
+                break
+        assert module_wrapper is not None
+
+        sparsity = config.get(&#39;sparsity&#39;)
+        mask = self._calc_mask(module_wrapper, sparsity)
+        module_wrapper.weight_mask = mask[&#39;weight_mask&#39;]
+
+    if self.reset_weights:
+        self.load_model_state_dict(self._model_state)
+        self._optimizer.load_state_dict(self._optimizer_state)
+        if self._lr_scheduler is not None:
+            self._lr_scheduler.load_state_dict(self._scheduler_state)</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.prune.lottery_ticket.LotteryTicketPruner.validate_config"><code class="name flex">
+<span>def <span class="ident">validate_config</span></span>(<span>self, model, config_list)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>Model to be pruned</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>Supported keys:
+- prune_iterations : The number of rounds for the iterative pruning.
+- sparsity : The final sparsity when the compression is done.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_config(self, model, config_list):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    model : torch.nn.Module
+        Model to be pruned
+    config_list : list
+        Supported keys:
+            - prune_iterations : The number of rounds for the iterative pruning.
+            - sparsity : The final sparsity when the compression is done.
+    &#34;&#34;&#34;
+    schema = PrunerSchema([{
+        Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+        &#39;prune_iterations&#39;: And(int, lambda n: n &gt; 0),
+        Optional(&#39;op_types&#39;): [str],
+        Optional(&#39;op_names&#39;): [str],
+        Optional(&#39;exclude&#39;): bool
+    }], model, logger)
+
+    schema.validate(config_list)
+    assert len(set([x[&#39;prune_iterations&#39;] for x in config_list])) == 1, &#39;The values of prune_iterations must be equal in your config&#39;</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimization.pruning.core.pruner.Pruner" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner">Pruner</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimization.pruning.core.pruner.Pruner.compress" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.compress">compress</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.export_model" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.export_model">export_model</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.get_modules_to_compress" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.get_modules_to_compress">get_modules_to_compress</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.get_modules_wrapper" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.get_modules_wrapper">get_modules_wrapper</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.get_pruned_weights" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.get_pruned_weights">get_pruned_weights</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.load_model_state_dict" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.load_model_state_dict">load_model_state_dict</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.reset" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.reset">reset</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.select_config" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.select_config">select_config</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.set_wrappers_attribute" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.set_wrappers_attribute">set_wrappers_attribute</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.update_epoch" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.update_epoch">update_epoch</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="optimization.pruning.prune" href="index.html">optimization.pruning.prune</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="optimization.pruning.prune.lottery_ticket.LevelPrunerMasker" href="#optimization.pruning.prune.lottery_ticket.LevelPrunerMasker">LevelPrunerMasker</a></code></h4>
+</li>
+<li>
+<h4><code><a title="optimization.pruning.prune.lottery_ticket.LotteryTicketPruner" href="#optimization.pruning.prune.lottery_ticket.LotteryTicketPruner">LotteryTicketPruner</a></code></h4>
+<ul class="">
+<li><code><a title="optimization.pruning.prune.lottery_ticket.LotteryTicketPruner.calc_mask" href="#optimization.pruning.prune.lottery_ticket.LotteryTicketPruner.calc_mask">calc_mask</a></code></li>
+<li><code><a title="optimization.pruning.prune.lottery_ticket.LotteryTicketPruner.get_prune_iterations" href="#optimization.pruning.prune.lottery_ticket.LotteryTicketPruner.get_prune_iterations">get_prune_iterations</a></code></li>
+<li><code><a title="optimization.pruning.prune.lottery_ticket.LotteryTicketPruner.prune_iteration_start" href="#optimization.pruning.prune.lottery_ticket.LotteryTicketPruner.prune_iteration_start">prune_iteration_start</a></code></li>
+<li><code><a title="optimization.pruning.prune.lottery_ticket.LotteryTicketPruner.validate_config" href="#optimization.pruning.prune.lottery_ticket.LotteryTicketPruner.validate_config">validate_config</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

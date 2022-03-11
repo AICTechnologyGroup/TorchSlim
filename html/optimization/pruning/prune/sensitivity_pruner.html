@@ -1,0 +1,1166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>optimization.pruning.prune.sensitivity_pruner API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>optimization.pruning.prune.sensitivity_pruner</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import os
+import csv
+import copy
+import json
+import logging
+import torch
+
+from schema import And, Optional
+from optimization.pruning.core import Pruner, PrunerSchema
+from optimization.pruning.core.sensitivity_analysis import SensitivityAnalysis, PRUNER_DICT
+
+
+
+MAX_PRUNE_RATIO_PER_ITER = 0.95
+
+_logger = logging.getLogger(__name__)
+_logger.setLevel(logging.INFO)
+
+class SensitivityPruner(Pruner):
+
+
+    def __init__(self, model, config_list, evaluator,
+                 finetuner=None, base_algo=&#39;l1&#39;, sparsity_proportion_calc=None,
+                 sparsity_per_iter=0.1, acc_drop_threshold=0.05, checkpoint_dir=None):
+        &#34;&#34;&#34;
+        This function prune the model based on the sensitivity
+        for each layer.
+
+        Parameters
+        ----------
+        model: torch.nn.Module
+            model to be compressed
+        evaluator: function
+            validation function for the model. This function should return the accuracy
+            of the validation dataset. The input parameters of evaluator can be specified
+            in the parameter `eval_args` and &#39;eval_kwargs&#39; of the compress function if needed.
+        finetuner: function
+            finetune function for the model. This parameter is not essential, if is not None,
+            the sensitivity pruner will finetune the model after pruning in each iteration.
+            The input parameters of finetuner can be specified in the parameter of compress
+            called `finetune_args` and `finetune_kwargs` if needed.
+        base_algo: str
+            base pruning algorithm. `level`, `l1`, `l2` or `fpgm`, by default `l1`.
+        sparsity_proportion_calc: function
+            This function generate the sparsity proportion between the conv layers according to the
+            sensitivity analysis results. We provide a default function to quantify the sparsity
+            proportion according to the sensitivity analysis results. Users can also customize
+            this function according to their needs. The input of this function is a dict,
+            for example : {&#39;conv1&#39; : {0.1: 0.9, 0.2 : 0.8}, &#39;conv2&#39; : {0.1: 0.9, 0.2 : 0.8}},
+            in which, &#39;conv1&#39; and is the name of the conv layer, and 0.1:0.9 means when the
+            sparsity of conv1 is 0.1 (10%), the model&#39;s val accuracy equals to 0.9.
+        sparsity_per_iter: float
+            The sparsity of the model that the pruner try to prune in each iteration.
+        acc_drop_threshold : float
+            The hyperparameter used to quantifiy the sensitivity for each layer.
+        checkpoint_dir: str
+            The dir path to save the checkpoints during the pruning.
+        &#34;&#34;&#34;
+        self.base_algo = base_algo
+        self.model = model
+        super(SensitivityPruner, self).__init__(model, config_list)
+        self._unwrap_model()
+        _logger.debug(str(self.model))
+        self.evaluator = evaluator
+        self.finetuner = finetuner
+        self.analyzer = SensitivityAnalysis(
+            self.model, self.evaluator, prune_type=base_algo, \
+            early_stop_mode=&#39;dropped&#39;, early_stop_value=acc_drop_threshold)
+        self.ori_acc = None
+        self.ori_state_dict = copy.deepcopy(self.model.state_dict())
+        self.sensitivities = {}
+        self.weight_count = {}
+        self.weight_sum = 0
+        self.named_module = {}
+
+        self.Pruner = PRUNER_DICT[self.base_algo]
+        for name, submodule in self.model.named_modules():
+            self.named_module[name] = submodule
+            if name in self.analyzer.target_layer:
+
+                self.weight_count[name] = submodule.weight.data.numel()
+                self.weight_sum += self.weight_count[name]
+        if sparsity_proportion_calc is None:
+            self.sparsity_proportion_calc = self._max_prune_ratio
+        else:
+            self.sparsity_proportion_calc = sparsity_proportion_calc
+        self.remained_ratio = 1.0
+        self.sparsity_per_iter = sparsity_per_iter
+        self.acc_drop_threshold = acc_drop_threshold
+        self.checkpoint_dir = checkpoint_dir
+
+    def validate_config(self, model, config_list):
+        &#34;&#34;&#34;
+        Parameters
+        ----------
+        model : torch.nn.module
+            Model to be pruned
+        config_list : list
+            List on pruning configs
+        &#34;&#34;&#34;
+        if self.base_algo == &#39;level&#39;:
+            schema = PrunerSchema([{
+                Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+                Optional(&#39;op_types&#39;): [str],
+                Optional(&#39;op_names&#39;): [str],
+                Optional(&#39;exclude&#39;): bool
+            }], model, _logger)
+        elif self.base_algo in [&#39;l1&#39;, &#39;l2&#39;, &#39;fpgm&#39;]:
+            schema = PrunerSchema([{
+                Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+                &#39;op_types&#39;: [&#39;Conv2d&#39;],
+                Optional(&#39;op_names&#39;): [str],
+                Optional(&#39;exclude&#39;): bool
+            }], model, _logger)
+
+        schema.validate(config_list)
+
+    def load_sensitivity(self, filepath):
+        &#34;&#34;&#34;
+        load the sensitivity results exported by the sensitivity analyzer
+        &#34;&#34;&#34;
+        assert os.path.exists(filepath)
+        with open(filepath, &#39;r&#39;) as csvf:
+            csv_r = csv.reader(csvf)
+            header = next(csv_r)
+            sparsities = [float(x) for x in header[1:]]
+            sensitivities = {}
+            for row in csv_r:
+                layername = row[0]
+                accuracies = [float(x) for x in row[1:]]
+                sensitivities[layername] = {}
+                for i, accuracy in enumerate(accuracies):
+                    sensitivities[layername][sparsities[i]] = accuracy
+            return sensitivities
+
+    def _max_prune_ratio(self, ori_acc, threshold, sensitivities):
+        &#34;&#34;&#34;
+        Find the maximum prune ratio for a single layer whose accuracy
+        drop is lower than the threshold.
+
+        Parameters
+        ----------
+        ori_acc: float
+            Original accuracy
+        threshold: float
+            Accuracy drop threshold
+        sensitivities: dict
+            The dict object that stores the sensitivity results for each layer.
+            For example: {&#39;conv1&#39; : {0.1: 0.9, 0.2 : 0.8}}
+        Returns
+        -------
+        max_ratios: dict
+            return the maximum prune ratio for each layer. For example:
+            {&#39;conv1&#39;:0.1, &#39;conv2&#39;:0.2}
+        &#34;&#34;&#34;
+        max_ratio = {}
+        for layer in sensitivities:
+            prune_ratios = sorted(sensitivities[layer].keys())
+            last_ratio = 0
+            for ratio in prune_ratios:
+                last_ratio = ratio
+                cur_acc = sensitivities[layer][ratio]
+                if cur_acc + threshold &lt; ori_acc:
+                    break
+            max_ratio[layer] = last_ratio
+        return max_ratio
+
+    def normalize(self, ratios, target_pruned):
+        &#34;&#34;&#34;
+        Normalize the prune ratio of each layer according to the
+        total already pruned ratio and the final target total pruning
+        ratio
+
+        Parameters
+        ----------
+            ratios:
+                Dict object that save the prune ratio for each layer
+            target_pruned:
+                The amount of the weights expected to be pruned in this
+                iteration
+
+        Returns
+        -------
+            new_ratios:
+                return the normalized prune ratios for each layer.
+
+        &#34;&#34;&#34;
+        w_sum = 0
+        _Max = 0
+        for layername, ratio in ratios.items():
+            wcount = self.weight_count[layername]
+            w_sum += ratio * wcount * \
+                (1-self.analyzer.already_pruned[layername])
+        target_count = self.weight_sum * target_pruned
+        for layername in ratios:
+            ratios[layername] = ratios[layername] * target_count / w_sum
+            _Max = max(_Max, ratios[layername])
+        if _Max &gt; MAX_PRUNE_RATIO_PER_ITER:
+
+            for layername in ratios:
+                ratios[layername] = ratios[layername] * \
+                    MAX_PRUNE_RATIO_PER_ITER / _Max
+        return ratios
+
+    def create_cfg(self, ratios):
+        &#34;&#34;&#34;
+        Generate the cfg_list for the pruner according to the prune ratios.
+
+        Parameters
+        ---------
+            ratios:
+                For example: {&#39;conv1&#39; : 0.2}
+
+        Returns
+        -------
+            cfg_list:
+                For example: [{&#39;sparsity&#39;:0.2, &#39;op_names&#39;:[&#39;conv1&#39;], &#39;op_types&#39;:[&#39;Conv2d&#39;]}]
+        &#34;&#34;&#34;
+        cfg_list = []
+        for layername in ratios:
+            prune_ratio = ratios[layername]
+            remain = 1 - self.analyzer.already_pruned[layername]
+            sparsity = remain * prune_ratio + \
+                self.analyzer.already_pruned[layername]
+            if sparsity &gt; 0:
+                cfg = {&#39;sparsity&#39;: sparsity, &#39;op_names&#39;: [
+                    layername], &#39;op_types&#39;: [&#39;Conv2d&#39;]}
+                cfg_list.append(cfg)
+        return cfg_list
+
+    def current_sparsity(self):
+        &#34;&#34;&#34;
+        The sparsity of the weight.
+        &#34;&#34;&#34;
+        pruned_weight = 0
+        for layer_name in self.analyzer.already_pruned:
+            w_count = self.weight_count[layer_name]
+            prune_ratio = self.analyzer.already_pruned[layer_name]
+            pruned_weight += w_count * prune_ratio
+        return pruned_weight / self.weight_sum
+
+    def compress(self, eval_args=None, eval_kwargs=None,
+                 finetune_args=None, finetune_kwargs=None, resume_sensitivity=None):
+        &#34;&#34;&#34;
+        This function iteratively prune the model according to the results of
+        the sensitivity analysis.
+
+        Parameters
+        ----------
+        eval_args: list
+        eval_kwargs: list&amp; dict
+            Parameters for the val_funtion, the val_function will be called like
+            evaluator(\*eval_args, \*\*eval_kwargs)
+        finetune_args: list
+        finetune_kwargs: dict
+            Parameters for the finetuner function if needed.
+        resume_sensitivity:
+            resume the sensitivity results from this file.
+        &#34;&#34;&#34;
+        if not eval_args:
+            eval_args = []
+        if not eval_kwargs:
+            eval_kwargs = {}
+        if not finetune_args:
+            finetune_args = []
+        if not finetune_kwargs:
+            finetune_kwargs = {}
+        if self.ori_acc is None:
+            self.ori_acc = self.evaluator(*eval_args, **eval_kwargs)
+        assert isinstance(self.ori_acc, float) or isinstance(self.ori_acc, int)
+        if not resume_sensitivity:
+            self.sensitivities = self.analyzer.analysis(
+                val_args=eval_args, val_kwargs=eval_kwargs)
+        else:
+            self.sensitivities = self.load_sensitivity(resume_sensitivity)
+            self.analyzer.sensitivities = self.sensitivities
+        target_ratio = 1 - self.config_list[0][&#39;sparsity&#39;]
+        cur_ratio = self.remained_ratio
+        ori_acc = self.ori_acc
+        iteration_count = 0
+        if self.checkpoint_dir is not None:
+            os.makedirs(self.checkpoint_dir, exist_ok=True)
+        modules_wrapper_final = None
+        while cur_ratio &gt; target_ratio:
+            iteration_count += 1
+
+            _logger.info(&#39;Current base accuracy %f&#39;, ori_acc)
+            _logger.info(&#39;Remained %f weights&#39;, cur_ratio)
+
+            proportion = self.sparsity_proportion_calc(
+                ori_acc, self.acc_drop_threshold, self.sensitivities)
+
+            new_pruneratio = self.normalize(proportion, self.sparsity_per_iter)
+            cfg_list = self.create_cfg(new_pruneratio)
+            if not cfg_list:
+                _logger.error(&#39;The threshold is too small, please set a larger threshold&#39;)
+                return self.model
+            _logger.debug(&#39;Pruner Config: %s&#39;, str(cfg_list))
+            cfg_str = [&#39;%s:%.3f&#39;%(cfg[&#39;op_names&#39;][0], cfg[&#39;sparsity&#39;]) for cfg in cfg_list]
+            _logger.info(&#39;Current Sparsities: %s&#39;, &#39;,&#39;.join(cfg_str))
+
+            pruner = self.Pruner(self.model, cfg_list)
+            pruner.compress()
+            pruned_acc = self.evaluator(*eval_args, **eval_kwargs)
+            _logger.info(&#39;Accuracy after pruning: %f&#39;, pruned_acc)
+            finetune_acc = pruned_acc
+            if self.finetuner is not None:
+                self.finetuner(*finetune_args, **finetune_kwargs)
+                finetune_acc = self.evaluator(*eval_args, **eval_kwargs)
+            _logger.info(&#39;Accuracy after finetune: %f&#39;, finetune_acc)
+            ori_acc = finetune_acc
+            pruner._unwrap_model()
+
+            for layer_cfg in cfg_list:
+                name = layer_cfg[&#39;op_names&#39;][0]
+                sparsity = layer_cfg[&#39;sparsity&#39;]
+                self.analyzer.already_pruned[name] = sparsity
+
+            cur_ratio = 1 - self.current_sparsity()
+            modules_wrapper_final = pruner.get_modules_wrapper()
+            del pruner
+            _logger.info(&#39;Currently remained weights: %f&#39;, cur_ratio)
+
+            if self.checkpoint_dir is not None:
+                checkpoint_name = &#39;Iter_%d_finetune_acc_%.5f_sparsity_%.4f&#39; % (
+                    iteration_count, finetune_acc, cur_ratio)
+                checkpoint_path = os.path.join(
+                    self.checkpoint_dir, &#39;%s.pth&#39; % checkpoint_name)
+                cfg_path = os.path.join(
+                    self.checkpoint_dir, &#39;%s_pruner.json&#39; % checkpoint_name)
+                sensitivity_path = os.path.join(
+                    self.checkpoint_dir, &#39;%s_sensitivity.csv&#39; % checkpoint_name)
+                torch.save(self.model.state_dict(), checkpoint_path)
+                with open(cfg_path, &#39;w&#39;) as jf:
+                    json.dump(cfg_list, jf)
+                self.analyzer.export(sensitivity_path)
+
+            if cur_ratio &gt; target_ratio:
+
+
+                self.analyzer.load_state_dict(self.model.state_dict())
+                self.sensitivities = self.analyzer.analysis(
+                    val_args=eval_args, val_kwargs=eval_kwargs)
+
+        _logger.info(&#39;After Pruning: %.2f weights remains&#39;, cur_ratio)
+        self.modules_wrapper = modules_wrapper_final
+
+        self._wrap_model()
+        return self.model
+
+    def calc_mask(self, wrapper, **kwargs):
+        return None</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="optimization.pruning.prune.sensitivity_pruner.SensitivityPruner"><code class="flex name class">
+<span>class <span class="ident">SensitivityPruner</span></span>
+<span>(</span><span>model, config_list, evaluator, finetuner=None, base_algo='l1', sparsity_proportion_calc=None, sparsity_per_iter=0.1, acc_drop_threshold=0.05, checkpoint_dir=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Prune to an exact pruning level specification</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>mask_dict</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Dictionary for saving masks, <code>key</code> should be layer name and
+<code>value</code> should be a tensor which has the same shape with layer's weight</dd>
+</dl>
+<p>This function prune the model based on the sensitivity
+for each layer.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>model to be compressed</dd>
+<dt><strong><code>evaluator</code></strong> :&ensp;<code>function</code></dt>
+<dd>validation function for the model. This function should return the accuracy
+of the validation dataset. The input parameters of evaluator can be specified
+in the parameter <code>eval_args</code> and 'eval_kwargs' of the compress function if needed.</dd>
+<dt><strong><code>finetuner</code></strong> :&ensp;<code>function</code></dt>
+<dd>finetune function for the model. This parameter is not essential, if is not None,
+the sensitivity pruner will finetune the model after pruning in each iteration.
+The input parameters of finetuner can be specified in the parameter of compress
+called <code>finetune_args</code> and <code>finetune_kwargs</code> if needed.</dd>
+<dt><strong><code>base_algo</code></strong> :&ensp;<code>str</code></dt>
+<dd>base pruning algorithm. <code>level</code>, <code>l1</code>, <code>l2</code> or <code>fpgm</code>, by default <code>l1</code>.</dd>
+<dt><strong><code>sparsity_proportion_calc</code></strong> :&ensp;<code>function</code></dt>
+<dd>This function generate the sparsity proportion between the conv layers according to the
+sensitivity analysis results. We provide a default function to quantify the sparsity
+proportion according to the sensitivity analysis results. Users can also customize
+this function according to their needs. The input of this function is a dict,
+for example : {'conv1' : {0.1: 0.9, 0.2 : 0.8}, 'conv2' : {0.1: 0.9, 0.2 : 0.8}},
+in which, 'conv1' and is the name of the conv layer, and 0.1:0.9 means when the
+sparsity of conv1 is 0.1 (10%), the model's val accuracy equals to 0.9.</dd>
+<dt><strong><code>sparsity_per_iter</code></strong> :&ensp;<code>float</code></dt>
+<dd>The sparsity of the model that the pruner try to prune in each iteration.</dd>
+<dt><strong><code>acc_drop_threshold</code></strong> :&ensp;<code>float</code></dt>
+<dd>The hyperparameter used to quantifiy the sensitivity for each layer.</dd>
+<dt><strong><code>checkpoint_dir</code></strong> :&ensp;<code>str</code></dt>
+<dd>The dir path to save the checkpoints during the pruning.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SensitivityPruner(Pruner):
+
+
+    def __init__(self, model, config_list, evaluator,
+                 finetuner=None, base_algo=&#39;l1&#39;, sparsity_proportion_calc=None,
+                 sparsity_per_iter=0.1, acc_drop_threshold=0.05, checkpoint_dir=None):
+        &#34;&#34;&#34;
+        This function prune the model based on the sensitivity
+        for each layer.
+
+        Parameters
+        ----------
+        model: torch.nn.Module
+            model to be compressed
+        evaluator: function
+            validation function for the model. This function should return the accuracy
+            of the validation dataset. The input parameters of evaluator can be specified
+            in the parameter `eval_args` and &#39;eval_kwargs&#39; of the compress function if needed.
+        finetuner: function
+            finetune function for the model. This parameter is not essential, if is not None,
+            the sensitivity pruner will finetune the model after pruning in each iteration.
+            The input parameters of finetuner can be specified in the parameter of compress
+            called `finetune_args` and `finetune_kwargs` if needed.
+        base_algo: str
+            base pruning algorithm. `level`, `l1`, `l2` or `fpgm`, by default `l1`.
+        sparsity_proportion_calc: function
+            This function generate the sparsity proportion between the conv layers according to the
+            sensitivity analysis results. We provide a default function to quantify the sparsity
+            proportion according to the sensitivity analysis results. Users can also customize
+            this function according to their needs. The input of this function is a dict,
+            for example : {&#39;conv1&#39; : {0.1: 0.9, 0.2 : 0.8}, &#39;conv2&#39; : {0.1: 0.9, 0.2 : 0.8}},
+            in which, &#39;conv1&#39; and is the name of the conv layer, and 0.1:0.9 means when the
+            sparsity of conv1 is 0.1 (10%), the model&#39;s val accuracy equals to 0.9.
+        sparsity_per_iter: float
+            The sparsity of the model that the pruner try to prune in each iteration.
+        acc_drop_threshold : float
+            The hyperparameter used to quantifiy the sensitivity for each layer.
+        checkpoint_dir: str
+            The dir path to save the checkpoints during the pruning.
+        &#34;&#34;&#34;
+        self.base_algo = base_algo
+        self.model = model
+        super(SensitivityPruner, self).__init__(model, config_list)
+        self._unwrap_model()
+        _logger.debug(str(self.model))
+        self.evaluator = evaluator
+        self.finetuner = finetuner
+        self.analyzer = SensitivityAnalysis(
+            self.model, self.evaluator, prune_type=base_algo, \
+            early_stop_mode=&#39;dropped&#39;, early_stop_value=acc_drop_threshold)
+        self.ori_acc = None
+        self.ori_state_dict = copy.deepcopy(self.model.state_dict())
+        self.sensitivities = {}
+        self.weight_count = {}
+        self.weight_sum = 0
+        self.named_module = {}
+
+        self.Pruner = PRUNER_DICT[self.base_algo]
+        for name, submodule in self.model.named_modules():
+            self.named_module[name] = submodule
+            if name in self.analyzer.target_layer:
+
+                self.weight_count[name] = submodule.weight.data.numel()
+                self.weight_sum += self.weight_count[name]
+        if sparsity_proportion_calc is None:
+            self.sparsity_proportion_calc = self._max_prune_ratio
+        else:
+            self.sparsity_proportion_calc = sparsity_proportion_calc
+        self.remained_ratio = 1.0
+        self.sparsity_per_iter = sparsity_per_iter
+        self.acc_drop_threshold = acc_drop_threshold
+        self.checkpoint_dir = checkpoint_dir
+
+    def validate_config(self, model, config_list):
+        &#34;&#34;&#34;
+        Parameters
+        ----------
+        model : torch.nn.module
+            Model to be pruned
+        config_list : list
+            List on pruning configs
+        &#34;&#34;&#34;
+        if self.base_algo == &#39;level&#39;:
+            schema = PrunerSchema([{
+                Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+                Optional(&#39;op_types&#39;): [str],
+                Optional(&#39;op_names&#39;): [str],
+                Optional(&#39;exclude&#39;): bool
+            }], model, _logger)
+        elif self.base_algo in [&#39;l1&#39;, &#39;l2&#39;, &#39;fpgm&#39;]:
+            schema = PrunerSchema([{
+                Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+                &#39;op_types&#39;: [&#39;Conv2d&#39;],
+                Optional(&#39;op_names&#39;): [str],
+                Optional(&#39;exclude&#39;): bool
+            }], model, _logger)
+
+        schema.validate(config_list)
+
+    def load_sensitivity(self, filepath):
+        &#34;&#34;&#34;
+        load the sensitivity results exported by the sensitivity analyzer
+        &#34;&#34;&#34;
+        assert os.path.exists(filepath)
+        with open(filepath, &#39;r&#39;) as csvf:
+            csv_r = csv.reader(csvf)
+            header = next(csv_r)
+            sparsities = [float(x) for x in header[1:]]
+            sensitivities = {}
+            for row in csv_r:
+                layername = row[0]
+                accuracies = [float(x) for x in row[1:]]
+                sensitivities[layername] = {}
+                for i, accuracy in enumerate(accuracies):
+                    sensitivities[layername][sparsities[i]] = accuracy
+            return sensitivities
+
+    def _max_prune_ratio(self, ori_acc, threshold, sensitivities):
+        &#34;&#34;&#34;
+        Find the maximum prune ratio for a single layer whose accuracy
+        drop is lower than the threshold.
+
+        Parameters
+        ----------
+        ori_acc: float
+            Original accuracy
+        threshold: float
+            Accuracy drop threshold
+        sensitivities: dict
+            The dict object that stores the sensitivity results for each layer.
+            For example: {&#39;conv1&#39; : {0.1: 0.9, 0.2 : 0.8}}
+        Returns
+        -------
+        max_ratios: dict
+            return the maximum prune ratio for each layer. For example:
+            {&#39;conv1&#39;:0.1, &#39;conv2&#39;:0.2}
+        &#34;&#34;&#34;
+        max_ratio = {}
+        for layer in sensitivities:
+            prune_ratios = sorted(sensitivities[layer].keys())
+            last_ratio = 0
+            for ratio in prune_ratios:
+                last_ratio = ratio
+                cur_acc = sensitivities[layer][ratio]
+                if cur_acc + threshold &lt; ori_acc:
+                    break
+            max_ratio[layer] = last_ratio
+        return max_ratio
+
+    def normalize(self, ratios, target_pruned):
+        &#34;&#34;&#34;
+        Normalize the prune ratio of each layer according to the
+        total already pruned ratio and the final target total pruning
+        ratio
+
+        Parameters
+        ----------
+            ratios:
+                Dict object that save the prune ratio for each layer
+            target_pruned:
+                The amount of the weights expected to be pruned in this
+                iteration
+
+        Returns
+        -------
+            new_ratios:
+                return the normalized prune ratios for each layer.
+
+        &#34;&#34;&#34;
+        w_sum = 0
+        _Max = 0
+        for layername, ratio in ratios.items():
+            wcount = self.weight_count[layername]
+            w_sum += ratio * wcount * \
+                (1-self.analyzer.already_pruned[layername])
+        target_count = self.weight_sum * target_pruned
+        for layername in ratios:
+            ratios[layername] = ratios[layername] * target_count / w_sum
+            _Max = max(_Max, ratios[layername])
+        if _Max &gt; MAX_PRUNE_RATIO_PER_ITER:
+
+            for layername in ratios:
+                ratios[layername] = ratios[layername] * \
+                    MAX_PRUNE_RATIO_PER_ITER / _Max
+        return ratios
+
+    def create_cfg(self, ratios):
+        &#34;&#34;&#34;
+        Generate the cfg_list for the pruner according to the prune ratios.
+
+        Parameters
+        ---------
+            ratios:
+                For example: {&#39;conv1&#39; : 0.2}
+
+        Returns
+        -------
+            cfg_list:
+                For example: [{&#39;sparsity&#39;:0.2, &#39;op_names&#39;:[&#39;conv1&#39;], &#39;op_types&#39;:[&#39;Conv2d&#39;]}]
+        &#34;&#34;&#34;
+        cfg_list = []
+        for layername in ratios:
+            prune_ratio = ratios[layername]
+            remain = 1 - self.analyzer.already_pruned[layername]
+            sparsity = remain * prune_ratio + \
+                self.analyzer.already_pruned[layername]
+            if sparsity &gt; 0:
+                cfg = {&#39;sparsity&#39;: sparsity, &#39;op_names&#39;: [
+                    layername], &#39;op_types&#39;: [&#39;Conv2d&#39;]}
+                cfg_list.append(cfg)
+        return cfg_list
+
+    def current_sparsity(self):
+        &#34;&#34;&#34;
+        The sparsity of the weight.
+        &#34;&#34;&#34;
+        pruned_weight = 0
+        for layer_name in self.analyzer.already_pruned:
+            w_count = self.weight_count[layer_name]
+            prune_ratio = self.analyzer.already_pruned[layer_name]
+            pruned_weight += w_count * prune_ratio
+        return pruned_weight / self.weight_sum
+
+    def compress(self, eval_args=None, eval_kwargs=None,
+                 finetune_args=None, finetune_kwargs=None, resume_sensitivity=None):
+        &#34;&#34;&#34;
+        This function iteratively prune the model according to the results of
+        the sensitivity analysis.
+
+        Parameters
+        ----------
+        eval_args: list
+        eval_kwargs: list&amp; dict
+            Parameters for the val_funtion, the val_function will be called like
+            evaluator(\*eval_args, \*\*eval_kwargs)
+        finetune_args: list
+        finetune_kwargs: dict
+            Parameters for the finetuner function if needed.
+        resume_sensitivity:
+            resume the sensitivity results from this file.
+        &#34;&#34;&#34;
+        if not eval_args:
+            eval_args = []
+        if not eval_kwargs:
+            eval_kwargs = {}
+        if not finetune_args:
+            finetune_args = []
+        if not finetune_kwargs:
+            finetune_kwargs = {}
+        if self.ori_acc is None:
+            self.ori_acc = self.evaluator(*eval_args, **eval_kwargs)
+        assert isinstance(self.ori_acc, float) or isinstance(self.ori_acc, int)
+        if not resume_sensitivity:
+            self.sensitivities = self.analyzer.analysis(
+                val_args=eval_args, val_kwargs=eval_kwargs)
+        else:
+            self.sensitivities = self.load_sensitivity(resume_sensitivity)
+            self.analyzer.sensitivities = self.sensitivities
+        target_ratio = 1 - self.config_list[0][&#39;sparsity&#39;]
+        cur_ratio = self.remained_ratio
+        ori_acc = self.ori_acc
+        iteration_count = 0
+        if self.checkpoint_dir is not None:
+            os.makedirs(self.checkpoint_dir, exist_ok=True)
+        modules_wrapper_final = None
+        while cur_ratio &gt; target_ratio:
+            iteration_count += 1
+
+            _logger.info(&#39;Current base accuracy %f&#39;, ori_acc)
+            _logger.info(&#39;Remained %f weights&#39;, cur_ratio)
+
+            proportion = self.sparsity_proportion_calc(
+                ori_acc, self.acc_drop_threshold, self.sensitivities)
+
+            new_pruneratio = self.normalize(proportion, self.sparsity_per_iter)
+            cfg_list = self.create_cfg(new_pruneratio)
+            if not cfg_list:
+                _logger.error(&#39;The threshold is too small, please set a larger threshold&#39;)
+                return self.model
+            _logger.debug(&#39;Pruner Config: %s&#39;, str(cfg_list))
+            cfg_str = [&#39;%s:%.3f&#39;%(cfg[&#39;op_names&#39;][0], cfg[&#39;sparsity&#39;]) for cfg in cfg_list]
+            _logger.info(&#39;Current Sparsities: %s&#39;, &#39;,&#39;.join(cfg_str))
+
+            pruner = self.Pruner(self.model, cfg_list)
+            pruner.compress()
+            pruned_acc = self.evaluator(*eval_args, **eval_kwargs)
+            _logger.info(&#39;Accuracy after pruning: %f&#39;, pruned_acc)
+            finetune_acc = pruned_acc
+            if self.finetuner is not None:
+                self.finetuner(*finetune_args, **finetune_kwargs)
+                finetune_acc = self.evaluator(*eval_args, **eval_kwargs)
+            _logger.info(&#39;Accuracy after finetune: %f&#39;, finetune_acc)
+            ori_acc = finetune_acc
+            pruner._unwrap_model()
+
+            for layer_cfg in cfg_list:
+                name = layer_cfg[&#39;op_names&#39;][0]
+                sparsity = layer_cfg[&#39;sparsity&#39;]
+                self.analyzer.already_pruned[name] = sparsity
+
+            cur_ratio = 1 - self.current_sparsity()
+            modules_wrapper_final = pruner.get_modules_wrapper()
+            del pruner
+            _logger.info(&#39;Currently remained weights: %f&#39;, cur_ratio)
+
+            if self.checkpoint_dir is not None:
+                checkpoint_name = &#39;Iter_%d_finetune_acc_%.5f_sparsity_%.4f&#39; % (
+                    iteration_count, finetune_acc, cur_ratio)
+                checkpoint_path = os.path.join(
+                    self.checkpoint_dir, &#39;%s.pth&#39; % checkpoint_name)
+                cfg_path = os.path.join(
+                    self.checkpoint_dir, &#39;%s_pruner.json&#39; % checkpoint_name)
+                sensitivity_path = os.path.join(
+                    self.checkpoint_dir, &#39;%s_sensitivity.csv&#39; % checkpoint_name)
+                torch.save(self.model.state_dict(), checkpoint_path)
+                with open(cfg_path, &#39;w&#39;) as jf:
+                    json.dump(cfg_list, jf)
+                self.analyzer.export(sensitivity_path)
+
+            if cur_ratio &gt; target_ratio:
+
+
+                self.analyzer.load_state_dict(self.model.state_dict())
+                self.sensitivities = self.analyzer.analysis(
+                    val_args=eval_args, val_kwargs=eval_kwargs)
+
+        _logger.info(&#39;After Pruning: %.2f weights remains&#39;, cur_ratio)
+        self.modules_wrapper = modules_wrapper_final
+
+        self._wrap_model()
+        return self.model
+
+    def calc_mask(self, wrapper, **kwargs):
+        return None</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimization.pruning.core.pruner.Pruner" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner">Pruner</a></li>
+<li><a title="optimization.common.base.compressor.Compressor" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor">Compressor</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="optimization.pruning.prune.sensitivity_pruner.SensitivityPruner.compress"><code class="name flex">
+<span>def <span class="ident">compress</span></span>(<span>self, eval_args=None, eval_kwargs=None, finetune_args=None, finetune_kwargs=None, resume_sensitivity=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This function iteratively prune the model according to the results of
+the sensitivity analysis.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>eval_args</code></strong> :&ensp;<code>list</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>eval_kwargs</code></strong> :&ensp;<code>list&amp; dict</code></dt>
+<dd>Parameters for the val_funtion, the val_function will be called like
+evaluator(*eval_args, **eval_kwargs)</dd>
+<dt><strong><code>finetune_args</code></strong> :&ensp;<code>list</code></dt>
+<dd>&nbsp;</dd>
+<dt><strong><code>finetune_kwargs</code></strong> :&ensp;<code>dict</code></dt>
+<dd>Parameters for the finetuner function if needed.</dd>
+</dl>
+<p>resume_sensitivity:
+resume the sensitivity results from this file.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compress(self, eval_args=None, eval_kwargs=None,
+             finetune_args=None, finetune_kwargs=None, resume_sensitivity=None):
+    &#34;&#34;&#34;
+    This function iteratively prune the model according to the results of
+    the sensitivity analysis.
+
+    Parameters
+    ----------
+    eval_args: list
+    eval_kwargs: list&amp; dict
+        Parameters for the val_funtion, the val_function will be called like
+        evaluator(\*eval_args, \*\*eval_kwargs)
+    finetune_args: list
+    finetune_kwargs: dict
+        Parameters for the finetuner function if needed.
+    resume_sensitivity:
+        resume the sensitivity results from this file.
+    &#34;&#34;&#34;
+    if not eval_args:
+        eval_args = []
+    if not eval_kwargs:
+        eval_kwargs = {}
+    if not finetune_args:
+        finetune_args = []
+    if not finetune_kwargs:
+        finetune_kwargs = {}
+    if self.ori_acc is None:
+        self.ori_acc = self.evaluator(*eval_args, **eval_kwargs)
+    assert isinstance(self.ori_acc, float) or isinstance(self.ori_acc, int)
+    if not resume_sensitivity:
+        self.sensitivities = self.analyzer.analysis(
+            val_args=eval_args, val_kwargs=eval_kwargs)
+    else:
+        self.sensitivities = self.load_sensitivity(resume_sensitivity)
+        self.analyzer.sensitivities = self.sensitivities
+    target_ratio = 1 - self.config_list[0][&#39;sparsity&#39;]
+    cur_ratio = self.remained_ratio
+    ori_acc = self.ori_acc
+    iteration_count = 0
+    if self.checkpoint_dir is not None:
+        os.makedirs(self.checkpoint_dir, exist_ok=True)
+    modules_wrapper_final = None
+    while cur_ratio &gt; target_ratio:
+        iteration_count += 1
+
+        _logger.info(&#39;Current base accuracy %f&#39;, ori_acc)
+        _logger.info(&#39;Remained %f weights&#39;, cur_ratio)
+
+        proportion = self.sparsity_proportion_calc(
+            ori_acc, self.acc_drop_threshold, self.sensitivities)
+
+        new_pruneratio = self.normalize(proportion, self.sparsity_per_iter)
+        cfg_list = self.create_cfg(new_pruneratio)
+        if not cfg_list:
+            _logger.error(&#39;The threshold is too small, please set a larger threshold&#39;)
+            return self.model
+        _logger.debug(&#39;Pruner Config: %s&#39;, str(cfg_list))
+        cfg_str = [&#39;%s:%.3f&#39;%(cfg[&#39;op_names&#39;][0], cfg[&#39;sparsity&#39;]) for cfg in cfg_list]
+        _logger.info(&#39;Current Sparsities: %s&#39;, &#39;,&#39;.join(cfg_str))
+
+        pruner = self.Pruner(self.model, cfg_list)
+        pruner.compress()
+        pruned_acc = self.evaluator(*eval_args, **eval_kwargs)
+        _logger.info(&#39;Accuracy after pruning: %f&#39;, pruned_acc)
+        finetune_acc = pruned_acc
+        if self.finetuner is not None:
+            self.finetuner(*finetune_args, **finetune_kwargs)
+            finetune_acc = self.evaluator(*eval_args, **eval_kwargs)
+        _logger.info(&#39;Accuracy after finetune: %f&#39;, finetune_acc)
+        ori_acc = finetune_acc
+        pruner._unwrap_model()
+
+        for layer_cfg in cfg_list:
+            name = layer_cfg[&#39;op_names&#39;][0]
+            sparsity = layer_cfg[&#39;sparsity&#39;]
+            self.analyzer.already_pruned[name] = sparsity
+
+        cur_ratio = 1 - self.current_sparsity()
+        modules_wrapper_final = pruner.get_modules_wrapper()
+        del pruner
+        _logger.info(&#39;Currently remained weights: %f&#39;, cur_ratio)
+
+        if self.checkpoint_dir is not None:
+            checkpoint_name = &#39;Iter_%d_finetune_acc_%.5f_sparsity_%.4f&#39; % (
+                iteration_count, finetune_acc, cur_ratio)
+            checkpoint_path = os.path.join(
+                self.checkpoint_dir, &#39;%s.pth&#39; % checkpoint_name)
+            cfg_path = os.path.join(
+                self.checkpoint_dir, &#39;%s_pruner.json&#39; % checkpoint_name)
+            sensitivity_path = os.path.join(
+                self.checkpoint_dir, &#39;%s_sensitivity.csv&#39; % checkpoint_name)
+            torch.save(self.model.state_dict(), checkpoint_path)
+            with open(cfg_path, &#39;w&#39;) as jf:
+                json.dump(cfg_list, jf)
+            self.analyzer.export(sensitivity_path)
+
+        if cur_ratio &gt; target_ratio:
+
+
+            self.analyzer.load_state_dict(self.model.state_dict())
+            self.sensitivities = self.analyzer.analysis(
+                val_args=eval_args, val_kwargs=eval_kwargs)
+
+    _logger.info(&#39;After Pruning: %.2f weights remains&#39;, cur_ratio)
+    self.modules_wrapper = modules_wrapper_final
+
+    self._wrap_model()
+    return self.model</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.prune.sensitivity_pruner.SensitivityPruner.create_cfg"><code class="name flex">
+<span>def <span class="ident">create_cfg</span></span>(<span>self, ratios)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate the cfg_list for the pruner according to the prune ratios.</p>
+<h2 id="parameters">Parameters</h2>
+<pre><code>ratios:
+    For example: {'conv1' : 0.2}
+</code></pre>
+<h2 id="returns">Returns</h2>
+<pre><code>cfg_list:
+    For example: [{'sparsity':0.2, 'op_names':['conv1'], 'op_types':['Conv2d']}]
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_cfg(self, ratios):
+    &#34;&#34;&#34;
+    Generate the cfg_list for the pruner according to the prune ratios.
+
+    Parameters
+    ---------
+        ratios:
+            For example: {&#39;conv1&#39; : 0.2}
+
+    Returns
+    -------
+        cfg_list:
+            For example: [{&#39;sparsity&#39;:0.2, &#39;op_names&#39;:[&#39;conv1&#39;], &#39;op_types&#39;:[&#39;Conv2d&#39;]}]
+    &#34;&#34;&#34;
+    cfg_list = []
+    for layername in ratios:
+        prune_ratio = ratios[layername]
+        remain = 1 - self.analyzer.already_pruned[layername]
+        sparsity = remain * prune_ratio + \
+            self.analyzer.already_pruned[layername]
+        if sparsity &gt; 0:
+            cfg = {&#39;sparsity&#39;: sparsity, &#39;op_names&#39;: [
+                layername], &#39;op_types&#39;: [&#39;Conv2d&#39;]}
+            cfg_list.append(cfg)
+    return cfg_list</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.prune.sensitivity_pruner.SensitivityPruner.current_sparsity"><code class="name flex">
+<span>def <span class="ident">current_sparsity</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>The sparsity of the weight.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def current_sparsity(self):
+    &#34;&#34;&#34;
+    The sparsity of the weight.
+    &#34;&#34;&#34;
+    pruned_weight = 0
+    for layer_name in self.analyzer.already_pruned:
+        w_count = self.weight_count[layer_name]
+        prune_ratio = self.analyzer.already_pruned[layer_name]
+        pruned_weight += w_count * prune_ratio
+    return pruned_weight / self.weight_sum</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.prune.sensitivity_pruner.SensitivityPruner.load_sensitivity"><code class="name flex">
+<span>def <span class="ident">load_sensitivity</span></span>(<span>self, filepath)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>load the sensitivity results exported by the sensitivity analyzer</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_sensitivity(self, filepath):
+    &#34;&#34;&#34;
+    load the sensitivity results exported by the sensitivity analyzer
+    &#34;&#34;&#34;
+    assert os.path.exists(filepath)
+    with open(filepath, &#39;r&#39;) as csvf:
+        csv_r = csv.reader(csvf)
+        header = next(csv_r)
+        sparsities = [float(x) for x in header[1:]]
+        sensitivities = {}
+        for row in csv_r:
+            layername = row[0]
+            accuracies = [float(x) for x in row[1:]]
+            sensitivities[layername] = {}
+            for i, accuracy in enumerate(accuracies):
+                sensitivities[layername][sparsities[i]] = accuracy
+        return sensitivities</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.prune.sensitivity_pruner.SensitivityPruner.normalize"><code class="name flex">
+<span>def <span class="ident">normalize</span></span>(<span>self, ratios, target_pruned)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Normalize the prune ratio of each layer according to the
+total already pruned ratio and the final target total pruning
+ratio</p>
+<h2 id="parameters">Parameters</h2>
+<pre><code>ratios:
+    Dict object that save the prune ratio for each layer
+target_pruned:
+    The amount of the weights expected to be pruned in this
+    iteration
+</code></pre>
+<h2 id="returns">Returns</h2>
+<pre><code>new_ratios:
+    return the normalized prune ratios for each layer.
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def normalize(self, ratios, target_pruned):
+    &#34;&#34;&#34;
+    Normalize the prune ratio of each layer according to the
+    total already pruned ratio and the final target total pruning
+    ratio
+
+    Parameters
+    ----------
+        ratios:
+            Dict object that save the prune ratio for each layer
+        target_pruned:
+            The amount of the weights expected to be pruned in this
+            iteration
+
+    Returns
+    -------
+        new_ratios:
+            return the normalized prune ratios for each layer.
+
+    &#34;&#34;&#34;
+    w_sum = 0
+    _Max = 0
+    for layername, ratio in ratios.items():
+        wcount = self.weight_count[layername]
+        w_sum += ratio * wcount * \
+            (1-self.analyzer.already_pruned[layername])
+    target_count = self.weight_sum * target_pruned
+    for layername in ratios:
+        ratios[layername] = ratios[layername] * target_count / w_sum
+        _Max = max(_Max, ratios[layername])
+    if _Max &gt; MAX_PRUNE_RATIO_PER_ITER:
+
+        for layername in ratios:
+            ratios[layername] = ratios[layername] * \
+                MAX_PRUNE_RATIO_PER_ITER / _Max
+    return ratios</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.prune.sensitivity_pruner.SensitivityPruner.validate_config"><code class="name flex">
+<span>def <span class="ident">validate_config</span></span>(<span>self, model, config_list)</span>
+</code></dt>
+<dd>
+<div class="desc"><h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.module</code></dt>
+<dd>Model to be pruned</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>List on pruning configs</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_config(self, model, config_list):
+    &#34;&#34;&#34;
+    Parameters
+    ----------
+    model : torch.nn.module
+        Model to be pruned
+    config_list : list
+        List on pruning configs
+    &#34;&#34;&#34;
+    if self.base_algo == &#39;level&#39;:
+        schema = PrunerSchema([{
+            Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+            Optional(&#39;op_types&#39;): [str],
+            Optional(&#39;op_names&#39;): [str],
+            Optional(&#39;exclude&#39;): bool
+        }], model, _logger)
+    elif self.base_algo in [&#39;l1&#39;, &#39;l2&#39;, &#39;fpgm&#39;]:
+        schema = PrunerSchema([{
+            Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+            &#39;op_types&#39;: [&#39;Conv2d&#39;],
+            Optional(&#39;op_names&#39;): [str],
+            Optional(&#39;exclude&#39;): bool
+        }], model, _logger)
+
+    schema.validate(config_list)</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimization.pruning.core.pruner.Pruner" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner">Pruner</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimization.pruning.core.pruner.Pruner.calc_mask" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.calc_mask">calc_mask</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.export_model" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.export_model">export_model</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.get_modules_to_compress" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.get_modules_to_compress">get_modules_to_compress</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.get_modules_wrapper" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.get_modules_wrapper">get_modules_wrapper</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.get_pruned_weights" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.get_pruned_weights">get_pruned_weights</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.load_model_state_dict" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.load_model_state_dict">load_model_state_dict</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.reset" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.reset">reset</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.select_config" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.select_config">select_config</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.set_wrappers_attribute" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.set_wrappers_attribute">set_wrappers_attribute</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.update_epoch" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.update_epoch">update_epoch</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="optimization.pruning.prune" href="index.html">optimization.pruning.prune</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="optimization.pruning.prune.sensitivity_pruner.SensitivityPruner" href="#optimization.pruning.prune.sensitivity_pruner.SensitivityPruner">SensitivityPruner</a></code></h4>
+<ul class="two-column">
+<li><code><a title="optimization.pruning.prune.sensitivity_pruner.SensitivityPruner.compress" href="#optimization.pruning.prune.sensitivity_pruner.SensitivityPruner.compress">compress</a></code></li>
+<li><code><a title="optimization.pruning.prune.sensitivity_pruner.SensitivityPruner.create_cfg" href="#optimization.pruning.prune.sensitivity_pruner.SensitivityPruner.create_cfg">create_cfg</a></code></li>
+<li><code><a title="optimization.pruning.prune.sensitivity_pruner.SensitivityPruner.current_sparsity" href="#optimization.pruning.prune.sensitivity_pruner.SensitivityPruner.current_sparsity">current_sparsity</a></code></li>
+<li><code><a title="optimization.pruning.prune.sensitivity_pruner.SensitivityPruner.load_sensitivity" href="#optimization.pruning.prune.sensitivity_pruner.SensitivityPruner.load_sensitivity">load_sensitivity</a></code></li>
+<li><code><a title="optimization.pruning.prune.sensitivity_pruner.SensitivityPruner.normalize" href="#optimization.pruning.prune.sensitivity_pruner.SensitivityPruner.normalize">normalize</a></code></li>
+<li><code><a title="optimization.pruning.prune.sensitivity_pruner.SensitivityPruner.validate_config" href="#optimization.pruning.prune.sensitivity_pruner.SensitivityPruner.validate_config">validate_config</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

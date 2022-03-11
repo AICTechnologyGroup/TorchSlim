@@ -1,0 +1,1471 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>optimization.pruning.core.transformers_head_prune API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>optimization.pruning.core.transformers_head_prune</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import logging
+import torch
+from .weight_masker import WeightMasker
+
+
+_logger = logging.getLogger(__name__)
+
+
+class AttentionHeadMasker(WeightMasker):
+
+    def __init__(self, model, pruner, head_hidden_dim = None):
+        &#34;&#34;&#34;
+        A structured pruning masker base class that prunes attention heads in attention layers.
+
+        Parameters
+        ----------
+        model: nn.Module
+            model to be pruned
+        pruner: Pruner
+            A Pruner instance used to prune the model
+        head_hidden_dim: int
+            Hidden dimension for each attention head (e.g., 64 for BERT base)
+        &#34;&#34;&#34;
+        super().__init__(model, pruner)
+
+        self.head_hidden_dim = head_hidden_dim
+        assert self.head_hidden_dim is not None, &#34;head_hidden_dim must be specified&#34;
+
+    def reset(self):
+        &#34;&#34;&#34;
+        Derived classes can override this method to do preparations necessary for calculating importance scores.
+        This method is called during iterative pruning, before each iteration starts (except the first one).
+        &#34;&#34;&#34;
+        pass
+
+    def calc_mask(self, sparsity, wrapper = None, wrapper_idx=None, weight_group = None, **kwargs):
+        &#34;&#34;&#34;
+        Calculate all the masks for a group of wrappers (specified in weight_group).
+        This function only utilizes local information for mask calculation. If global_sort is specified for the pruner,
+        the pruner should call calc_mask_global instead of this function.
+
+        Parameters
+        ----------
+        sparsity: float
+            The target (amount of increase of) sparsity of the wrapper list.
+        weight_group: list
+            A four-element list of module wrappers
+        wrapper: PrunerModuleWrapper/list of PrunerModuleWrappers
+            Should be None. Not used in this masker, just for consistency with the parent API.
+        wrapper_idx: int/list of int
+            Should be None. Not used in this masker, just for consistency with the parent API.
+        Returns
+        -------
+        masks : list
+            masks for each element in the group.
+            Each element in the list masks is a dictionary for storing masks, keys of the dict:
+                &#39;weight_mask&#39;:  weight mask tensor
+                &#39;bias_mask&#39;: bias mask tensor (optional)
+        &#34;&#34;&#34;
+        assert weight_group is not None, &#34;weight_group must be specified&#34;
+        if len(weight_group) == 0:
+            return None
+        else:
+            num_total = weight_group[0].module.weight.data.size(0) // self.head_hidden_dim
+            if num_total &lt; 2:
+                return None
+            num_prune = max(int(num_total * sparsity), 1)
+            return self.get_mask(num_prune, weight_group, **kwargs)
+
+    def cals_mask_group(self, n_heads_to_prune):
+        &#34;&#34;&#34;
+        Calculate all the masks for all groups in the pruner.
+
+        Parameters
+        ----------
+        n_heads_to_prune : int
+            Total number of attention heads to prune.
+        Returns
+        -------
+        all_masks : list
+            A list of masks for all groups, where each element is a list of masks for each module in the group.
+        &#34;&#34;&#34;
+        head_importance_scores = []
+        for group_idx, group in enumerate(self.pruner.masking_groups):
+            if len(group) != 0:
+                scores = self.get_head_importance_scores(group)
+                n_heads = group[0].module.weight.size(0) // self.head_hidden_dim
+                for head_idx in range(n_heads):
+                    head_importance_scores.append([group_idx, head_idx, scores[head_idx]])
+        n_selected = 0
+        for group_idx, head_idx, _ in sorted(head_importance_scores, key = lambda x: x[-1]):
+            n_head_original = self.pruner.masking_groups[group_idx][0].module.weight.size(0) // self.head_hidden_dim
+            n_fead_remaining = n_head_original - len(self.pruner.pruned_heads[group_idx])
+            if n_fead_remaining &gt; 1 and head_idx not in self.pruner.pruned_heads[group_idx]:
+                self.pruner.pruned_heads[group_idx].add(head_idx) 
+                n_selected += 1
+            if n_selected &gt;= n_heads_to_prune:
+                break
+        all_masks = []
+        for group_idx, group in enumerate(self.pruner.masking_groups):
+            if len(group) == 0:
+                masks = None
+            else:
+                n_heads = group[0].module.weight.size(0) // self.head_hidden_dim
+                device = group[0].module.weight.device
+                head_level_mask = torch.tensor([i not in self.pruner.pruned_heads[group_idx] for i in range(n_heads)], device = device)
+                masks = self._get_layer_masks_from_head_mask(group, head_level_mask)
+            all_masks.append(masks)
+
+        return all_masks
+
+    def get_mask(self, num_prune, weight_group, **kwargs):
+        &#34;&#34;&#34;
+        Calculate the mask of given layer (weight_group).
+
+        Parameters
+        ----------
+        num_prune: int
+            Num of heads to prune
+        weight_group: list
+            A four-element list of module wrappers
+        Returns
+        -------
+        masks : list
+            masks for each element in the group.
+            Each element in the list masks is a dictionary for storing masks, keys of the dict:
+                &#39;weight_mask&#39;:  weight mask tensor
+                &#39;bias_mask&#39;: bias mask tensor (optional)
+        &#34;&#34;&#34;
+        raise NotImplementedError()
+
+    def _get_layer_masks_from_head_mask(self, weight_group, head_mask_bool, device=None):
+        q_proj, _, _, output_proj = weight_group
+        if device is None:
+            device = q_proj.module.weight.device
+
+        n_heads = q_proj.module.weight.size()[0] // self.head_hidden_dim
+        weight_mask_shape = q_proj.module.weight.data.view([n_heads, -1]).size()
+        bias_mask_shape = q_proj.module.bias.data.view([n_heads, -1]).size()
+
+        mask_weight = head_mask_bool.unsqueeze(-1).expand(weight_mask_shape).type_as(q_proj.module.weight)
+        mask_bias = head_mask_bool.unsqueeze(-1).expand(bias_mask_shape).type_as(q_proj.module.weight)
+
+        mask_weight_proj = mask_weight.contiguous().view(q_proj.module.weight.size()).detach().to(device)
+        mask_bias_proj = mask_bias.contiguous().view(-1).detach().to(device)
+        masks_for_proj = {&#39;weight_mask&#39;: mask_weight_proj.detach()}
+
+        if hasattr(q_proj.module, &#39;bias&#39;) and q_proj.module.bias is not None:
+            masks_for_proj[&#39;bias_mask&#39;] = mask_bias_proj
+
+        mask_weight_dense = mask_bias_proj.expand_as(output_proj.module.weight.data).detach().to(device)
+        mask_bias_dense = torch.ones_like(output_proj.module.bias.data).to(device)
+        masks_for_dense = {&#39;weight_mask&#39;: mask_weight_dense.detach()}
+
+        if hasattr(output_proj.module, &#39;bias&#39;) and output_proj.module.bias is not None:
+            masks_for_dense[&#39;bias_mask&#39;] = mask_bias_dense
+        masks = [masks_for_proj, masks_for_proj, masks_for_proj, masks_for_dense]
+        
+        return masks   
+
+    def get_mask_by_importance_ranking(self, num_prune, weight_group):
+        &#34;&#34;&#34;
+        Calculate the mask of given layer by pruning out heads with lowest importance scores.
+
+        Parameters
+        ----------
+        num_prune: int
+            Num of heads to prune
+        weight_group: list
+            list of a group of weights for an attention layer
+        Returns
+        -------
+        masks : list
+            masks for each element in the group.
+            Each element in the list masks is a dictionary for storing masks, keys of the dict:
+                &#39;weight_mask&#39;:  weight mask tensor
+                &#39;bias_mask&#39;: bias mask tensor (optional)
+        &#34;&#34;&#34;
+        importance_scores = self.get_head_importance_scores(weight_group)
+        if importance_scores is None:
+            return None
+
+        importance_scores = [[i, importance_scores[i]] for i in range(len(importance_scores))]
+        head_mask_bool = torch.ones(len(importance_scores))
+        n_selected = 0
+        for head_idx, _ in sorted(importance_scores, key=(lambda x: x[-1])):
+            head_mask_bool[head_idx] = 0
+            if head_idx not in self.pruner.pruned_heads[weight_group[0].group_idx]:
+                n_selected += 1
+                self.pruner.pruned_heads[weight_group[0].group_idx].add(head_idx)
+            if n_selected == num_prune:
+                break
+
+        return self._get_layer_masks_from_head_mask(weight_group, head_mask_bool) 
+
+    def get_head_importance_scores(self, weight_group):
+        &#34;&#34;&#34;
+        Calculate the importance score for each head.
+        Parameters
+        ----------
+        weight_group: list
+            list of a group of weights for an attention layer
+
+        Returns
+        -------
+        importance_scores: tensor
+            Tensor that indicates the importance of each head
+        &#34;&#34;&#34;
+        raise NotImplementedError()          
+
+class L1WeightHeadMasker(AttentionHeadMasker):
+    &#34;&#34;&#34;
+    A structured pruning algorithm that prunes the heads weight smallest weight magnitude for the query, head,
+    and key projection matrices. L1 norm is used for magnitude calculation. Note that in this implementation, weight
+    norms of q_proj, k_proj, v_proj from each head are summed as the final importance score for the head.
+    &#34;&#34;&#34;
+    def get_head_importance_scores(self, weight_group):
+        q_proj, k_proj, v_proj, _ = weight_group
+
+        n_heads = q_proj.module.weight.size()[0] // self.head_hidden_dim
+        query_proj_weights = q_proj.module.weight.data.view([n_heads, -1])
+        key_proj_weights = k_proj.module.weight.data.view([n_heads, -1])
+        value_proj_weights = v_proj.module.weight.data.view([n_heads, -1])
+
+        query_norm_avg = torch.norm(query_proj_weights, 1, -1)
+        key_norm_avg = torch.norm(key_proj_weights, 1, -1)
+        value_norm_avg = torch.norm(value_proj_weights, 1, -1)
+
+        return ((query_norm_avg + key_norm_avg + value_norm_avg) / 3).detach()
+
+    def get_mask(self, num_prune, weight_group, **kwargs):
+        return self.get_mask_by_importance_ranking(num_prune, weight_group)
+
+class L2WeightHeadMasker(AttentionHeadMasker):
+    &#34;&#34;&#34;
+    A structured pruning algorithm that prunes the heads weight smallest weight magnitude for the query, head,
+    and key projection matrices. L2 norm is used for magnitude calculation. Note that in this implementation, weight
+    norms of q_proj, k_proj, v_proj from each head are summed as the final importance score for the head.
+    &#34;&#34;&#34;
+    def get_head_importance_scores(self, weight_group):
+        q_proj, k_proj, v_proj, _ = weight_group
+
+        n_heads = q_proj.module.weight.size()[0] // self.head_hidden_dim
+        query_proj_weights = q_proj.module.weight.data.view([n_heads, -1])
+        key_proj_weights = k_proj.module.weight.data.view([n_heads, -1])
+        value_proj_weights = v_proj.module.weight.data.view([n_heads, -1])
+
+        query_norm_avg = torch.norm(query_proj_weights, 2, -1)
+        key_norm_avg = torch.norm(key_proj_weights, 2, -1)
+        value_norm_avg = torch.norm(value_proj_weights, 2, -1)
+
+        return ((query_norm_avg + key_norm_avg + value_norm_avg) / 3).detach()
+
+    def get_mask(self, num_prune, weight_group, **kwargs):
+        return self.get_mask_by_importance_ranking(num_prune, weight_group)
+
+class L1ActivationHeadMasker(AttentionHeadMasker):
+    &#34;&#34;&#34;
+    A structured pruning algorithm that prunes the heads with smallest final output value.
+    Note that this masker only relies on the output of the output layer of each attention layer.
+    The masker collects the L1 norm of the output of the last weight (output projection) in each group on the entire
+    train set, and prunes the heads producing the smallest output.
+    &#34;&#34;&#34;
+    def __init__(self, model, pruner, head_hidden_dim=None):
+        super().__init__(model, pruner, head_hidden_dim)
+        self.reset()
+
+    def reset(self):
+        self.pruner.hook_id = self._add_activation_collector(self.pruner)
+
+    def get_head_importance_scores(self, weight_group):
+        _, _, _, output_proj = weight_group
+        activations = torch.stack(self.pruner.collected_activation[output_proj.group_idx], -1)
+        activations = torch.sum(activations, -1)
+        n_heads = activations.size()[0] // self.head_hidden_dim
+        scores = torch.sum(activations.view([n_heads, -1]), -1).detach().cpu()
+
+        if self.pruner.hook_id in self.pruner._fwd_hook_handles:
+            self.pruner.remove_activation_collector(self.pruner.hook_id)
+
+        return scores
+
+    def _add_activation_collector(self, pruner):
+        def collector(collected_activation):
+            def hook(module_, input_, output):
+                if type(input_) is tuple:
+                    input_ = input_[0]
+                raw_activation = torch.abs(input_.detach().cpu())               # L1-norm
+                raw_activation_reduced = torch.sum(raw_activation, [0, 1])
+                collected_activation.append(raw_activation_reduced)
+            return hook
+        pruner.collected_activation = {}
+        pruner._fwd_hook_id += 1
+        pruner._fwd_hook_handles[pruner._fwd_hook_id] = []
+
+        for _, _, _, output_proj in pruner.masking_groups:
+            pruner.collected_activation[output_proj.group_idx] = []
+            handle = output_proj.register_forward_hook(collector(pruner.collected_activation[output_proj.group_idx]))
+
+            pruner._fwd_hook_handles[pruner._fwd_hook_id].append(handle)
+
+        return pruner._fwd_hook_id
+
+    def get_mask(self, num_prune, weight_group, **kwargs):
+        return self.get_mask_by_importance_ranking(num_prune, weight_group)
+    
+class L2ActivationHeadMasker(AttentionHeadMasker):
+    &#34;&#34;&#34;
+    A structured pruning algorithm that prunes the heads with smallest final output value.
+    Note that this masker only relies on the output of the output layer of each attention layer.
+    The masker collects the L2 norm of the output of the last weight (output projection) in each group on the entire
+    train set, and prunes the heads producing the smallest output.
+    &#34;&#34;&#34;
+    def __init__(self, model, pruner, head_hidden_dim=None):
+        super().__init__(model, pruner, head_hidden_dim)
+        self.reset()
+
+    def reset(self):
+        self.pruner.hook_id = self._add_activation_collector(self.pruner)
+
+    def get_head_importance_scores(self, weight_group):
+        _, _, _, output_proj = weight_group
+        activations = torch.stack(self.pruner.collected_activation[output_proj.group_idx], -1)
+        scores = torch.sum(activations, -1).detach().cpu()
+        if self.pruner.hook_id in self.pruner._fwd_hook_handles:
+            self.pruner.remove_activation_collector(self.pruner.hook_id)
+
+        return scores
+
+    def _add_activation_collector(self, pruner):
+        def collector(collected_activation, head_hidden_dim):
+            def hook(module_, input_, output):
+                if type(input_) is tuple:
+                    input_ = input_[0]
+                raw_activation = input_.detach().cpu() ** 2
+                n_heads = raw_activation.size(-1) // head_hidden_dim
+                raw_activation = raw_activation.view(raw_activation.size(0), raw_activation.size(1), n_heads, -1)
+                raw_activation = torch.norm(raw_activation, 2, -1)           # (B, S, n_heads)
+                raw_activation_reduced = torch.sum(raw_activation, [0, 1])          # (n_heads,)
+                collected_activation.append(raw_activation_reduced)
+
+            return hook
+
+        pruner.collected_activation = {}
+        pruner._fwd_hook_id += 1
+        pruner._fwd_hook_handles[pruner._fwd_hook_id] = []
+
+        for _, _, _, output_proj in pruner.masking_groups:
+            pruner.collected_activation[output_proj.group_idx] = []
+            handle = output_proj.register_forward_hook(collector(pruner.collected_activation[output_proj.group_idx],
+                                                                 head_hidden_dim=self.head_hidden_dim))
+
+            pruner._fwd_hook_handles[pruner._fwd_hook_id].append(handle)
+
+        return pruner._fwd_hook_id
+
+    def get_mask(self, num_prune, weight_group, **kwargs):
+        return self.get_mask_by_importance_ranking(num_prune, weight_group)
+
+
+class TaylorFOHeadMasker(AttentionHeadMasker):
+    &#34;&#34;&#34;
+    A structured pruning algorithm that prunes the heads with smallest final output contribution.
+    Note that this masker only relies on the output of the output layer of each attention layer.
+    The masker collects the output the last weight (output projection) in each group and the corresponding gradient
+    on the entire train set, and prunes the heads producing the smallest contribution as used in the following papers:
+        &#34;Are Sixteen Heads Really Better than One?&#34; (Michel et.al, 2019)
+        &#34;Pruning convolutional neural networks for resource efficient inference.&#34; (Molchanov et. al., 2017)
+    &#34;&#34;&#34;
+    def __init__(self, model, pruner, head_hidden_dim=None):
+        super().__init__(model, pruner, head_hidden_dim)
+        self.reset()
+
+    def reset(self):
+        self.pruner.hook_id = self._add_activation_collector()  # forward hooks for collecting activation
+        self.backward_hooks = {}  # backward hooks for collecting gradient
+        self._add_gradient_collector()
+
+    def get_head_importance_scores(self, weight_group):
+        _, _, _, output_proj = weight_group
+        result = output_proj.head_importance_scores
+
+        # clean up hooks and cached data
+        if self.pruner.hook_id in self.pruner._fwd_hook_handles:
+            self.pruner.remove_activation_collector(self.pruner.hook_id)
+        self.backward_hooks[output_proj.group_idx].remove()
+        for attr in [&#39;forward_output_cached&#39;, &#39;head_importance_scores&#39;]:
+            output_proj.__dict__.pop(attr, None)
+
+        return result
+
+    def _add_activation_collector(self):
+        def forward_hook(md, inp, out):
+            if type(inp) is tuple:
+                inp = inp[0]
+            n_heads_per_layer = inp.size(-1) // self.head_hidden_dim
+            heads_output = inp.view([inp.size(0), inp.size(1), n_heads_per_layer, -1]).detach()
+            md.forward_output_cached = heads_output
+
+        self.pruner._fwd_hook_id += 1
+        self.pruner._fwd_hook_handles[self.pruner._fwd_hook_id] = []
+
+        for _, _, _, output_proj in self.pruner.masking_groups:
+            handle = output_proj.register_forward_hook(forward_hook)
+            self.pruner._fwd_hook_handles[self.pruner._fwd_hook_id].append(handle)
+
+        return self.pruner._fwd_hook_id
+
+    def _add_gradient_collector(self):
+        def grad_hook(md, grad_in, grad_out):
+            if type(grad_in) is tuple:
+                grad_in = grad_in[0]
+            n_heads_per_layer = grad_in.size(-1) // self.head_hidden_dim
+            heads_grad = grad_in.view([grad_in.size(0), grad_in.size(1), n_heads_per_layer, -1])
+            heads_scores = torch.abs(heads_grad * md.forward_output_cached)
+            heads_scores = torch.sum(heads_scores, [0, 1, 3]).detach().cpu()
+            if hasattr(md, &#39;head_importance_scores&#39;):
+                md.head_importance_scores += heads_scores
+            else:
+                md.head_importance_scores = heads_scores
+
+        for _, _, _, output_proj in self.pruner.masking_groups:
+            handle = output_proj.register_backward_hook(grad_hook)
+            self.backward_hooks[output_proj.group_idx] = handle
+
+    def get_mask(self, num_prune, weight_group, **kwargs):
+        return self.get_mask_by_importance_ranking(num_prune, weight_group)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker"><code class="flex name class">
+<span>class <span class="ident">AttentionHeadMasker</span></span>
+<span>(</span><span>model, pruner, head_hidden_dim=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A structured pruning masker base class that prunes attention heads in attention layers.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>nn.Module</code></dt>
+<dd>model to be pruned</dd>
+<dt><strong><code>pruner</code></strong> :&ensp;<code>Pruner</code></dt>
+<dd>A Pruner instance used to prune the model</dd>
+<dt><strong><code>head_hidden_dim</code></strong> :&ensp;<code>int</code></dt>
+<dd>Hidden dimension for each attention head (e.g., 64 for BERT base)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AttentionHeadMasker(WeightMasker):
+
+    def __init__(self, model, pruner, head_hidden_dim = None):
+        &#34;&#34;&#34;
+        A structured pruning masker base class that prunes attention heads in attention layers.
+
+        Parameters
+        ----------
+        model: nn.Module
+            model to be pruned
+        pruner: Pruner
+            A Pruner instance used to prune the model
+        head_hidden_dim: int
+            Hidden dimension for each attention head (e.g., 64 for BERT base)
+        &#34;&#34;&#34;
+        super().__init__(model, pruner)
+
+        self.head_hidden_dim = head_hidden_dim
+        assert self.head_hidden_dim is not None, &#34;head_hidden_dim must be specified&#34;
+
+    def reset(self):
+        &#34;&#34;&#34;
+        Derived classes can override this method to do preparations necessary for calculating importance scores.
+        This method is called during iterative pruning, before each iteration starts (except the first one).
+        &#34;&#34;&#34;
+        pass
+
+    def calc_mask(self, sparsity, wrapper = None, wrapper_idx=None, weight_group = None, **kwargs):
+        &#34;&#34;&#34;
+        Calculate all the masks for a group of wrappers (specified in weight_group).
+        This function only utilizes local information for mask calculation. If global_sort is specified for the pruner,
+        the pruner should call calc_mask_global instead of this function.
+
+        Parameters
+        ----------
+        sparsity: float
+            The target (amount of increase of) sparsity of the wrapper list.
+        weight_group: list
+            A four-element list of module wrappers
+        wrapper: PrunerModuleWrapper/list of PrunerModuleWrappers
+            Should be None. Not used in this masker, just for consistency with the parent API.
+        wrapper_idx: int/list of int
+            Should be None. Not used in this masker, just for consistency with the parent API.
+        Returns
+        -------
+        masks : list
+            masks for each element in the group.
+            Each element in the list masks is a dictionary for storing masks, keys of the dict:
+                &#39;weight_mask&#39;:  weight mask tensor
+                &#39;bias_mask&#39;: bias mask tensor (optional)
+        &#34;&#34;&#34;
+        assert weight_group is not None, &#34;weight_group must be specified&#34;
+        if len(weight_group) == 0:
+            return None
+        else:
+            num_total = weight_group[0].module.weight.data.size(0) // self.head_hidden_dim
+            if num_total &lt; 2:
+                return None
+            num_prune = max(int(num_total * sparsity), 1)
+            return self.get_mask(num_prune, weight_group, **kwargs)
+
+    def cals_mask_group(self, n_heads_to_prune):
+        &#34;&#34;&#34;
+        Calculate all the masks for all groups in the pruner.
+
+        Parameters
+        ----------
+        n_heads_to_prune : int
+            Total number of attention heads to prune.
+        Returns
+        -------
+        all_masks : list
+            A list of masks for all groups, where each element is a list of masks for each module in the group.
+        &#34;&#34;&#34;
+        head_importance_scores = []
+        for group_idx, group in enumerate(self.pruner.masking_groups):
+            if len(group) != 0:
+                scores = self.get_head_importance_scores(group)
+                n_heads = group[0].module.weight.size(0) // self.head_hidden_dim
+                for head_idx in range(n_heads):
+                    head_importance_scores.append([group_idx, head_idx, scores[head_idx]])
+        n_selected = 0
+        for group_idx, head_idx, _ in sorted(head_importance_scores, key = lambda x: x[-1]):
+            n_head_original = self.pruner.masking_groups[group_idx][0].module.weight.size(0) // self.head_hidden_dim
+            n_fead_remaining = n_head_original - len(self.pruner.pruned_heads[group_idx])
+            if n_fead_remaining &gt; 1 and head_idx not in self.pruner.pruned_heads[group_idx]:
+                self.pruner.pruned_heads[group_idx].add(head_idx) 
+                n_selected += 1
+            if n_selected &gt;= n_heads_to_prune:
+                break
+        all_masks = []
+        for group_idx, group in enumerate(self.pruner.masking_groups):
+            if len(group) == 0:
+                masks = None
+            else:
+                n_heads = group[0].module.weight.size(0) // self.head_hidden_dim
+                device = group[0].module.weight.device
+                head_level_mask = torch.tensor([i not in self.pruner.pruned_heads[group_idx] for i in range(n_heads)], device = device)
+                masks = self._get_layer_masks_from_head_mask(group, head_level_mask)
+            all_masks.append(masks)
+
+        return all_masks
+
+    def get_mask(self, num_prune, weight_group, **kwargs):
+        &#34;&#34;&#34;
+        Calculate the mask of given layer (weight_group).
+
+        Parameters
+        ----------
+        num_prune: int
+            Num of heads to prune
+        weight_group: list
+            A four-element list of module wrappers
+        Returns
+        -------
+        masks : list
+            masks for each element in the group.
+            Each element in the list masks is a dictionary for storing masks, keys of the dict:
+                &#39;weight_mask&#39;:  weight mask tensor
+                &#39;bias_mask&#39;: bias mask tensor (optional)
+        &#34;&#34;&#34;
+        raise NotImplementedError()
+
+    def _get_layer_masks_from_head_mask(self, weight_group, head_mask_bool, device=None):
+        q_proj, _, _, output_proj = weight_group
+        if device is None:
+            device = q_proj.module.weight.device
+
+        n_heads = q_proj.module.weight.size()[0] // self.head_hidden_dim
+        weight_mask_shape = q_proj.module.weight.data.view([n_heads, -1]).size()
+        bias_mask_shape = q_proj.module.bias.data.view([n_heads, -1]).size()
+
+        mask_weight = head_mask_bool.unsqueeze(-1).expand(weight_mask_shape).type_as(q_proj.module.weight)
+        mask_bias = head_mask_bool.unsqueeze(-1).expand(bias_mask_shape).type_as(q_proj.module.weight)
+
+        mask_weight_proj = mask_weight.contiguous().view(q_proj.module.weight.size()).detach().to(device)
+        mask_bias_proj = mask_bias.contiguous().view(-1).detach().to(device)
+        masks_for_proj = {&#39;weight_mask&#39;: mask_weight_proj.detach()}
+
+        if hasattr(q_proj.module, &#39;bias&#39;) and q_proj.module.bias is not None:
+            masks_for_proj[&#39;bias_mask&#39;] = mask_bias_proj
+
+        mask_weight_dense = mask_bias_proj.expand_as(output_proj.module.weight.data).detach().to(device)
+        mask_bias_dense = torch.ones_like(output_proj.module.bias.data).to(device)
+        masks_for_dense = {&#39;weight_mask&#39;: mask_weight_dense.detach()}
+
+        if hasattr(output_proj.module, &#39;bias&#39;) and output_proj.module.bias is not None:
+            masks_for_dense[&#39;bias_mask&#39;] = mask_bias_dense
+        masks = [masks_for_proj, masks_for_proj, masks_for_proj, masks_for_dense]
+        
+        return masks   
+
+    def get_mask_by_importance_ranking(self, num_prune, weight_group):
+        &#34;&#34;&#34;
+        Calculate the mask of given layer by pruning out heads with lowest importance scores.
+
+        Parameters
+        ----------
+        num_prune: int
+            Num of heads to prune
+        weight_group: list
+            list of a group of weights for an attention layer
+        Returns
+        -------
+        masks : list
+            masks for each element in the group.
+            Each element in the list masks is a dictionary for storing masks, keys of the dict:
+                &#39;weight_mask&#39;:  weight mask tensor
+                &#39;bias_mask&#39;: bias mask tensor (optional)
+        &#34;&#34;&#34;
+        importance_scores = self.get_head_importance_scores(weight_group)
+        if importance_scores is None:
+            return None
+
+        importance_scores = [[i, importance_scores[i]] for i in range(len(importance_scores))]
+        head_mask_bool = torch.ones(len(importance_scores))
+        n_selected = 0
+        for head_idx, _ in sorted(importance_scores, key=(lambda x: x[-1])):
+            head_mask_bool[head_idx] = 0
+            if head_idx not in self.pruner.pruned_heads[weight_group[0].group_idx]:
+                n_selected += 1
+                self.pruner.pruned_heads[weight_group[0].group_idx].add(head_idx)
+            if n_selected == num_prune:
+                break
+
+        return self._get_layer_masks_from_head_mask(weight_group, head_mask_bool) 
+
+    def get_head_importance_scores(self, weight_group):
+        &#34;&#34;&#34;
+        Calculate the importance score for each head.
+        Parameters
+        ----------
+        weight_group: list
+            list of a group of weights for an attention layer
+
+        Returns
+        -------
+        importance_scores: tensor
+            Tensor that indicates the importance of each head
+        &#34;&#34;&#34;
+        raise NotImplementedError()          </code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimization.pruning.core.weight_masker.WeightMasker" href="weight_masker.html#optimization.pruning.core.weight_masker.WeightMasker">WeightMasker</a></li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="optimization.pruning.core.transformers_head_prune.L1ActivationHeadMasker" href="#optimization.pruning.core.transformers_head_prune.L1ActivationHeadMasker">L1ActivationHeadMasker</a></li>
+<li><a title="optimization.pruning.core.transformers_head_prune.L1WeightHeadMasker" href="#optimization.pruning.core.transformers_head_prune.L1WeightHeadMasker">L1WeightHeadMasker</a></li>
+<li><a title="optimization.pruning.core.transformers_head_prune.L2ActivationHeadMasker" href="#optimization.pruning.core.transformers_head_prune.L2ActivationHeadMasker">L2ActivationHeadMasker</a></li>
+<li><a title="optimization.pruning.core.transformers_head_prune.L2WeightHeadMasker" href="#optimization.pruning.core.transformers_head_prune.L2WeightHeadMasker">L2WeightHeadMasker</a></li>
+<li><a title="optimization.pruning.core.transformers_head_prune.TaylorFOHeadMasker" href="#optimization.pruning.core.transformers_head_prune.TaylorFOHeadMasker">TaylorFOHeadMasker</a></li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.calc_mask"><code class="name flex">
+<span>def <span class="ident">calc_mask</span></span>(<span>self, sparsity, wrapper=None, wrapper_idx=None, weight_group=None, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Calculate all the masks for a group of wrappers (specified in weight_group).
+This function only utilizes local information for mask calculation. If global_sort is specified for the pruner,
+the pruner should call calc_mask_global instead of this function.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>sparsity</code></strong> :&ensp;<code>float</code></dt>
+<dd>The target (amount of increase of) sparsity of the wrapper list.</dd>
+<dt><strong><code>weight_group</code></strong> :&ensp;<code>list</code></dt>
+<dd>A four-element list of module wrappers</dd>
+<dt><strong><code>wrapper</code></strong> :&ensp;<code>PrunerModuleWrapper/list</code> of <code>PrunerModuleWrappers</code></dt>
+<dd>Should be None. Not used in this masker, just for consistency with the parent API.</dd>
+<dt><strong><code>wrapper_idx</code></strong> :&ensp;<code>int/list</code> of <code>int</code></dt>
+<dd>Should be None. Not used in this masker, just for consistency with the parent API.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>masks</code></strong> :&ensp;<code>list</code></dt>
+<dd>masks for each element in the group.
+Each element in the list masks is a dictionary for storing masks, keys of the dict:
+'weight_mask':
+weight mask tensor
+'bias_mask': bias mask tensor (optional)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calc_mask(self, sparsity, wrapper = None, wrapper_idx=None, weight_group = None, **kwargs):
+    &#34;&#34;&#34;
+    Calculate all the masks for a group of wrappers (specified in weight_group).
+    This function only utilizes local information for mask calculation. If global_sort is specified for the pruner,
+    the pruner should call calc_mask_global instead of this function.
+
+    Parameters
+    ----------
+    sparsity: float
+        The target (amount of increase of) sparsity of the wrapper list.
+    weight_group: list
+        A four-element list of module wrappers
+    wrapper: PrunerModuleWrapper/list of PrunerModuleWrappers
+        Should be None. Not used in this masker, just for consistency with the parent API.
+    wrapper_idx: int/list of int
+        Should be None. Not used in this masker, just for consistency with the parent API.
+    Returns
+    -------
+    masks : list
+        masks for each element in the group.
+        Each element in the list masks is a dictionary for storing masks, keys of the dict:
+            &#39;weight_mask&#39;:  weight mask tensor
+            &#39;bias_mask&#39;: bias mask tensor (optional)
+    &#34;&#34;&#34;
+    assert weight_group is not None, &#34;weight_group must be specified&#34;
+    if len(weight_group) == 0:
+        return None
+    else:
+        num_total = weight_group[0].module.weight.data.size(0) // self.head_hidden_dim
+        if num_total &lt; 2:
+            return None
+        num_prune = max(int(num_total * sparsity), 1)
+        return self.get_mask(num_prune, weight_group, **kwargs)</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.cals_mask_group"><code class="name flex">
+<span>def <span class="ident">cals_mask_group</span></span>(<span>self, n_heads_to_prune)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Calculate all the masks for all groups in the pruner.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>n_heads_to_prune</code></strong> :&ensp;<code>int</code></dt>
+<dd>Total number of attention heads to prune.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>all_masks</code></strong> :&ensp;<code>list</code></dt>
+<dd>A list of masks for all groups, where each element is a list of masks for each module in the group.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def cals_mask_group(self, n_heads_to_prune):
+    &#34;&#34;&#34;
+    Calculate all the masks for all groups in the pruner.
+
+    Parameters
+    ----------
+    n_heads_to_prune : int
+        Total number of attention heads to prune.
+    Returns
+    -------
+    all_masks : list
+        A list of masks for all groups, where each element is a list of masks for each module in the group.
+    &#34;&#34;&#34;
+    head_importance_scores = []
+    for group_idx, group in enumerate(self.pruner.masking_groups):
+        if len(group) != 0:
+            scores = self.get_head_importance_scores(group)
+            n_heads = group[0].module.weight.size(0) // self.head_hidden_dim
+            for head_idx in range(n_heads):
+                head_importance_scores.append([group_idx, head_idx, scores[head_idx]])
+    n_selected = 0
+    for group_idx, head_idx, _ in sorted(head_importance_scores, key = lambda x: x[-1]):
+        n_head_original = self.pruner.masking_groups[group_idx][0].module.weight.size(0) // self.head_hidden_dim
+        n_fead_remaining = n_head_original - len(self.pruner.pruned_heads[group_idx])
+        if n_fead_remaining &gt; 1 and head_idx not in self.pruner.pruned_heads[group_idx]:
+            self.pruner.pruned_heads[group_idx].add(head_idx) 
+            n_selected += 1
+        if n_selected &gt;= n_heads_to_prune:
+            break
+    all_masks = []
+    for group_idx, group in enumerate(self.pruner.masking_groups):
+        if len(group) == 0:
+            masks = None
+        else:
+            n_heads = group[0].module.weight.size(0) // self.head_hidden_dim
+            device = group[0].module.weight.device
+            head_level_mask = torch.tensor([i not in self.pruner.pruned_heads[group_idx] for i in range(n_heads)], device = device)
+            masks = self._get_layer_masks_from_head_mask(group, head_level_mask)
+        all_masks.append(masks)
+
+    return all_masks</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_head_importance_scores"><code class="name flex">
+<span>def <span class="ident">get_head_importance_scores</span></span>(<span>self, weight_group)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Calculate the importance score for each head.
+Parameters</p>
+<hr>
+<dl>
+<dt><strong><code>weight_group</code></strong> :&ensp;<code>list</code></dt>
+<dd>list of a group of weights for an attention layer</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>importance_scores</code></strong> :&ensp;<code>tensor</code></dt>
+<dd>Tensor that indicates the importance of each head</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_head_importance_scores(self, weight_group):
+    &#34;&#34;&#34;
+    Calculate the importance score for each head.
+    Parameters
+    ----------
+    weight_group: list
+        list of a group of weights for an attention layer
+
+    Returns
+    -------
+    importance_scores: tensor
+        Tensor that indicates the importance of each head
+    &#34;&#34;&#34;
+    raise NotImplementedError()          </code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask"><code class="name flex">
+<span>def <span class="ident">get_mask</span></span>(<span>self, num_prune, weight_group, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Calculate the mask of given layer (weight_group).</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>num_prune</code></strong> :&ensp;<code>int</code></dt>
+<dd>Num of heads to prune</dd>
+<dt><strong><code>weight_group</code></strong> :&ensp;<code>list</code></dt>
+<dd>A four-element list of module wrappers</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>masks</code></strong> :&ensp;<code>list</code></dt>
+<dd>masks for each element in the group.
+Each element in the list masks is a dictionary for storing masks, keys of the dict:
+'weight_mask':
+weight mask tensor
+'bias_mask': bias mask tensor (optional)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_mask(self, num_prune, weight_group, **kwargs):
+    &#34;&#34;&#34;
+    Calculate the mask of given layer (weight_group).
+
+    Parameters
+    ----------
+    num_prune: int
+        Num of heads to prune
+    weight_group: list
+        A four-element list of module wrappers
+    Returns
+    -------
+    masks : list
+        masks for each element in the group.
+        Each element in the list masks is a dictionary for storing masks, keys of the dict:
+            &#39;weight_mask&#39;:  weight mask tensor
+            &#39;bias_mask&#39;: bias mask tensor (optional)
+    &#34;&#34;&#34;
+    raise NotImplementedError()</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask_by_importance_ranking"><code class="name flex">
+<span>def <span class="ident">get_mask_by_importance_ranking</span></span>(<span>self, num_prune, weight_group)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Calculate the mask of given layer by pruning out heads with lowest importance scores.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>num_prune</code></strong> :&ensp;<code>int</code></dt>
+<dd>Num of heads to prune</dd>
+<dt><strong><code>weight_group</code></strong> :&ensp;<code>list</code></dt>
+<dd>list of a group of weights for an attention layer</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>masks</code></strong> :&ensp;<code>list</code></dt>
+<dd>masks for each element in the group.
+Each element in the list masks is a dictionary for storing masks, keys of the dict:
+'weight_mask':
+weight mask tensor
+'bias_mask': bias mask tensor (optional)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_mask_by_importance_ranking(self, num_prune, weight_group):
+    &#34;&#34;&#34;
+    Calculate the mask of given layer by pruning out heads with lowest importance scores.
+
+    Parameters
+    ----------
+    num_prune: int
+        Num of heads to prune
+    weight_group: list
+        list of a group of weights for an attention layer
+    Returns
+    -------
+    masks : list
+        masks for each element in the group.
+        Each element in the list masks is a dictionary for storing masks, keys of the dict:
+            &#39;weight_mask&#39;:  weight mask tensor
+            &#39;bias_mask&#39;: bias mask tensor (optional)
+    &#34;&#34;&#34;
+    importance_scores = self.get_head_importance_scores(weight_group)
+    if importance_scores is None:
+        return None
+
+    importance_scores = [[i, importance_scores[i]] for i in range(len(importance_scores))]
+    head_mask_bool = torch.ones(len(importance_scores))
+    n_selected = 0
+    for head_idx, _ in sorted(importance_scores, key=(lambda x: x[-1])):
+        head_mask_bool[head_idx] = 0
+        if head_idx not in self.pruner.pruned_heads[weight_group[0].group_idx]:
+            n_selected += 1
+            self.pruner.pruned_heads[weight_group[0].group_idx].add(head_idx)
+        if n_selected == num_prune:
+            break
+
+    return self._get_layer_masks_from_head_mask(weight_group, head_mask_bool) </code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.reset"><code class="name flex">
+<span>def <span class="ident">reset</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Derived classes can override this method to do preparations necessary for calculating importance scores.
+This method is called during iterative pruning, before each iteration starts (except the first one).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def reset(self):
+    &#34;&#34;&#34;
+    Derived classes can override this method to do preparations necessary for calculating importance scores.
+    This method is called during iterative pruning, before each iteration starts (except the first one).
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="optimization.pruning.core.transformers_head_prune.L1ActivationHeadMasker"><code class="flex name class">
+<span>class <span class="ident">L1ActivationHeadMasker</span></span>
+<span>(</span><span>model, pruner, head_hidden_dim=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A structured pruning algorithm that prunes the heads with smallest final output value.
+Note that this masker only relies on the output of the output layer of each attention layer.
+The masker collects the L1 norm of the output of the last weight (output projection) in each group on the entire
+train set, and prunes the heads producing the smallest output.</p>
+<p>A structured pruning masker base class that prunes attention heads in attention layers.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>nn.Module</code></dt>
+<dd>model to be pruned</dd>
+<dt><strong><code>pruner</code></strong> :&ensp;<code>Pruner</code></dt>
+<dd>A Pruner instance used to prune the model</dd>
+<dt><strong><code>head_hidden_dim</code></strong> :&ensp;<code>int</code></dt>
+<dd>Hidden dimension for each attention head (e.g., 64 for BERT base)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class L1ActivationHeadMasker(AttentionHeadMasker):
+    &#34;&#34;&#34;
+    A structured pruning algorithm that prunes the heads with smallest final output value.
+    Note that this masker only relies on the output of the output layer of each attention layer.
+    The masker collects the L1 norm of the output of the last weight (output projection) in each group on the entire
+    train set, and prunes the heads producing the smallest output.
+    &#34;&#34;&#34;
+    def __init__(self, model, pruner, head_hidden_dim=None):
+        super().__init__(model, pruner, head_hidden_dim)
+        self.reset()
+
+    def reset(self):
+        self.pruner.hook_id = self._add_activation_collector(self.pruner)
+
+    def get_head_importance_scores(self, weight_group):
+        _, _, _, output_proj = weight_group
+        activations = torch.stack(self.pruner.collected_activation[output_proj.group_idx], -1)
+        activations = torch.sum(activations, -1)
+        n_heads = activations.size()[0] // self.head_hidden_dim
+        scores = torch.sum(activations.view([n_heads, -1]), -1).detach().cpu()
+
+        if self.pruner.hook_id in self.pruner._fwd_hook_handles:
+            self.pruner.remove_activation_collector(self.pruner.hook_id)
+
+        return scores
+
+    def _add_activation_collector(self, pruner):
+        def collector(collected_activation):
+            def hook(module_, input_, output):
+                if type(input_) is tuple:
+                    input_ = input_[0]
+                raw_activation = torch.abs(input_.detach().cpu())               # L1-norm
+                raw_activation_reduced = torch.sum(raw_activation, [0, 1])
+                collected_activation.append(raw_activation_reduced)
+            return hook
+        pruner.collected_activation = {}
+        pruner._fwd_hook_id += 1
+        pruner._fwd_hook_handles[pruner._fwd_hook_id] = []
+
+        for _, _, _, output_proj in pruner.masking_groups:
+            pruner.collected_activation[output_proj.group_idx] = []
+            handle = output_proj.register_forward_hook(collector(pruner.collected_activation[output_proj.group_idx]))
+
+            pruner._fwd_hook_handles[pruner._fwd_hook_id].append(handle)
+
+        return pruner._fwd_hook_id
+
+    def get_mask(self, num_prune, weight_group, **kwargs):
+        return self.get_mask_by_importance_ranking(num_prune, weight_group)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker">AttentionHeadMasker</a></li>
+<li><a title="optimization.pruning.core.weight_masker.WeightMasker" href="weight_masker.html#optimization.pruning.core.weight_masker.WeightMasker">WeightMasker</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker">AttentionHeadMasker</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.calc_mask" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.calc_mask">calc_mask</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.cals_mask_group" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.cals_mask_group">cals_mask_group</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_head_importance_scores" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_head_importance_scores">get_head_importance_scores</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask">get_mask</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask_by_importance_ranking" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask_by_importance_ranking">get_mask_by_importance_ranking</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.reset" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.reset">reset</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="optimization.pruning.core.transformers_head_prune.L1WeightHeadMasker"><code class="flex name class">
+<span>class <span class="ident">L1WeightHeadMasker</span></span>
+<span>(</span><span>model, pruner, head_hidden_dim=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A structured pruning algorithm that prunes the heads weight smallest weight magnitude for the query, head,
+and key projection matrices. L1 norm is used for magnitude calculation. Note that in this implementation, weight
+norms of q_proj, k_proj, v_proj from each head are summed as the final importance score for the head.</p>
+<p>A structured pruning masker base class that prunes attention heads in attention layers.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>nn.Module</code></dt>
+<dd>model to be pruned</dd>
+<dt><strong><code>pruner</code></strong> :&ensp;<code>Pruner</code></dt>
+<dd>A Pruner instance used to prune the model</dd>
+<dt><strong><code>head_hidden_dim</code></strong> :&ensp;<code>int</code></dt>
+<dd>Hidden dimension for each attention head (e.g., 64 for BERT base)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class L1WeightHeadMasker(AttentionHeadMasker):
+    &#34;&#34;&#34;
+    A structured pruning algorithm that prunes the heads weight smallest weight magnitude for the query, head,
+    and key projection matrices. L1 norm is used for magnitude calculation. Note that in this implementation, weight
+    norms of q_proj, k_proj, v_proj from each head are summed as the final importance score for the head.
+    &#34;&#34;&#34;
+    def get_head_importance_scores(self, weight_group):
+        q_proj, k_proj, v_proj, _ = weight_group
+
+        n_heads = q_proj.module.weight.size()[0] // self.head_hidden_dim
+        query_proj_weights = q_proj.module.weight.data.view([n_heads, -1])
+        key_proj_weights = k_proj.module.weight.data.view([n_heads, -1])
+        value_proj_weights = v_proj.module.weight.data.view([n_heads, -1])
+
+        query_norm_avg = torch.norm(query_proj_weights, 1, -1)
+        key_norm_avg = torch.norm(key_proj_weights, 1, -1)
+        value_norm_avg = torch.norm(value_proj_weights, 1, -1)
+
+        return ((query_norm_avg + key_norm_avg + value_norm_avg) / 3).detach()
+
+    def get_mask(self, num_prune, weight_group, **kwargs):
+        return self.get_mask_by_importance_ranking(num_prune, weight_group)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker">AttentionHeadMasker</a></li>
+<li><a title="optimization.pruning.core.weight_masker.WeightMasker" href="weight_masker.html#optimization.pruning.core.weight_masker.WeightMasker">WeightMasker</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker">AttentionHeadMasker</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.calc_mask" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.calc_mask">calc_mask</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.cals_mask_group" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.cals_mask_group">cals_mask_group</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_head_importance_scores" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_head_importance_scores">get_head_importance_scores</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask">get_mask</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask_by_importance_ranking" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask_by_importance_ranking">get_mask_by_importance_ranking</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.reset" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.reset">reset</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="optimization.pruning.core.transformers_head_prune.L2ActivationHeadMasker"><code class="flex name class">
+<span>class <span class="ident">L2ActivationHeadMasker</span></span>
+<span>(</span><span>model, pruner, head_hidden_dim=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A structured pruning algorithm that prunes the heads with smallest final output value.
+Note that this masker only relies on the output of the output layer of each attention layer.
+The masker collects the L2 norm of the output of the last weight (output projection) in each group on the entire
+train set, and prunes the heads producing the smallest output.</p>
+<p>A structured pruning masker base class that prunes attention heads in attention layers.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>nn.Module</code></dt>
+<dd>model to be pruned</dd>
+<dt><strong><code>pruner</code></strong> :&ensp;<code>Pruner</code></dt>
+<dd>A Pruner instance used to prune the model</dd>
+<dt><strong><code>head_hidden_dim</code></strong> :&ensp;<code>int</code></dt>
+<dd>Hidden dimension for each attention head (e.g., 64 for BERT base)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class L2ActivationHeadMasker(AttentionHeadMasker):
+    &#34;&#34;&#34;
+    A structured pruning algorithm that prunes the heads with smallest final output value.
+    Note that this masker only relies on the output of the output layer of each attention layer.
+    The masker collects the L2 norm of the output of the last weight (output projection) in each group on the entire
+    train set, and prunes the heads producing the smallest output.
+    &#34;&#34;&#34;
+    def __init__(self, model, pruner, head_hidden_dim=None):
+        super().__init__(model, pruner, head_hidden_dim)
+        self.reset()
+
+    def reset(self):
+        self.pruner.hook_id = self._add_activation_collector(self.pruner)
+
+    def get_head_importance_scores(self, weight_group):
+        _, _, _, output_proj = weight_group
+        activations = torch.stack(self.pruner.collected_activation[output_proj.group_idx], -1)
+        scores = torch.sum(activations, -1).detach().cpu()
+        if self.pruner.hook_id in self.pruner._fwd_hook_handles:
+            self.pruner.remove_activation_collector(self.pruner.hook_id)
+
+        return scores
+
+    def _add_activation_collector(self, pruner):
+        def collector(collected_activation, head_hidden_dim):
+            def hook(module_, input_, output):
+                if type(input_) is tuple:
+                    input_ = input_[0]
+                raw_activation = input_.detach().cpu() ** 2
+                n_heads = raw_activation.size(-1) // head_hidden_dim
+                raw_activation = raw_activation.view(raw_activation.size(0), raw_activation.size(1), n_heads, -1)
+                raw_activation = torch.norm(raw_activation, 2, -1)           # (B, S, n_heads)
+                raw_activation_reduced = torch.sum(raw_activation, [0, 1])          # (n_heads,)
+                collected_activation.append(raw_activation_reduced)
+
+            return hook
+
+        pruner.collected_activation = {}
+        pruner._fwd_hook_id += 1
+        pruner._fwd_hook_handles[pruner._fwd_hook_id] = []
+
+        for _, _, _, output_proj in pruner.masking_groups:
+            pruner.collected_activation[output_proj.group_idx] = []
+            handle = output_proj.register_forward_hook(collector(pruner.collected_activation[output_proj.group_idx],
+                                                                 head_hidden_dim=self.head_hidden_dim))
+
+            pruner._fwd_hook_handles[pruner._fwd_hook_id].append(handle)
+
+        return pruner._fwd_hook_id
+
+    def get_mask(self, num_prune, weight_group, **kwargs):
+        return self.get_mask_by_importance_ranking(num_prune, weight_group)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker">AttentionHeadMasker</a></li>
+<li><a title="optimization.pruning.core.weight_masker.WeightMasker" href="weight_masker.html#optimization.pruning.core.weight_masker.WeightMasker">WeightMasker</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker">AttentionHeadMasker</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.calc_mask" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.calc_mask">calc_mask</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.cals_mask_group" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.cals_mask_group">cals_mask_group</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_head_importance_scores" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_head_importance_scores">get_head_importance_scores</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask">get_mask</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask_by_importance_ranking" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask_by_importance_ranking">get_mask_by_importance_ranking</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.reset" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.reset">reset</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="optimization.pruning.core.transformers_head_prune.L2WeightHeadMasker"><code class="flex name class">
+<span>class <span class="ident">L2WeightHeadMasker</span></span>
+<span>(</span><span>model, pruner, head_hidden_dim=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A structured pruning algorithm that prunes the heads weight smallest weight magnitude for the query, head,
+and key projection matrices. L2 norm is used for magnitude calculation. Note that in this implementation, weight
+norms of q_proj, k_proj, v_proj from each head are summed as the final importance score for the head.</p>
+<p>A structured pruning masker base class that prunes attention heads in attention layers.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>nn.Module</code></dt>
+<dd>model to be pruned</dd>
+<dt><strong><code>pruner</code></strong> :&ensp;<code>Pruner</code></dt>
+<dd>A Pruner instance used to prune the model</dd>
+<dt><strong><code>head_hidden_dim</code></strong> :&ensp;<code>int</code></dt>
+<dd>Hidden dimension for each attention head (e.g., 64 for BERT base)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class L2WeightHeadMasker(AttentionHeadMasker):
+    &#34;&#34;&#34;
+    A structured pruning algorithm that prunes the heads weight smallest weight magnitude for the query, head,
+    and key projection matrices. L2 norm is used for magnitude calculation. Note that in this implementation, weight
+    norms of q_proj, k_proj, v_proj from each head are summed as the final importance score for the head.
+    &#34;&#34;&#34;
+    def get_head_importance_scores(self, weight_group):
+        q_proj, k_proj, v_proj, _ = weight_group
+
+        n_heads = q_proj.module.weight.size()[0] // self.head_hidden_dim
+        query_proj_weights = q_proj.module.weight.data.view([n_heads, -1])
+        key_proj_weights = k_proj.module.weight.data.view([n_heads, -1])
+        value_proj_weights = v_proj.module.weight.data.view([n_heads, -1])
+
+        query_norm_avg = torch.norm(query_proj_weights, 2, -1)
+        key_norm_avg = torch.norm(key_proj_weights, 2, -1)
+        value_norm_avg = torch.norm(value_proj_weights, 2, -1)
+
+        return ((query_norm_avg + key_norm_avg + value_norm_avg) / 3).detach()
+
+    def get_mask(self, num_prune, weight_group, **kwargs):
+        return self.get_mask_by_importance_ranking(num_prune, weight_group)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker">AttentionHeadMasker</a></li>
+<li><a title="optimization.pruning.core.weight_masker.WeightMasker" href="weight_masker.html#optimization.pruning.core.weight_masker.WeightMasker">WeightMasker</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker">AttentionHeadMasker</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.calc_mask" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.calc_mask">calc_mask</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.cals_mask_group" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.cals_mask_group">cals_mask_group</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_head_importance_scores" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_head_importance_scores">get_head_importance_scores</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask">get_mask</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask_by_importance_ranking" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask_by_importance_ranking">get_mask_by_importance_ranking</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.reset" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.reset">reset</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt id="optimization.pruning.core.transformers_head_prune.TaylorFOHeadMasker"><code class="flex name class">
+<span>class <span class="ident">TaylorFOHeadMasker</span></span>
+<span>(</span><span>model, pruner, head_hidden_dim=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A structured pruning algorithm that prunes the heads with smallest final output contribution.
+Note that this masker only relies on the output of the output layer of each attention layer.
+The masker collects the output the last weight (output projection) in each group and the corresponding gradient
+on the entire train set, and prunes the heads producing the smallest contribution as used in the following papers:
+"Are Sixteen Heads Really Better than One?" (Michel et.al, 2019)
+"Pruning convolutional neural networks for resource efficient inference." (Molchanov et. al., 2017)</p>
+<p>A structured pruning masker base class that prunes attention heads in attention layers.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>nn.Module</code></dt>
+<dd>model to be pruned</dd>
+<dt><strong><code>pruner</code></strong> :&ensp;<code>Pruner</code></dt>
+<dd>A Pruner instance used to prune the model</dd>
+<dt><strong><code>head_hidden_dim</code></strong> :&ensp;<code>int</code></dt>
+<dd>Hidden dimension for each attention head (e.g., 64 for BERT base)</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TaylorFOHeadMasker(AttentionHeadMasker):
+    &#34;&#34;&#34;
+    A structured pruning algorithm that prunes the heads with smallest final output contribution.
+    Note that this masker only relies on the output of the output layer of each attention layer.
+    The masker collects the output the last weight (output projection) in each group and the corresponding gradient
+    on the entire train set, and prunes the heads producing the smallest contribution as used in the following papers:
+        &#34;Are Sixteen Heads Really Better than One?&#34; (Michel et.al, 2019)
+        &#34;Pruning convolutional neural networks for resource efficient inference.&#34; (Molchanov et. al., 2017)
+    &#34;&#34;&#34;
+    def __init__(self, model, pruner, head_hidden_dim=None):
+        super().__init__(model, pruner, head_hidden_dim)
+        self.reset()
+
+    def reset(self):
+        self.pruner.hook_id = self._add_activation_collector()  # forward hooks for collecting activation
+        self.backward_hooks = {}  # backward hooks for collecting gradient
+        self._add_gradient_collector()
+
+    def get_head_importance_scores(self, weight_group):
+        _, _, _, output_proj = weight_group
+        result = output_proj.head_importance_scores
+
+        # clean up hooks and cached data
+        if self.pruner.hook_id in self.pruner._fwd_hook_handles:
+            self.pruner.remove_activation_collector(self.pruner.hook_id)
+        self.backward_hooks[output_proj.group_idx].remove()
+        for attr in [&#39;forward_output_cached&#39;, &#39;head_importance_scores&#39;]:
+            output_proj.__dict__.pop(attr, None)
+
+        return result
+
+    def _add_activation_collector(self):
+        def forward_hook(md, inp, out):
+            if type(inp) is tuple:
+                inp = inp[0]
+            n_heads_per_layer = inp.size(-1) // self.head_hidden_dim
+            heads_output = inp.view([inp.size(0), inp.size(1), n_heads_per_layer, -1]).detach()
+            md.forward_output_cached = heads_output
+
+        self.pruner._fwd_hook_id += 1
+        self.pruner._fwd_hook_handles[self.pruner._fwd_hook_id] = []
+
+        for _, _, _, output_proj in self.pruner.masking_groups:
+            handle = output_proj.register_forward_hook(forward_hook)
+            self.pruner._fwd_hook_handles[self.pruner._fwd_hook_id].append(handle)
+
+        return self.pruner._fwd_hook_id
+
+    def _add_gradient_collector(self):
+        def grad_hook(md, grad_in, grad_out):
+            if type(grad_in) is tuple:
+                grad_in = grad_in[0]
+            n_heads_per_layer = grad_in.size(-1) // self.head_hidden_dim
+            heads_grad = grad_in.view([grad_in.size(0), grad_in.size(1), n_heads_per_layer, -1])
+            heads_scores = torch.abs(heads_grad * md.forward_output_cached)
+            heads_scores = torch.sum(heads_scores, [0, 1, 3]).detach().cpu()
+            if hasattr(md, &#39;head_importance_scores&#39;):
+                md.head_importance_scores += heads_scores
+            else:
+                md.head_importance_scores = heads_scores
+
+        for _, _, _, output_proj in self.pruner.masking_groups:
+            handle = output_proj.register_backward_hook(grad_hook)
+            self.backward_hooks[output_proj.group_idx] = handle
+
+    def get_mask(self, num_prune, weight_group, **kwargs):
+        return self.get_mask_by_importance_ranking(num_prune, weight_group)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker">AttentionHeadMasker</a></li>
+<li><a title="optimization.pruning.core.weight_masker.WeightMasker" href="weight_masker.html#optimization.pruning.core.weight_masker.WeightMasker">WeightMasker</a></li>
+</ul>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker">AttentionHeadMasker</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.calc_mask" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.calc_mask">calc_mask</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.cals_mask_group" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.cals_mask_group">cals_mask_group</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_head_importance_scores" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_head_importance_scores">get_head_importance_scores</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask">get_mask</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask_by_importance_ranking" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask_by_importance_ranking">get_mask_by_importance_ranking</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.reset" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.reset">reset</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="optimization.pruning.core" href="index.html">optimization.pruning.core</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker">AttentionHeadMasker</a></code></h4>
+<ul class="">
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.calc_mask" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.calc_mask">calc_mask</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.cals_mask_group" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.cals_mask_group">cals_mask_group</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_head_importance_scores" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_head_importance_scores">get_head_importance_scores</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask">get_mask</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask_by_importance_ranking" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.get_mask_by_importance_ranking">get_mask_by_importance_ranking</a></code></li>
+<li><code><a title="optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.reset" href="#optimization.pruning.core.transformers_head_prune.AttentionHeadMasker.reset">reset</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="optimization.pruning.core.transformers_head_prune.L1ActivationHeadMasker" href="#optimization.pruning.core.transformers_head_prune.L1ActivationHeadMasker">L1ActivationHeadMasker</a></code></h4>
+</li>
+<li>
+<h4><code><a title="optimization.pruning.core.transformers_head_prune.L1WeightHeadMasker" href="#optimization.pruning.core.transformers_head_prune.L1WeightHeadMasker">L1WeightHeadMasker</a></code></h4>
+</li>
+<li>
+<h4><code><a title="optimization.pruning.core.transformers_head_prune.L2ActivationHeadMasker" href="#optimization.pruning.core.transformers_head_prune.L2ActivationHeadMasker">L2ActivationHeadMasker</a></code></h4>
+</li>
+<li>
+<h4><code><a title="optimization.pruning.core.transformers_head_prune.L2WeightHeadMasker" href="#optimization.pruning.core.transformers_head_prune.L2WeightHeadMasker">L2WeightHeadMasker</a></code></h4>
+</li>
+<li>
+<h4><code><a title="optimization.pruning.core.transformers_head_prune.TaylorFOHeadMasker" href="#optimization.pruning.core.transformers_head_prune.TaylorFOHeadMasker">TaylorFOHeadMasker</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

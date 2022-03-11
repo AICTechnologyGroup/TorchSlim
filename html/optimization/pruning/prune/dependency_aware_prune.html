@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>optimization.pruning.prune.dependency_aware_prune API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>optimization.pruning.prune.dependency_aware_prune</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import logging
+from schema import And, Optional
+from optimization.common.graph import TorchModuleGraph
+from optimization.pruning.core import ChannelDependency, GroupDependency
+from optimization.common.base import PrunerSchema
+from optimization.pruning.core import Pruner
+from optimization.pruning.core import SlimPrunerMasker, L1FilterPrunerMasker, L2FilterPrunerMasker, FPGMPrunerMasker, TaylorFOWeightFilterPrunerMasker, ActivationAPoZRankFilterPrunerMasker, ActivationMeanRankFilterPrunerMasker
+
+
+MASKER_DICT = {
+    &#39;slim&#39;: SlimPrunerMasker,
+    &#39;l1&#39;: L1FilterPrunerMasker,
+    &#39;l2&#39;: L2FilterPrunerMasker,
+    &#39;fpgm&#39;: FPGMPrunerMasker,
+    &#39;taylorfo&#39;: TaylorFOWeightFilterPrunerMasker,
+    &#39;apoz&#39;: ActivationAPoZRankFilterPrunerMasker,
+    &#39;mean_activation&#39;: ActivationMeanRankFilterPrunerMasker
+}
+
+__all__ = [&#39;DependencyAwarePruner&#39;]
+
+_logger = logging.getLogger(__name__)
+_logger.setLevel(logging.INFO)
+
+
+class DependencyAwarePruner(Pruner):
+    &#34;&#34;&#34;
+    DependencyAwarePruner has two ways to calculate the masks
+    for conv layers. In the normal way, the DependencyAwarePruner
+    will calculate the mask of each layer separately. For example, each
+    conv layer determine which filters should be pruned according to its L1
+    norm. In constrast, in the dependency-aware way, the layers that in a
+    dependency group will be pruned jointly and these layers will be forced
+    to prune the same channels.
+    &#34;&#34;&#34;
+    def __init__(self, model, config_list, optimizer=None, pruning_algorithm=&#39;level&#39;, dependency_aware=False,
+                 dummy_input=None, **algo_kwargs):
+        super().__init__(model, config_list=config_list, optimizer=optimizer)
+
+        self.dependency_aware = dependency_aware
+        self.dummy_input = dummy_input
+
+        if self.dependency_aware:
+            if not self._supported_dependency_aware():
+                raise ValueError(&#39;This pruner does not support dependency aware!&#39;)
+
+            errmsg = &#34;When dependency_aware is set, the dummy_input should not be None&#34;
+            assert self.dummy_input is not None, errmsg
+
+            self._unwrap_model()
+            self.graph = TorchModuleGraph(model, dummy_input)
+            self._wrap_model()
+            self.channel_depen = ChannelDependency(model, dummy_input, traced_model=self.graph.trace)
+            self.group_depen = GroupDependency(model, dummy_input, traced_model=self.graph.trace)
+            self.channel_depen = self.channel_depen.dependency_sets
+            self.channel_depen = {
+                name: sets for sets in self.channel_depen for name in sets}
+            self.group_depen = self.group_depen.dependency_sets
+
+        self.masker = MASKER_DICT[pruning_algorithm](
+            model, self, **algo_kwargs)
+        self.masker.dependency_aware = dependency_aware
+        self.set_wrappers_attribute(&#34;if_calculated&#34;, False)
+
+    def calc_mask(self, wrapper, wrapper_idx=None):
+        if not wrapper.if_calculated:
+            sparsity = wrapper.config[&#39;sparsity&#39;]
+            masks = self.masker.calc_mask(
+                sparsity=sparsity, wrapper=wrapper, wrapper_idx=wrapper_idx)
+
+            if masks is not None:
+                wrapper.if_calculated = True
+            return masks
+        else:
+            return None
+
+    def update_mask(self):
+        if not self.dependency_aware:
+            super(DependencyAwarePruner, self).update_mask()
+        else:
+            self._dependency_update_mask()
+
+    def validate_config(self, model, config_list):
+        schema = PrunerSchema([{
+            Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+            Optional(&#39;op_types&#39;): [&#39;Conv2d&#39;],
+            Optional(&#39;op_names&#39;): [str],
+            Optional(&#39;exclude&#39;): bool
+        }], model, _logger)
+
+        schema.validate(config_list)
+
+    def _supported_dependency_aware(self):
+        raise NotImplementedError
+
+    def _dependency_calc_mask(self, wrappers, channel_dsets, wrappers_idx=None):
+        &#34;&#34;&#34;
+        calculate the masks for the conv layers in the same
+        channel dependecy set. All the layers passed in have
+        the same number of channels.
+
+        Parameters
+        ----------
+        wrappers: list
+            The list of the wrappers that in the same channel dependency
+            set.
+        wrappers_idx: list
+            The list of the indexes of wrapppers.
+        Returns
+        -------
+        masks: dict
+            A dict object that contains the masks of the layers in this
+            dependency group, the key is the name of the convolutional layers.
+        &#34;&#34;&#34;
+        groups = [self.group_depen[_w.name] for _w in wrappers]
+        sparsities = [_w.config[&#39;sparsity&#39;] for _w in wrappers]
+        masks = self.masker.calc_mask(
+            sparsities, wrappers, wrappers_idx, channel_dsets=channel_dsets, groups=groups)
+        if masks is not None:
+            for _w in wrappers:
+                _w.if_calculated = True
+        return masks
+
+    def _dependency_update_mask(self):
+        &#34;&#34;&#34;
+        In the original update_mask, the wraper of each layer will update its
+        own mask according to the sparsity specified in the config_list. However, in
+        the _dependency_update_mask, we may prune several layers at the same
+        time according the sparsities and the channel/group dependencies.
+        &#34;&#34;&#34;
+        name2wrapper = {x.name: x for x in self.get_modules_wrapper()}
+        wrapper2index = {x: i for i, x in enumerate(self.get_modules_wrapper())}
+        for wrapper in self.get_modules_wrapper():
+            if wrapper.if_calculated:
+                continue
+            _names = [x for x in self.channel_depen[wrapper.name]]
+            _logger.info(&#39;Pruning the dependent layers: %s&#39;, &#39;,&#39;.join(_names))
+            _wrappers = [name2wrapper[name]
+                         for name in _names if name in name2wrapper]
+            _wrapper_idxes = [wrapper2index[_w] for _w in _wrappers]
+
+            masks = self._dependency_calc_mask(
+                _wrappers, _names, wrappers_idx=_wrapper_idxes)
+            if masks is not None:
+                for layer in masks:
+                    for mask_type in masks[layer]:
+                        assert hasattr(name2wrapper[layer], mask_type), &#34;there is no attribute &#39;%s&#39; in wrapper on %s&#34; \
+                            % (mask_type, layer)
+                        setattr(name2wrapper[layer], mask_type, masks[layer][mask_type])</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner"><code class="flex name class">
+<span>class <span class="ident">DependencyAwarePruner</span></span>
+<span>(</span><span>model, config_list, optimizer=None, pruning_algorithm='level', dependency_aware=False, dummy_input=None, **algo_kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>DependencyAwarePruner has two ways to calculate the masks
+for conv layers. In the normal way, the DependencyAwarePruner
+will calculate the mask of each layer separately. For example, each
+conv layer determine which filters should be pruned according to its L1
+norm. In constrast, in the dependency-aware way, the layers that in a
+dependency group will be pruned jointly and these layers will be forced
+to prune the same channels.</p>
+<p>Record necessary info in class members</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>pytorch model</code></dt>
+<dd>the model user wants to compress</dd>
+<dt><strong><code>config_list</code></strong> :&ensp;<code>list</code></dt>
+<dd>the configurations that users specify for compression</dd>
+<dt><strong><code>optimizer</code></strong> :&ensp;<code>pytorch optimizer</code></dt>
+<dd>optimizer used to train the model</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DependencyAwarePruner(Pruner):
+    &#34;&#34;&#34;
+    DependencyAwarePruner has two ways to calculate the masks
+    for conv layers. In the normal way, the DependencyAwarePruner
+    will calculate the mask of each layer separately. For example, each
+    conv layer determine which filters should be pruned according to its L1
+    norm. In constrast, in the dependency-aware way, the layers that in a
+    dependency group will be pruned jointly and these layers will be forced
+    to prune the same channels.
+    &#34;&#34;&#34;
+    def __init__(self, model, config_list, optimizer=None, pruning_algorithm=&#39;level&#39;, dependency_aware=False,
+                 dummy_input=None, **algo_kwargs):
+        super().__init__(model, config_list=config_list, optimizer=optimizer)
+
+        self.dependency_aware = dependency_aware
+        self.dummy_input = dummy_input
+
+        if self.dependency_aware:
+            if not self._supported_dependency_aware():
+                raise ValueError(&#39;This pruner does not support dependency aware!&#39;)
+
+            errmsg = &#34;When dependency_aware is set, the dummy_input should not be None&#34;
+            assert self.dummy_input is not None, errmsg
+
+            self._unwrap_model()
+            self.graph = TorchModuleGraph(model, dummy_input)
+            self._wrap_model()
+            self.channel_depen = ChannelDependency(model, dummy_input, traced_model=self.graph.trace)
+            self.group_depen = GroupDependency(model, dummy_input, traced_model=self.graph.trace)
+            self.channel_depen = self.channel_depen.dependency_sets
+            self.channel_depen = {
+                name: sets for sets in self.channel_depen for name in sets}
+            self.group_depen = self.group_depen.dependency_sets
+
+        self.masker = MASKER_DICT[pruning_algorithm](
+            model, self, **algo_kwargs)
+        self.masker.dependency_aware = dependency_aware
+        self.set_wrappers_attribute(&#34;if_calculated&#34;, False)
+
+    def calc_mask(self, wrapper, wrapper_idx=None):
+        if not wrapper.if_calculated:
+            sparsity = wrapper.config[&#39;sparsity&#39;]
+            masks = self.masker.calc_mask(
+                sparsity=sparsity, wrapper=wrapper, wrapper_idx=wrapper_idx)
+
+            if masks is not None:
+                wrapper.if_calculated = True
+            return masks
+        else:
+            return None
+
+    def update_mask(self):
+        if not self.dependency_aware:
+            super(DependencyAwarePruner, self).update_mask()
+        else:
+            self._dependency_update_mask()
+
+    def validate_config(self, model, config_list):
+        schema = PrunerSchema([{
+            Optional(&#39;sparsity&#39;): And(float, lambda n: 0 &lt; n &lt; 1),
+            Optional(&#39;op_types&#39;): [&#39;Conv2d&#39;],
+            Optional(&#39;op_names&#39;): [str],
+            Optional(&#39;exclude&#39;): bool
+        }], model, _logger)
+
+        schema.validate(config_list)
+
+    def _supported_dependency_aware(self):
+        raise NotImplementedError
+
+    def _dependency_calc_mask(self, wrappers, channel_dsets, wrappers_idx=None):
+        &#34;&#34;&#34;
+        calculate the masks for the conv layers in the same
+        channel dependecy set. All the layers passed in have
+        the same number of channels.
+
+        Parameters
+        ----------
+        wrappers: list
+            The list of the wrappers that in the same channel dependency
+            set.
+        wrappers_idx: list
+            The list of the indexes of wrapppers.
+        Returns
+        -------
+        masks: dict
+            A dict object that contains the masks of the layers in this
+            dependency group, the key is the name of the convolutional layers.
+        &#34;&#34;&#34;
+        groups = [self.group_depen[_w.name] for _w in wrappers]
+        sparsities = [_w.config[&#39;sparsity&#39;] for _w in wrappers]
+        masks = self.masker.calc_mask(
+            sparsities, wrappers, wrappers_idx, channel_dsets=channel_dsets, groups=groups)
+        if masks is not None:
+            for _w in wrappers:
+                _w.if_calculated = True
+        return masks
+
+    def _dependency_update_mask(self):
+        &#34;&#34;&#34;
+        In the original update_mask, the wraper of each layer will update its
+        own mask according to the sparsity specified in the config_list. However, in
+        the _dependency_update_mask, we may prune several layers at the same
+        time according the sparsities and the channel/group dependencies.
+        &#34;&#34;&#34;
+        name2wrapper = {x.name: x for x in self.get_modules_wrapper()}
+        wrapper2index = {x: i for i, x in enumerate(self.get_modules_wrapper())}
+        for wrapper in self.get_modules_wrapper():
+            if wrapper.if_calculated:
+                continue
+            _names = [x for x in self.channel_depen[wrapper.name]]
+            _logger.info(&#39;Pruning the dependent layers: %s&#39;, &#39;,&#39;.join(_names))
+            _wrappers = [name2wrapper[name]
+                         for name in _names if name in name2wrapper]
+            _wrapper_idxes = [wrapper2index[_w] for _w in _wrappers]
+
+            masks = self._dependency_calc_mask(
+                _wrappers, _names, wrappers_idx=_wrapper_idxes)
+            if masks is not None:
+                for layer in masks:
+                    for mask_type in masks[layer]:
+                        assert hasattr(name2wrapper[layer], mask_type), &#34;there is no attribute &#39;%s&#39; in wrapper on %s&#34; \
+                            % (mask_type, layer)
+                        setattr(name2wrapper[layer], mask_type, masks[layer][mask_type])</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li><a title="optimization.pruning.core.pruner.Pruner" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner">Pruner</a></li>
+<li><a title="optimization.common.base.compressor.Compressor" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor">Compressor</a></li>
+</ul>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li>optimization.pruning.prune.iterative_pruner.IterativePruner</li>
+<li>optimization.pruning.prune.one_shot_pruner.OneshotPruner</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.update_mask"><code class="name flex">
+<span>def <span class="ident">update_mask</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_mask(self):
+    if not self.dependency_aware:
+        super(DependencyAwarePruner, self).update_mask()
+    else:
+        self._dependency_update_mask()</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Inherited members</h3>
+<ul class="hlist">
+<li><code><b><a title="optimization.pruning.core.pruner.Pruner" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner">Pruner</a></b></code>:
+<ul class="hlist">
+<li><code><a title="optimization.pruning.core.pruner.Pruner.calc_mask" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.calc_mask">calc_mask</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.compress" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.compress">compress</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.export_model" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.export_model">export_model</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.get_modules_to_compress" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.get_modules_to_compress">get_modules_to_compress</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.get_modules_wrapper" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.get_modules_wrapper">get_modules_wrapper</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.get_pruned_weights" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.get_pruned_weights">get_pruned_weights</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.load_model_state_dict" href="../core/pruner.html#optimization.pruning.core.pruner.Pruner.load_model_state_dict">load_model_state_dict</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.reset" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.reset">reset</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.select_config" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.select_config">select_config</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.set_wrappers_attribute" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.set_wrappers_attribute">set_wrappers_attribute</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.update_epoch" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.update_epoch">update_epoch</a></code></li>
+<li><code><a title="optimization.pruning.core.pruner.Pruner.validate_config" href="../../common/base/compressor.html#optimization.common.base.compressor.Compressor.validate_config">validate_config</a></code></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="optimization.pruning.prune" href="index.html">optimization.pruning.prune</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner" href="#optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner">DependencyAwarePruner</a></code></h4>
+<ul class="">
+<li><code><a title="optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.update_mask" href="#optimization.pruning.prune.dependency_aware_prune.DependencyAwarePruner.update_mask">update_mask</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

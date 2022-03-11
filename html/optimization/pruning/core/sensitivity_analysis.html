@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>optimization.pruning.core.sensitivity_analysis API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>optimization.pruning.core.sensitivity_analysis</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import copy
+import csv
+import logging
+from collections import OrderedDict
+
+import numpy as np
+import torch.nn as nn
+
+SUPPORTED_OP_NAME = [&#39;Conv2d&#39;, &#39;Conv1d&#39;]
+SUPPORTED_OP_TYPE = [getattr(nn, name) for name in SUPPORTED_OP_NAME]
+
+logger = logging.getLogger(&#39;Sensitivity_Analysis&#39;)
+logger.setLevel(logging.INFO)
+
+from optimization.pruning.prune import LevelPruner, L1FilterPruner, L2FilterPruner, FPGMPruner
+
+PRUNER_DICT = {
+    &#39;level&#39;: LevelPruner,
+    &#39;l1&#39;: L1FilterPruner,
+    &#39;l2&#39;: L2FilterPruner,
+    &#39;fpgm&#39;: FPGMPruner
+}
+
+class SensitivityAnalysis:
+
+    def __init__(self, model, val_func, sparsities=None, prune_type=&#39;l1&#39;, early_stop_mode=None, early_stop_value=None):
+        &#34;&#34;&#34;
+            Perform sensitivity analysis for this model.
+            Parameters
+            ----------
+            model : torch.nn.Module
+                the model to perform sensitivity analysis
+            val_func : function
+                validation function for the model. Due to
+                different models may need different dataset/criterion
+                , therefore the user need to cover this part by themselves.
+                In the val_func, the model should be tested on the validation dateset,
+                and the validation accuracy/loss should be returned as the output of val_func.
+                There are no restrictions on the input parameters of the val_function.
+                User can use the val_args, val_kwargs parameters in analysis
+                to pass all the parameters that val_func needed.
+            sparsities : list
+                The sparsity list provided by users. This parameter is set when the user
+                only wants to test some specific sparsities. In the sparsity list, each element
+                is a sparsity value which means how much weight the pruner should prune. Take
+                [0.25, 0.5, 0.75] for an example, the SensitivityAnalysis will prune 25% 50% 75%
+                weights gradually for each layer.
+            prune_type : str
+                The pruner type used to prune the conv layers, default is &#39;l1&#39;,
+                and &#39;l2&#39;, &#39;fine-grained&#39; is also supported.
+            early_stop_mode : str
+                If this flag is set, the sensitivity analysis
+                for a conv layer will early stop when the validation metric(
+                for example, accurracy/loss) has alreay meet the threshold. We
+                support four different early stop modes: minimize, maximize, dropped,
+                raised. The default value is None, which means the analysis won&#39;t stop
+                until all given sparsities are tested. This option should be used with
+                early_stop_value together.
+
+                minimize: The analysis stops when the validation metric return by the val_func
+                lower than early_stop_value.
+                maximize: The analysis stops when the validation metric return by the val_func
+                larger than early_stop_value.
+                dropped: The analysis stops when the validation metric has dropped by early_stop_value.
+                raised: The analysis stops when the validation metric has raised by early_stop_value.
+            early_stop_value : float
+                This value is used as the threshold for different earlystop modes.
+                This value is effective only when the early_stop_mode is set.
+
+        &#34;&#34;&#34;
+        self.model = model
+        self.val_func = val_func
+        self.target_layer = OrderedDict()
+        self.ori_state_dict = copy.deepcopy(self.model.state_dict())
+        self.target_layer = {}
+        self.sensitivities = {}
+        if sparsities is not None:
+            self.sparsities = sorted(sparsities)
+        else:
+            self.sparsities = np.arange(0.1, 1.0, 0.1)
+        self.sparsities = [np.round(x, 2) for x in self.sparsities]
+        self.Pruner = PRUNER_DICT[prune_type]
+        self.early_stop_mode = early_stop_mode
+        self.early_stop_value = early_stop_value
+        self.ori_metric = None 
+        self.already_pruned = {}
+        self.model_parse()
+
+    @property
+    def layers_count(self):
+        return len(self.target_layer)
+
+    def model_parse(self):
+        for name, submodel in self.model.named_modules():
+            for op_type in SUPPORTED_OP_TYPE:
+                if isinstance(submodel, op_type):
+                    self.target_layer[name] = submodel
+                    self.already_pruned[name] = 0
+
+    def _need_to_stop(self, ori_metric, cur_metric):
+        &#34;&#34;&#34;
+        Judge if meet the stop conditon(early_stop, min_threshold,
+        max_threshold).
+        Parameters
+        ----------
+        ori_metric : float
+            original validation metric
+        cur_metric : float
+            current validation metric
+
+        Returns
+        -------
+        stop : bool
+            if stop the sensitivity analysis
+        &#34;&#34;&#34;
+        if self.early_stop_mode is None:
+            return False
+        assert self.early_stop_value is not None
+        if self.early_stop_mode == &#39;minimize&#39;:
+            if cur_metric &lt; self.early_stop_value:
+                return True
+        elif self.early_stop_mode == &#39;maximize&#39;:
+            if cur_metric &gt; self.early_stop_value:
+                return True
+        elif self.early_stop_mode == &#39;dropped&#39;:
+            if cur_metric &lt; ori_metric - self.early_stop_value:
+                return True
+        elif self.early_stop_mode == &#39;raised&#39;:
+            if cur_metric &gt; ori_metric + self.early_stop_value:
+                return True
+        return False
+
+    def analysis(self, val_args=None, val_kwargs=None, specified_layers=None):
+        &#34;&#34;&#34;
+        This function analyze the sensitivity to pruning for
+        each conv layer in the target model.
+        If start and end are not set, we analyze all the conv
+        layers by default. Users can specify several layers to
+        analyze or parallelize the analysis process easily through
+        the start and end parameter.
+
+        Parameters
+        ----------
+        val_args : list
+            args for the val_function
+        val_kwargs : dict
+            kwargs for the val_funtion
+        specified_layers : list
+            list of layer names to analyze sensitivity.
+            If this variable is set, then only analyze
+            the conv layers that specified in the list.
+            User can also use this option to parallelize
+            the sensitivity analysis easily.
+        Returns
+        -------
+        sensitivities : dict
+            dict object that stores the trajectory of the
+            accuracy/loss when the prune ratio changes
+        &#34;&#34;&#34;
+        if val_args is None:
+            val_args = []
+        if val_kwargs is None:
+            val_kwargs = {}
+        self.ori_metric = self.val_func(*val_args, **val_kwargs)
+        namelist = list(self.target_layer.keys())
+        if specified_layers is not None:
+            namelist = list(filter(lambda x: x in specified_layers, namelist))
+        for name in namelist:
+            self.sensitivities[name] = {}
+            for sparsity in self.sparsities:
+                real_sparsity = (
+                    1.0 - self.already_pruned[name]) * sparsity + self.already_pruned[name]
+                cfg = [{&#39;sparsity&#39;: real_sparsity, &#39;op_names&#39;: [
+                    name], &#39;op_types&#39;: [&#39;Conv2d&#39;]}]
+                pruner = self.Pruner(self.model, cfg)
+                pruner.compress()
+                val_metric = self.val_func(*val_args, **val_kwargs)
+                logger.info(&#39;Layer: %s Sparsity: %.2f Validation Metric: %.4f&#39;,
+                            name, real_sparsity, val_metric)
+
+                self.sensitivities[name][sparsity] = val_metric
+                pruner._unwrap_model()
+                del pruner
+                if self._need_to_stop(self.ori_metric, val_metric):
+                    break
+
+            self.model.load_state_dict(self.ori_state_dict)
+
+        return self.sensitivities
+
+    def export(self, filepath):
+        &#34;&#34;&#34;
+        Export the results of the sensitivity analysis
+        to a csv file. The firstline of the csv file describe the content
+        structure. The first line is constructed by &#39;layername&#39; and sparsity
+        list. Each line below records the validation metric returned by val_func
+        when this layer is under different sparsities. Note that, due to the early_stop
+        option, some layers may not have the metrics under all sparsities.
+
+        layername, 0.25, 0.5, 0.75
+        conv1, 0.6, 0.55
+        conv2, 0.61, 0.57, 0.56
+
+        Parameters
+        ----------
+        filepath : str
+            Path of the output file
+        &#34;&#34;&#34;
+        str_sparsities = [str(x) for x in self.sparsities]
+        header = [&#39;layername&#39;] + str_sparsities
+        with open(filepath, &#39;w&#39;) as csvf:
+            csv_w = csv.writer(csvf)
+            csv_w.writerow(header)
+            for layername in self.sensitivities:
+                row = []
+                row.append(layername)
+                for sparsity in sorted(self.sensitivities[layername].keys()):
+                    row.append(self.sensitivities[layername][sparsity])
+                csv_w.writerow(row)
+
+    def update_already_pruned(self, layername, ratio):
+        &#34;&#34;&#34;
+        Set the already pruned ratio for the target layer.
+        &#34;&#34;&#34;
+        self.already_pruned[layername] = ratio
+
+    def load_state_dict(self, state_dict):
+        &#34;&#34;&#34;
+        Update the weight of the model
+        &#34;&#34;&#34;
+        self.ori_state_dict = copy.deepcopy(state_dict)
+        self.model.load_state_dict(self.ori_state_dict)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis"><code class="flex name class">
+<span>class <span class="ident">SensitivityAnalysis</span></span>
+<span>(</span><span>model, val_func, sparsities=None, prune_type='l1', early_stop_mode=None, early_stop_value=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Perform sensitivity analysis for this model.
+Parameters</p>
+<hr>
+<dl>
+<dt><strong><code>model</code></strong> :&ensp;<code>torch.nn.Module</code></dt>
+<dd>the model to perform sensitivity analysis</dd>
+<dt><strong><code>val_func</code></strong> :&ensp;<code>function</code></dt>
+<dd>validation function for the model. Due to
+different models may need different dataset/criterion
+, therefore the user need to cover this part by themselves.
+In the val_func, the model should be tested on the validation dateset,
+and the validation accuracy/loss should be returned as the output of val_func.
+There are no restrictions on the input parameters of the val_function.
+User can use the val_args, val_kwargs parameters in analysis
+to pass all the parameters that val_func needed.</dd>
+<dt><strong><code>sparsities</code></strong> :&ensp;<code>list</code></dt>
+<dd>The sparsity list provided by users. This parameter is set when the user
+only wants to test some specific sparsities. In the sparsity list, each element
+is a sparsity value which means how much weight the pruner should prune. Take
+[0.25, 0.5, 0.75] for an example, the SensitivityAnalysis will prune 25% 50% 75%
+weights gradually for each layer.</dd>
+<dt><strong><code>prune_type</code></strong> :&ensp;<code>str</code></dt>
+<dd>The pruner type used to prune the conv layers, default is 'l1',
+and 'l2', 'fine-grained' is also supported.</dd>
+<dt><strong><code>early_stop_mode</code></strong> :&ensp;<code>str</code></dt>
+<dd>
+<p>If this flag is set, the sensitivity analysis
+for a conv layer will early stop when the validation metric(
+for example, accurracy/loss) has alreay meet the threshold. We
+support four different early stop modes: minimize, maximize, dropped,
+raised. The default value is None, which means the analysis won't stop
+until all given sparsities are tested. This option should be used with
+early_stop_value together.</p>
+<p>minimize: The analysis stops when the validation metric return by the val_func
+lower than early_stop_value.
+maximize: The analysis stops when the validation metric return by the val_func
+larger than early_stop_value.
+dropped: The analysis stops when the validation metric has dropped by early_stop_value.
+raised: The analysis stops when the validation metric has raised by early_stop_value.</p>
+</dd>
+<dt><strong><code>early_stop_value</code></strong> :&ensp;<code>float</code></dt>
+<dd>This value is used as the threshold for different earlystop modes.
+This value is effective only when the early_stop_mode is set.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SensitivityAnalysis:
+
+    def __init__(self, model, val_func, sparsities=None, prune_type=&#39;l1&#39;, early_stop_mode=None, early_stop_value=None):
+        &#34;&#34;&#34;
+            Perform sensitivity analysis for this model.
+            Parameters
+            ----------
+            model : torch.nn.Module
+                the model to perform sensitivity analysis
+            val_func : function
+                validation function for the model. Due to
+                different models may need different dataset/criterion
+                , therefore the user need to cover this part by themselves.
+                In the val_func, the model should be tested on the validation dateset,
+                and the validation accuracy/loss should be returned as the output of val_func.
+                There are no restrictions on the input parameters of the val_function.
+                User can use the val_args, val_kwargs parameters in analysis
+                to pass all the parameters that val_func needed.
+            sparsities : list
+                The sparsity list provided by users. This parameter is set when the user
+                only wants to test some specific sparsities. In the sparsity list, each element
+                is a sparsity value which means how much weight the pruner should prune. Take
+                [0.25, 0.5, 0.75] for an example, the SensitivityAnalysis will prune 25% 50% 75%
+                weights gradually for each layer.
+            prune_type : str
+                The pruner type used to prune the conv layers, default is &#39;l1&#39;,
+                and &#39;l2&#39;, &#39;fine-grained&#39; is also supported.
+            early_stop_mode : str
+                If this flag is set, the sensitivity analysis
+                for a conv layer will early stop when the validation metric(
+                for example, accurracy/loss) has alreay meet the threshold. We
+                support four different early stop modes: minimize, maximize, dropped,
+                raised. The default value is None, which means the analysis won&#39;t stop
+                until all given sparsities are tested. This option should be used with
+                early_stop_value together.
+
+                minimize: The analysis stops when the validation metric return by the val_func
+                lower than early_stop_value.
+                maximize: The analysis stops when the validation metric return by the val_func
+                larger than early_stop_value.
+                dropped: The analysis stops when the validation metric has dropped by early_stop_value.
+                raised: The analysis stops when the validation metric has raised by early_stop_value.
+            early_stop_value : float
+                This value is used as the threshold for different earlystop modes.
+                This value is effective only when the early_stop_mode is set.
+
+        &#34;&#34;&#34;
+        self.model = model
+        self.val_func = val_func
+        self.target_layer = OrderedDict()
+        self.ori_state_dict = copy.deepcopy(self.model.state_dict())
+        self.target_layer = {}
+        self.sensitivities = {}
+        if sparsities is not None:
+            self.sparsities = sorted(sparsities)
+        else:
+            self.sparsities = np.arange(0.1, 1.0, 0.1)
+        self.sparsities = [np.round(x, 2) for x in self.sparsities]
+        self.Pruner = PRUNER_DICT[prune_type]
+        self.early_stop_mode = early_stop_mode
+        self.early_stop_value = early_stop_value
+        self.ori_metric = None 
+        self.already_pruned = {}
+        self.model_parse()
+
+    @property
+    def layers_count(self):
+        return len(self.target_layer)
+
+    def model_parse(self):
+        for name, submodel in self.model.named_modules():
+            for op_type in SUPPORTED_OP_TYPE:
+                if isinstance(submodel, op_type):
+                    self.target_layer[name] = submodel
+                    self.already_pruned[name] = 0
+
+    def _need_to_stop(self, ori_metric, cur_metric):
+        &#34;&#34;&#34;
+        Judge if meet the stop conditon(early_stop, min_threshold,
+        max_threshold).
+        Parameters
+        ----------
+        ori_metric : float
+            original validation metric
+        cur_metric : float
+            current validation metric
+
+        Returns
+        -------
+        stop : bool
+            if stop the sensitivity analysis
+        &#34;&#34;&#34;
+        if self.early_stop_mode is None:
+            return False
+        assert self.early_stop_value is not None
+        if self.early_stop_mode == &#39;minimize&#39;:
+            if cur_metric &lt; self.early_stop_value:
+                return True
+        elif self.early_stop_mode == &#39;maximize&#39;:
+            if cur_metric &gt; self.early_stop_value:
+                return True
+        elif self.early_stop_mode == &#39;dropped&#39;:
+            if cur_metric &lt; ori_metric - self.early_stop_value:
+                return True
+        elif self.early_stop_mode == &#39;raised&#39;:
+            if cur_metric &gt; ori_metric + self.early_stop_value:
+                return True
+        return False
+
+    def analysis(self, val_args=None, val_kwargs=None, specified_layers=None):
+        &#34;&#34;&#34;
+        This function analyze the sensitivity to pruning for
+        each conv layer in the target model.
+        If start and end are not set, we analyze all the conv
+        layers by default. Users can specify several layers to
+        analyze or parallelize the analysis process easily through
+        the start and end parameter.
+
+        Parameters
+        ----------
+        val_args : list
+            args for the val_function
+        val_kwargs : dict
+            kwargs for the val_funtion
+        specified_layers : list
+            list of layer names to analyze sensitivity.
+            If this variable is set, then only analyze
+            the conv layers that specified in the list.
+            User can also use this option to parallelize
+            the sensitivity analysis easily.
+        Returns
+        -------
+        sensitivities : dict
+            dict object that stores the trajectory of the
+            accuracy/loss when the prune ratio changes
+        &#34;&#34;&#34;
+        if val_args is None:
+            val_args = []
+        if val_kwargs is None:
+            val_kwargs = {}
+        self.ori_metric = self.val_func(*val_args, **val_kwargs)
+        namelist = list(self.target_layer.keys())
+        if specified_layers is not None:
+            namelist = list(filter(lambda x: x in specified_layers, namelist))
+        for name in namelist:
+            self.sensitivities[name] = {}
+            for sparsity in self.sparsities:
+                real_sparsity = (
+                    1.0 - self.already_pruned[name]) * sparsity + self.already_pruned[name]
+                cfg = [{&#39;sparsity&#39;: real_sparsity, &#39;op_names&#39;: [
+                    name], &#39;op_types&#39;: [&#39;Conv2d&#39;]}]
+                pruner = self.Pruner(self.model, cfg)
+                pruner.compress()
+                val_metric = self.val_func(*val_args, **val_kwargs)
+                logger.info(&#39;Layer: %s Sparsity: %.2f Validation Metric: %.4f&#39;,
+                            name, real_sparsity, val_metric)
+
+                self.sensitivities[name][sparsity] = val_metric
+                pruner._unwrap_model()
+                del pruner
+                if self._need_to_stop(self.ori_metric, val_metric):
+                    break
+
+            self.model.load_state_dict(self.ori_state_dict)
+
+        return self.sensitivities
+
+    def export(self, filepath):
+        &#34;&#34;&#34;
+        Export the results of the sensitivity analysis
+        to a csv file. The firstline of the csv file describe the content
+        structure. The first line is constructed by &#39;layername&#39; and sparsity
+        list. Each line below records the validation metric returned by val_func
+        when this layer is under different sparsities. Note that, due to the early_stop
+        option, some layers may not have the metrics under all sparsities.
+
+        layername, 0.25, 0.5, 0.75
+        conv1, 0.6, 0.55
+        conv2, 0.61, 0.57, 0.56
+
+        Parameters
+        ----------
+        filepath : str
+            Path of the output file
+        &#34;&#34;&#34;
+        str_sparsities = [str(x) for x in self.sparsities]
+        header = [&#39;layername&#39;] + str_sparsities
+        with open(filepath, &#39;w&#39;) as csvf:
+            csv_w = csv.writer(csvf)
+            csv_w.writerow(header)
+            for layername in self.sensitivities:
+                row = []
+                row.append(layername)
+                for sparsity in sorted(self.sensitivities[layername].keys()):
+                    row.append(self.sensitivities[layername][sparsity])
+                csv_w.writerow(row)
+
+    def update_already_pruned(self, layername, ratio):
+        &#34;&#34;&#34;
+        Set the already pruned ratio for the target layer.
+        &#34;&#34;&#34;
+        self.already_pruned[layername] = ratio
+
+    def load_state_dict(self, state_dict):
+        &#34;&#34;&#34;
+        Update the weight of the model
+        &#34;&#34;&#34;
+        self.ori_state_dict = copy.deepcopy(state_dict)
+        self.model.load_state_dict(self.ori_state_dict)</code></pre>
+</details>
+<h3>Instance variables</h3>
+<dl>
+<dt id="optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis.layers_count"><code class="name">var <span class="ident">layers_count</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def layers_count(self):
+    return len(self.target_layer)</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis.analysis"><code class="name flex">
+<span>def <span class="ident">analysis</span></span>(<span>self, val_args=None, val_kwargs=None, specified_layers=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This function analyze the sensitivity to pruning for
+each conv layer in the target model.
+If start and end are not set, we analyze all the conv
+layers by default. Users can specify several layers to
+analyze or parallelize the analysis process easily through
+the start and end parameter.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>val_args</code></strong> :&ensp;<code>list</code></dt>
+<dd>args for the val_function</dd>
+<dt><strong><code>val_kwargs</code></strong> :&ensp;<code>dict</code></dt>
+<dd>kwargs for the val_funtion</dd>
+<dt><strong><code>specified_layers</code></strong> :&ensp;<code>list</code></dt>
+<dd>list of layer names to analyze sensitivity.
+If this variable is set, then only analyze
+the conv layers that specified in the list.
+User can also use this option to parallelize
+the sensitivity analysis easily.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>sensitivities</code></strong> :&ensp;<code>dict</code></dt>
+<dd>dict object that stores the trajectory of the
+accuracy/loss when the prune ratio changes</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def analysis(self, val_args=None, val_kwargs=None, specified_layers=None):
+    &#34;&#34;&#34;
+    This function analyze the sensitivity to pruning for
+    each conv layer in the target model.
+    If start and end are not set, we analyze all the conv
+    layers by default. Users can specify several layers to
+    analyze or parallelize the analysis process easily through
+    the start and end parameter.
+
+    Parameters
+    ----------
+    val_args : list
+        args for the val_function
+    val_kwargs : dict
+        kwargs for the val_funtion
+    specified_layers : list
+        list of layer names to analyze sensitivity.
+        If this variable is set, then only analyze
+        the conv layers that specified in the list.
+        User can also use this option to parallelize
+        the sensitivity analysis easily.
+    Returns
+    -------
+    sensitivities : dict
+        dict object that stores the trajectory of the
+        accuracy/loss when the prune ratio changes
+    &#34;&#34;&#34;
+    if val_args is None:
+        val_args = []
+    if val_kwargs is None:
+        val_kwargs = {}
+    self.ori_metric = self.val_func(*val_args, **val_kwargs)
+    namelist = list(self.target_layer.keys())
+    if specified_layers is not None:
+        namelist = list(filter(lambda x: x in specified_layers, namelist))
+    for name in namelist:
+        self.sensitivities[name] = {}
+        for sparsity in self.sparsities:
+            real_sparsity = (
+                1.0 - self.already_pruned[name]) * sparsity + self.already_pruned[name]
+            cfg = [{&#39;sparsity&#39;: real_sparsity, &#39;op_names&#39;: [
+                name], &#39;op_types&#39;: [&#39;Conv2d&#39;]}]
+            pruner = self.Pruner(self.model, cfg)
+            pruner.compress()
+            val_metric = self.val_func(*val_args, **val_kwargs)
+            logger.info(&#39;Layer: %s Sparsity: %.2f Validation Metric: %.4f&#39;,
+                        name, real_sparsity, val_metric)
+
+            self.sensitivities[name][sparsity] = val_metric
+            pruner._unwrap_model()
+            del pruner
+            if self._need_to_stop(self.ori_metric, val_metric):
+                break
+
+        self.model.load_state_dict(self.ori_state_dict)
+
+    return self.sensitivities</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis.export"><code class="name flex">
+<span>def <span class="ident">export</span></span>(<span>self, filepath)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Export the results of the sensitivity analysis
+to a csv file. The firstline of the csv file describe the content
+structure. The first line is constructed by 'layername' and sparsity
+list. Each line below records the validation metric returned by val_func
+when this layer is under different sparsities. Note that, due to the early_stop
+option, some layers may not have the metrics under all sparsities.</p>
+<p>layername, 0.25, 0.5, 0.75
+conv1, 0.6, 0.55
+conv2, 0.61, 0.57, 0.56</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>filepath</code></strong> :&ensp;<code>str</code></dt>
+<dd>Path of the output file</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def export(self, filepath):
+    &#34;&#34;&#34;
+    Export the results of the sensitivity analysis
+    to a csv file. The firstline of the csv file describe the content
+    structure. The first line is constructed by &#39;layername&#39; and sparsity
+    list. Each line below records the validation metric returned by val_func
+    when this layer is under different sparsities. Note that, due to the early_stop
+    option, some layers may not have the metrics under all sparsities.
+
+    layername, 0.25, 0.5, 0.75
+    conv1, 0.6, 0.55
+    conv2, 0.61, 0.57, 0.56
+
+    Parameters
+    ----------
+    filepath : str
+        Path of the output file
+    &#34;&#34;&#34;
+    str_sparsities = [str(x) for x in self.sparsities]
+    header = [&#39;layername&#39;] + str_sparsities
+    with open(filepath, &#39;w&#39;) as csvf:
+        csv_w = csv.writer(csvf)
+        csv_w.writerow(header)
+        for layername in self.sensitivities:
+            row = []
+            row.append(layername)
+            for sparsity in sorted(self.sensitivities[layername].keys()):
+                row.append(self.sensitivities[layername][sparsity])
+            csv_w.writerow(row)</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis.load_state_dict"><code class="name flex">
+<span>def <span class="ident">load_state_dict</span></span>(<span>self, state_dict)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Update the weight of the model</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_state_dict(self, state_dict):
+    &#34;&#34;&#34;
+    Update the weight of the model
+    &#34;&#34;&#34;
+    self.ori_state_dict = copy.deepcopy(state_dict)
+    self.model.load_state_dict(self.ori_state_dict)</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis.model_parse"><code class="name flex">
+<span>def <span class="ident">model_parse</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def model_parse(self):
+    for name, submodel in self.model.named_modules():
+        for op_type in SUPPORTED_OP_TYPE:
+            if isinstance(submodel, op_type):
+                self.target_layer[name] = submodel
+                self.already_pruned[name] = 0</code></pre>
+</details>
+</dd>
+<dt id="optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis.update_already_pruned"><code class="name flex">
+<span>def <span class="ident">update_already_pruned</span></span>(<span>self, layername, ratio)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set the already pruned ratio for the target layer.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_already_pruned(self, layername, ratio):
+    &#34;&#34;&#34;
+    Set the already pruned ratio for the target layer.
+    &#34;&#34;&#34;
+    self.already_pruned[layername] = ratio</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="optimization.pruning.core" href="index.html">optimization.pruning.core</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis" href="#optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis">SensitivityAnalysis</a></code></h4>
+<ul class="">
+<li><code><a title="optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis.analysis" href="#optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis.analysis">analysis</a></code></li>
+<li><code><a title="optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis.export" href="#optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis.export">export</a></code></li>
+<li><code><a title="optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis.layers_count" href="#optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis.layers_count">layers_count</a></code></li>
+<li><code><a title="optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis.load_state_dict" href="#optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis.load_state_dict">load_state_dict</a></code></li>
+<li><code><a title="optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis.model_parse" href="#optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis.model_parse">model_parse</a></code></li>
+<li><code><a title="optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis.update_already_pruned" href="#optimization.pruning.core.sensitivity_analysis.SensitivityAnalysis.update_already_pruned">update_already_pruned</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
