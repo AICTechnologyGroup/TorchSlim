@@ -30,7 +30,7 @@ pip install -r requirments.txt
 
 - **Document**: Comming soon!!!!!
 
-- Get infomation: [Link](https://vinbrain.atlassian.net/wiki/spaces/AS/pages/1935671422/Document+for+Optimization+Toolkit)
+- Get infomation: [Link]
 ## Roadmap
  - [x] Add pruning method for Transformer, RNN.
  - [x] Add quantization method.
