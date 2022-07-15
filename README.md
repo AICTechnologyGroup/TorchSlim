@@ -34,7 +34,7 @@ pip install -r requirments.txt
 ## Roadmap
  - [x] Add pruning method for Transformer, RNN.
  - [x] Add quantization method.
- - [ ] Add more loss function in Knowledge Distillation method.
+ - [x] Add more loss function in Knowledge Distillation method.
  - [ ] Add Spatial SVD method: Tensor decomposition technique to split a large layer in two smaller ones.
  - [ ] Add visualization in tensorboard.
 
